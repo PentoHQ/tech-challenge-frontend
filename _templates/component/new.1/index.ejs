@@ -1,0 +1,9 @@
+---
+to: src/components/<%= Name %>/index.ts
+---
+// @flow
+<% if (locals.subComponent) { %>
+export { default, <%= subComponentName %> }  from './<%= Name %>'
+<% } else { %>
+export { default } from './<%= Name %>'
+<% } %>

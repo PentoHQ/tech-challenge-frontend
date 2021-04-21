@@ -1,0 +1,50 @@
+@import 'common.scss';
+@import 'colors.scss';
+
+$card-border: 1px solid $grey-card-border;
+
+.wrapper {
+  display: flex;
+  flex: 1;
+  border: $card-border;
+  border-radius: $rounded;
+  flex-direction: column;
+  background-color: $white;
+  &.greyBg {
+    background-color: $grey-tint;
+  }
+}
+
+.content {
+  font: $text14Regular;
+  padding: $padding24 - $border $padding24;
+  &.compact {
+    padding: $padding16 - $border $padding16;
+  }
+}
+
+.header {
+  @extend .content;
+  padding-bottom: 0;
+}
+
+.footer {
+  @extend .content;
+  padding: $padding24;
+  padding-top: 0;
+}
+
+.divider {
+  border-bottom: $card-border;
+  border-top: 1px solid transparent;
+}
+
+.rawCard {
+  table {
+    border-top: none;
+    border-bottom: none;
+    tr:last-of-type > td {
+      border-bottom: none;
+    }
+  }
+}

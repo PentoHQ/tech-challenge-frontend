@@ -1,0 +1,38 @@
+@import 'common.scss';
+@import 'colors.scss';
+@import './ButtonBase.scss';
+
+@mixin buttonColors($color, $border) {
+  color: $color;
+  @include shadowBorder($border);
+  &:focus {
+    outline: 1px solid $border;
+  }
+}
+
+.wrapper {
+  @extend %button;
+  font: $text14Medium;
+}
+.small {
+  padding: $padding4;
+}
+.medium {
+  padding: $padding8;
+}
+.large {
+  padding: $padding16;
+}
+
+.primary {
+  @include buttonColors($primary90, $primary20);
+}
+.secondary {
+  @include buttonColors($grey70, $grey-border);
+}
+.success {
+  @include buttonColors($success70, $success10);
+}
+.danger {
+  @include buttonColors($danger90, $danger10);
+}

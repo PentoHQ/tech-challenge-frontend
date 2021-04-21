@@ -1,0 +1,95 @@
+@import 'common.scss';
+
+$paddingBtn: $padding16;
+$padding: $padding24;
+$padding1: $padding8;
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding-top: $padding;
+  align-items: center;
+  &.leftAlign {
+    justify-content: flex-start;
+  }
+  &.centered {
+    justify-content: center;
+  }
+  &.sides {
+    justify-content: space-between;
+  }
+  // Vertical align
+  &.bottomAlign {
+    align-items: flex-end;
+  }
+  &.topAlign {
+    align-items: flex-start;
+  }
+  &.baseline {
+    align-items: baseline;
+  }
+  &.compact {
+    padding: 0;
+  }
+  &.fill > .formItem {
+    flex: 1;
+  }
+
+  &.spacing1 {
+    .formItem {
+      @extend %skipFirstPadding;
+      padding-left: $padding1;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    align-items: stretch;
+    // We need to adjust this because on small screen all should be stretch
+    &.leftAlign,
+    &.topAlign,
+    &.baseline {
+      align-items: stretch;
+    }
+    .formItem {
+      padding: 0;
+      padding-top: $padding;
+    }
+    .button {
+      padding: 0;
+      padding-top: $paddingBtn;
+      button {
+        width: 100%;
+      }
+    }
+  }
+}
+.sizeEvenly {
+  .formItem {
+    @extend %sizeFlexEvenly;
+  }
+}
+
+.doNotStretchLastChild {
+  .formItem:last-of-type {
+    flex: 0;
+    width: auto;
+  }
+}
+
+%skipFirstPadding {
+  &:first-child {
+    padding: 0;
+  }
+}
+
+.formItem {
+  padding-left: $padding;
+  @extend %skipFirstPadding;
+}
+
+.button {
+  min-width: 10px;
+  padding-left: $paddingBtn;
+  @extend %skipFirstPadding;
+}

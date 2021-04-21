@@ -1,0 +1,14 @@
+@import 'common.scss';
+@import 'colors.scss';
+
+.wrapper {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+/* Styles applied to the root element if `disablePadding={false}`. */
+.padding {
+  padding-top: $padding8;
+  padding-bottom: $padding8;
+}

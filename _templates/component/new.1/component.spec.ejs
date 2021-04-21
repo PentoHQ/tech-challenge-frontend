@@ -1,0 +1,34 @@
+---
+to: src/components/<%= Name %>/<%= Name %>.spec.ts
+---
+import React from 'react'
+import { shallow } from 'enzyme'
+import <%= Name %> from './<%= Name %>'
+
+function getWrapper(props) {
+  return shallow(<<%= Name %> {...props} />)
+}
+
+describe('<<%= Name %>/>', () => {
+
+  it('renders', () => {
+    const wrapper = getWrapper({ children: 'Hello!' })
+
+    expect(wrapper.text()).toEqual('Hello!')
+  })
+
+  it('passes down the provided class name', () => {
+    const wrapper = getWrapper({ children: 'Hello!', className: 'test-class' })
+
+    expect(wrapper.hasClass('test-class')).toBeTruthy()
+  })
+
+  it('on change', () => {
+    const onChange = jest.fn()
+    const wrapper = getWrapper({ onChange })
+
+    wrapper.simulate('click')
+
+    expect(onChange).toHaveBeenCalledTimes(1)
+  })
+})

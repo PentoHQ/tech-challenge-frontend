@@ -1,0 +1,12 @@
+---
+inject: true
+to: src/index.js
+after: "export { default"
+skip_if: <%= Name %> 
+sh: "yarn eslint --fix <%= cwd %>/src/components/<%= Name %> <%= cwd %>/src/index.js"
+---
+<% if (locals.subComponent) { -%>
+export {  default as <%= Name %> , <%= subComponentName %> }  from './<%= Name -%>'
+<% } else { -%>
+export { default as <%= Name %> } from './components/<%= Name %>'
+<% } -%>

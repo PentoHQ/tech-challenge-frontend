@@ -1,0 +1,9 @@
+---
+inject: true
+to: '<%= `src/components/${Parent}/index.ts` %>'
+after: 'export { default'
+skip_if: <%= Name %>
+sh: 'yarn lint --fix <%= cwd %>/src'
+---
+
+export { <%= Name %> } from './<%= Name %>'

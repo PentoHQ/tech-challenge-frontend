@@ -1,0 +1,24 @@
+@import 'common.scss';
+@import 'colors.scss';
+
+@mixin square($size) {
+  min-width: $size;
+  min-height: $size;
+}
+
+.iconBtn {
+  font-size: 1rem;
+  padding: $padding8;
+  @include square(24px);
+}
+
+.small {
+  padding: $padding4;
+  @include square(24px);
+}
+.medium {
+  @include square(48px);
+}
+.large {
+  @include square(64px);
+}

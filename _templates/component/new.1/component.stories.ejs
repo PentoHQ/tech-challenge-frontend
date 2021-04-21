@@ -1,0 +1,42 @@
+---
+to: src/components/<%= Name %>/<%= Name %>.stories.js
+---
+import React from 'react'
+import { action } from '@storybook/addon-actions'
+
+// By importing from index.js we avoid future problems of forgetting to export
+// all components on it
+import <%= Name %> from './'
+
+// Import helper components from Spring itself
+import { Text, Spacer } from '../../'
+
+export default {
+  title: '<%= Name %>',
+  component: <%= Name %>,
+  parameters: {
+    options: { showPanel: true },
+  },
+};
+
+/**
+* Use the default export to provide interactivity using knobs.
+* It will give a better overview of what the component is capable.
+*/
+export const Default = () => { 
+  const name = text('Name', 'James')
+  const items = number('Items', 4)
+  const render = boolean('Render?', true)
+  return (
+    <>
+      <Text> Use this block to give an human explanation of what this component is about.
+      </Text>
+      <Spacer mb={4} />
+      <<%= Name %> onClick={action('clicked')} name={name}>
+        { render && Array(items).fill(name).join(' ') }
+      </<%= Name %>>
+    </>
+    )
+};
+
+export const ExampleOne = () => <<%= Name %> onClick={action('clicked')}>Hello Component</<%= Name %>>;

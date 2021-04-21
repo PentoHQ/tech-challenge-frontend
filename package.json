@@ -1,0 +1,82 @@
+{
+  "name": "pento-tech-template",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@apollo/client": "^3.3.12",
+    "@auth0/auth0-react": "^1.4.0",
+    "@graphql-codegen/cli": "^1.21.3",
+    "@graphql-codegen/introspection": "^1.18.1",
+    "@graphql-codegen/typescript": "^1.21.1",
+    "@graphql-codegen/typescript-operations": "^1.17.15",
+    "@graphql-codegen/typescript-react-apollo": "^2.2.3",
+    "@heroicons/react": "^1.0.1",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^12.0.0",
+    "@types/react": "^17.0.3",
+    "@types/react-dom": "^17.0.0",
+    "@types/react-router-dom": "^5.1.7",
+    "date-fns": "^2.21.1",
+    "dotenv": "^8.2.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "framer-motion": "^4.0.0",
+    "graphql": "^15.5.0",
+    "hygen": "^6.0.4",
+    "prettier": "^2.2.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^4.0.3",
+    "recharts": "^2.0.9",
+    "sass": "^1.32.8",
+    "typescript": "^4.1.2",
+    "web-vitals": "^1.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint src",
+    "fix": "lint --fix",
+    "prebuild": "lint",
+    "new-component": "hygen component new --name",
+    "generate-template": "hygen-create generate",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public",
+    "build-storybook-docs": "build-storybook -s public --docs",
+    "generate": "graphql-codegen --config codegen.js"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "^6.1.21",
+    "@storybook/addon-actions": "^6.1.21",
+    "@storybook/addon-essentials": "^6.1.21",
+    "@storybook/addon-links": "^6.1.21",
+    "@storybook/node-logger": "^6.1.21",
+    "@storybook/preset-create-react-app": "^3.1.7",
+    "@storybook/react": "^6.1.21",
+    "hygen-create": "^0.2.1"
+  }
+}

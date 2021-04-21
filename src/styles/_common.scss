@@ -1,0 +1,142 @@
+// Abstract classes
+%resetButton {
+  outline: none;
+  border: 1px solid transparent;
+  background-color: transparent;
+  padding: 0;
+}
+
+%flexCentered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+%flexBetween {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+// Do not allow to break text to new line
+// and show an ellipsis when it is too long.
+%textEllipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  // this is a requirement or it will not work. If you need a flex container use a wrapper
+  display: block;
+}
+
+%sizeFlexEvenly {
+  flex: 1 1 0px;
+  width: 0;
+}
+// Z-indexes, don't just use random values!
+$z-index-pushCard: 1;
+$z-index-dropdown: 1;
+$z-index-select: 1;
+$z-index-tooltip: 1;
+$z-index-modal-backdrop: 2;
+$z-index-modal: $z-index-modal-backdrop + 1;
+
+// Font stuff
+$boldFontWeight: 700;
+$semiBoldFontWeight: 600;
+$mediumFontWeight: 500;
+$regularFontWeight: 400;
+
+$lineHeight: 24px;
+$lineHeight20: 20px;
+$lineHeight32: 32px;
+$lineHeight16: 16px;
+$primaryFont: Inter;
+$regularFontSize: 14px;
+$letterSpacing05: 0.5px;
+$letterSpacingNegative05: -0.5px;
+
+// weight font-size / line-height fontName
+$heading1: $semiBoldFontWeight 28px / 32px Inter;
+$heading2: $semiBoldFontWeight 24px / 32px Inter;
+$heading3: $mediumFontWeight 18px / 24px Inter;
+$text16Regular: $regularFontWeight 16px / 24px Inter;
+$text16Medium: $mediumFontWeight 16px / 24px Inter;
+$text14Regular: $regularFontWeight 14px / 24px Inter;
+$text14Medium: $mediumFontWeight 14px / 24px Inter;
+$text14SemiBold: $semiBoldFontWeight 14px / 24px Inter;
+$text12Medium: $mediumFontWeight 12px / 16px Inter;
+$interface11: $semiBoldFontWeight 11px / 16px Inter;
+$interface12: $mediumFontWeight 12px / 16px Inter;
+$interface14SemiBold: $semiBoldFontWeight 14px / 20px Inter;
+$interface14Medium: $mediumFontWeight 14px / 20px Inter;
+$interface14Regular: $regularFontWeight 14px / 20px Inter;
+$interface14Number: $regularFontWeight 14px / 24px Inter;
+$interface14NumberMedium: $mediumFontWeight 14px / 24px Inter;
+
+// Sizings
+$dropdownMaxWidth: 280px;
+$dropdownMinWidth: 180px;
+$modalMaxWidth: 520px;
+$modalMinWidth: 520px;
+$border: 1px;
+$normalIconWidth: 24px;
+$tooltip-max-width: 280px;
+$maxWidth: 1080px;
+$sidebarWidth: 240px;
+$toast-max-width: 480px;
+$radioSize: 20px;
+$checkSize: 20px;
+
+// margins
+$pageOffset: 0 40px;
+$margin4: 4px;
+$margin8: 8px;
+$margin16: 16px;
+$margin24: 24px;
+$padding4: 4px;
+$padding6MinusBorder: 5px;
+$padding8Border: 7px;
+$padding8: 8px;
+$padding12: 12px;
+$padding16: 16px;
+$padding24: 24px;
+$padding20: 20px;
+$padding40: 40px;
+$padding80: 80px;
+$elevation1: 0px 1px 1px rgba(37, 40, 46, 0.08);
+$elevation2: 0px 2px 4px rgba(37, 40, 46, 0.12);
+$elevation3: 0px 8px 16px rgba(37, 40, 46, 0.06), 0px 2px 6px rgba(37, 40, 46, 0.08);
+$elevation5: 0px 15px 25px rgba(37, 40, 46, 0.12), 0px 5px 10px rgba(9, 30, 66, 0.08);
+
+// animations
+$transition02: all ease-in 0.2s;
+$buttonAnimation: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+  border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+$toggleTransition: background-color 0.2s;
+$rotateDuration: 0.15s;
+$rotateTransition: transform $rotateDuration linear;
+$bgGradient: linear-gradient(180deg, #fafbfc 0%, #ffffff 100%);
+
+// borders
+$rounded: 5px;
+$circle: 100px;
+// $sidebar-divider: inset -1px 0px 1px $grey10;
+// $savepanel-divider: inset 0px 1px 0px $grey10;
+// $bottom-divider: inset 0px -1px 0px $grey10;
+// Creates a border around component using shadow, so it does not affect the element size
+@mixin shadowBorder($color) {
+  box-shadow: inset 0 0 0 1px $color;
+}
+// Creates border using shadow and adds a elevation1 shadow
+@mixin shadowBorderElevation($color, $elevation: $elevation1) {
+  box-shadow: inset 0 0 0 1px $color, $elevation;
+}
+
+// This fixes the border radius which is supposed to fix
+// an overlapping problem when you use shadows instead of borders
+// and the container has round borders and children that goes
+// from side to side
+%borderRadiusFix {
+  border-radius: $rounded $rounded 0 0;
+  &:last-of-type {
+    border-radius: 0 0 $rounded $rounded;
+  }
+}

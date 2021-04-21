@@ -1,0 +1,112 @@
+@import 'common.scss';
+@import 'colors.scss';
+
+.wrapper {
+  word-wrap: normal;
+  // By default, container is flex but we should be able to make it not flex
+  &.flex {
+    display: flex;
+  }
+  // Named text variants
+  &.title {
+    font: $heading1;
+    color: $grey90;
+    letter-spacing: $letterSpacingNegative05;
+  }
+  &.h2 {
+    font: $heading2;
+    color: \$grey90;
+    letter-spacing: $letterSpacingNegative05;
+  }
+  &.h2Regular {
+    font: $heading2;
+    color: $grey90;
+    letter-spacing: $letterSpacingNegative05;
+    font-weight: 400;
+  }
+  &.h3 {
+    font: $heading3;
+    color: $grey90;
+  }
+  &.body {
+    font: $text16Regular;
+    color: $grey70;
+  }
+  &.text16Regular {
+    font: $text16Regular;
+  }
+  &.text16Medium {
+    font: $text16Medium;
+  }
+  &.text14Regular {
+    font: $text14Regular;
+  }
+  &.text14Medium {
+    font: $text14Medium;
+  }
+  &.interface14Medium {
+    font: $interface14Medium;
+  }
+  &.interface14Regular {
+    font: $interface14Regular;
+  }
+  &.interface14Number {
+    font: $interface14Number;
+  }
+  &.interface14NumberMedium {
+    font: $interface14NumberMedium;
+  }
+  &.text12Medium {
+    font: $text12Medium;
+  }
+  &.strikethrough {
+    text-decoration-line: line-through;
+  }
+  // Do not remove the below comment, it's used for the type generation
+  // COLORS
+  &.primary {
+    color: $primary50;
+  }
+  &.white {
+    color: $white;
+  }
+  &.success {
+    color: $success60;
+  }
+  &.success40 {
+    color: $success40;
+  }
+  &.warning {
+    color: $warning40;
+  }
+  &.danger {
+    color: $danger70;
+  }
+  &.grey90 {
+    color: $grey90;
+  }
+  &.grey80 {
+    color: $grey80;
+  }
+  &.grey70 {
+    color: $grey70;
+  }
+  &.grey60 {
+    color: $grey60;
+  }
+  &.grey50 {
+    color: $grey60;
+  }
+  &.grey20 {
+    color: $grey20;
+  }
+  &.grey30 {
+    color: $grey30;
+  }
+  &.grey10 {
+    color: $grey10;
+  }
+  &.preservesLines {
+    white-space: pre-line;
+  }
+}

@@ -1,0 +1,18 @@
+@import 'common.scss';
+@import 'colors.scss';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0 auto;
+  max-width: var(--page-width);
+  padding: $padding24;
+}
+
+.pageBody {
+  display: flex;
+  flex-direction: column;
+  padding-top: $padding24;
+  height: 100%;
+}

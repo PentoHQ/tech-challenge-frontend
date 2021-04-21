@@ -1,0 +1,20 @@
+@import 'common.scss';
+
+.table {
+  border: none;
+  border-collapse: collapse;
+  .header {
+    border-bottom: 1px solid grey('-border');
+  }
+  th,
+  td {
+    padding: 16px 24px;
+    line-height: 24px;
+  }
+  td:first-child {
+    text-align: left;
+  }
+  td:last-child {
+    text-align: right;
+  }
+}

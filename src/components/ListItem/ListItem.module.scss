@@ -1,0 +1,55 @@
+@import 'common.scss';
+@import 'colors.scss';
+
+.wrapper {
+  display: flex;
+  justify-content: 'flex-start';
+  align-items: center;
+  position: relative;
+  text-decoration: none;
+  width: 100%;
+  box-sizing: 'border-box';
+  text-align: left;
+  padding-top: $padding8;
+  padding-bottom: $padding8;
+  &.focusVisible {
+    background-color: $grey-tint;
+  }
+  &.selected,
+  &.selected:hover {
+    background-color: $grey-tint;
+  }
+  &.disabled {
+    opacity: 0.5;
+  }
+  .text {
+    flex: 1;
+  }
+  .title {
+    font: $text14SemiBold;
+  }
+  .subtitle {
+    font: $text14Regular;
+    color: $grey50;
+  }
+}
+/* Styles applied to the inner `component` element if `disableGutters={false}`. */
+.gutters {
+  padding-left: $padding16;
+  padding-right: $padding16;
+}
+.dense {
+  padding-top: $padding4;
+  padding-bottom: $padding4;
+}
+.action {
+  padding-left: $padding8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.divider {
+  border-bottom: 1px solid $grey-border;
+  background-clip: padding-box;
+}

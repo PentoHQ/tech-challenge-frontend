@@ -1,0 +1,53 @@
+@import 'common.scss';
+
+@mixin margins($size) {
+  $sizePx: #{8 * $size}px;
+  .mt#{$size} {
+    margin-top: $sizePx;
+  }
+  .mb#{$size} {
+    margin-bottom: $sizePx;
+  }
+  .mr#{$size} {
+    margin-right: $sizePx;
+  }
+  .ml#{$size} {
+    margin-left: $sizePx;
+  }
+  .m#{$size} {
+    margin: $sizePx;
+  }
+}
+
+@include margins(1);
+@include margins(2);
+@include margins(3);
+@include margins(4);
+@include margins(5);
+@include margins(6);
+
+@mixin padding($size) {
+  $sizePx: #{8 * $size}px;
+  .pt#{$size} {
+    padding-top: $sizePx;
+  }
+  .pb#{$size} {
+    padding-bottom: $sizePx;
+  }
+  .pr#{$size} {
+    padding-right: $sizePx;
+  }
+  .pl#{$size} {
+    padding-left: $sizePx;
+  }
+  .p#{$size} {
+    padding: $sizePx;
+  }
+}
+
+@include padding(1);
+@include padding(2);
+@include padding(3);
+@include padding(4);
+@include padding(5);
+@include padding(6);
