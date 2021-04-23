@@ -83,6 +83,3 @@ TOKEN=xxxxx yarn generate --watch
 set TOKEN="xxxxx"
 yarn generate --watch
 ```
-
-# Hasura config
-https://hasura.io/jwt-config/
