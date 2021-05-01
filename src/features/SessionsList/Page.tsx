@@ -9,6 +9,8 @@ import { msToHuman } from '../../util/formatters/formatDateDiff'
 import { useGetSessions, useSwitchSession } from './hooks'
 import SessionControls from './SessionControls'
 
+import Loader from 'components/Loader'
+
 function RowAction({ name }: { name: string }) {
   const switchSession = useSwitchSession()
   return <PlayButton size="small" onClick={() => switchSession(name)}></PlayButton>
@@ -23,7 +25,7 @@ export default function SessionsListPage(props: any) {
       </Spacer>
       <RawCard>
         {isLoading ? (
-          'Loading'
+          <Loader type="inline" />
         ) : error ? (
           error.message
         ) : (
