@@ -45,7 +45,7 @@ export function useRunningSession({ onCompleted }: UseRunningSession = {}) {
       }),
     stop: () => {
       if (!runningSession) {
-        throw new Error('Don not mutate before data has finished loading')
+        throw new Error('Do not mutate before data has finished loading')
       }
 
       return createSession({
