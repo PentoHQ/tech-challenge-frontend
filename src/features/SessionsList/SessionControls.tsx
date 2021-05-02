@@ -1,5 +1,5 @@
-import { intervalToDuration } from 'date-fns'
 import { SyntheticEvent, useState } from 'react'
+import CountDown from '../../components/CountDown'
 import FormRow from '../../components/FormRow'
 import InputText from '../../components/InputText'
 import PlayButton from '../../components/PlayButton'
@@ -12,37 +12,27 @@ interface RunningProps {
 }
 
 function RunningSession({ name, startDate }: RunningProps) {
+  const [isPaused, togglePause] = useState(false)
   const { stop, isLoading } = useRunningSession()
-  const { hours, minutes, seconds } = intervalToDuration({ start: startDate, end: new Date() })
+
+  const handleStopButtonClick = () => {
+    stop()
+    togglePause(true)
+  }
+
   return (
     <FormRow alignY="center" stretchLastChild={false}>
       {name}
-      <div>
-        {hours}:{minutes}:{seconds}
-      </div>
-      <StopButton onClick={stop} disabled={isLoading}></StopButton>
+      <CountDown isPaused={isPaused} />
+      <StopButton onClick={handleStopButtonClick} disabled={isLoading} />
     </FormRow>
-  )
-}
-
-export default function SessionControls() {
-  const { isLoading, runningSession } = useRunningSession()
-  if (isLoading)
-    return (
-      <FormRow>
-        <span>Loading</span> ...
-      </FormRow>
-    )
-  return runningSession ? (
-    <RunningSession name={runningSession.name} startDate={new Date(runningSession.startDate)} />
-  ) : (
-    <SessionInput />
   )
 }
 
 function SessionInput() {
   const [sessionName, setSessionName] = useState('')
   const { isLoading, startSession } = useRunningSession()
+
   const submit = (e?: SyntheticEvent) => {
     e?.preventDefault()
     if (!sessionName) {
@@ -50,6 +40,7 @@ function SessionInput() {
     }
     startSession(sessionName)
   }
+
   return (
     <form onSubmit={submit}>
       <FormRow alignY="center" stretchLastChild={false}>
@@ -57,5 +48,23 @@ function SessionInput() {
         <PlayButton onClick={submit} disabled={isLoading} />
       </FormRow>
     </form>
+  )
+}
+
+export default function SessionControls() {
+  const { isLoading, runningSession } = useRunningSession()
+
+  if (isLoading) {
+    return (
+      <FormRow>
+        <span>Loading</span> ...
+      </FormRow>
+    )
+  }
+
+  return runningSession ? (
+    <RunningSession name={runningSession.name} startDate={new Date(runningSession.startDate)} />
+  ) : (
+    <SessionInput />
   )
 }

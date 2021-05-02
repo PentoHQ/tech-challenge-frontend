@@ -8,6 +8,7 @@ import { runningQuery, getSessionsQuery } from './graphql'
 
 export function useGetSessions() {
   const { data, loading, error } = useSessionsQueryQuery()
+
   return {
     data,
     isLoading: loading,
@@ -72,6 +73,7 @@ export function useRunningSession({ onCompleted }: UseRunningSession = {}) {
 
 export function useSwitchSession() {
   const { startSession, stop, runningSession, isLoading } = useRunningSession()
+
   const switchSession = (name: string) => {
     if (isLoading) {
       throw new Error('Do not try to switch while running session is loading')
@@ -79,5 +81,6 @@ export function useSwitchSession() {
     if (!runningSession) return startSession(name)
     return stop().then(() => startSession(name))
   }
+
   return switchSession
 }
