@@ -1,4 +1,4 @@
-import React, { ReactChild } from 'react'
+import { MouseEvent, ReactChild } from 'react'
 import styles from './ListItem.module.scss'
 
 export interface ListItemProps {
@@ -18,7 +18,7 @@ export interface ListItemProps {
   /**
    * Optional click handler
    */
-  onClick?: () => void
+  onClick?: (e: MouseEvent) => void
   dense?: boolean
   disabled?: boolean
   /**
@@ -61,6 +61,7 @@ export const ListItem = ({
   ]
     .join(' ')
     .trim()
+
   return (
     <li className={classes} {...props}>
       <div className={styles.text}>

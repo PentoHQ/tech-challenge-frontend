@@ -3,6 +3,7 @@ import {
   useRunningSessionQuery,
   useSessionsQueryQuery,
   useStartSessionMutation,
+  useUpdateSessionMutation,
 } from '../../generated/graphql'
 import { runningQuery, getSessionsQuery } from './graphql'
 
@@ -78,9 +79,26 @@ export function useSwitchSession() {
     if (isLoading) {
       throw new Error('Do not try to switch while running session is loading')
     }
+
     if (!runningSession) return startSession(name)
+
     return stop().then(() => startSession(name))
   }
 
-  return switchSession
+  return { isLoading, switchSession }
+}
+
+export function useUpdateSession() {
+  const [mutate] = useUpdateSessionMutation()
+
+  return {
+    async updateSession(id: string, name: string) {
+      await mutate({
+        variables: {
+          id: { id },
+          input: { name },
+        },
+      })
+    },
+  }
 }

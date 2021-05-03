@@ -1,0 +1,39 @@
+@import 'common.scss';
+@import 'colors.scss';
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #00000080;
+  z-index: $z-index-modal-backdrop;
+  @extend %flexCentered;
+}
+
+.modalContent {
+  background-color: $white;
+  border-radius: $rounded;
+  padding: $padding16;
+}
+
+.modalHeader {
+  @extend %flexBetween;
+  padding-right: $padding80;
+  font: $heading2;
+}
+
+.closeButton {
+  margin-left: auto;
+}
+
+.modalBody {
+  margin: $margin24 0;
+}
+
+.modalFooter {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: $margin8;
+}

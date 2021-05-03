@@ -1,5 +1,5 @@
 import { motion, Target } from 'framer-motion'
-import React from 'react'
+import React, { MouseEvent } from 'react'
 import styles from './Button.module.scss'
 
 export interface ButtonProps {
@@ -23,9 +23,10 @@ export interface ButtonProps {
   /**
    * Optional click handler
    */
-  onClick?: () => void
+  onClick?: (e: MouseEvent) => void
   whileTap?: Target
   disabled?: boolean
+  title?: string
 }
 
 /**

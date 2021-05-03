@@ -1,0 +1,21 @@
+@import 'common.scss';
+@import 'colors.scss';
+
+.scrollableContent {
+  overflow: auto;
+  // flex: 1 1 0; doesn't translate properly to the browser so I had to enforce the flex-basis property
+  flex: 1 1;
+  flex-basis: 0;
+}
+
+.sessionListItem {
+  cursor: pointer;
+
+  // not the prettiest solution, but this is a trade off between:
+  // - "breaking" ListItem default behaviour
+  // - ugly CSS that can lead to unintented behaviour in the near future
+  // to save some time, I opted for the second
+  &:hover > div > div:first-of-type {
+    text-decoration: underline;
+  }
+}

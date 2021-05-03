@@ -2,14 +2,14 @@ import React from 'react'
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/react/types-6-0'
 
-import { CountDown, CountDownProps } from './CountDown'
+import { Modal, ModalProps } from './Modal'
 
 export default {
-  title: 'Example/CountDown',
-  component: CountDown,
+  title: 'Example/Modal',
+  component: Modal,
   argTypes: {
     backgroundColor: { control: 'color' },
   },
 } as Meta
 
-const Template: Story<CountDownProps> = (args) => <CountDown {...args} />
+const Template: Story<ModalProps> = (args) => <Modal {...args} />

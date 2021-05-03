@@ -34,12 +34,22 @@ export const runningQuery = gql`
     }
   }
 `
+
 export const startSession = gql`
   mutation startSession($input: running_sessions_insert_input!) {
     insert_running_sessions_one(object: $input) {
       id
       name
       startDate
+    }
+  }
+`
+
+export const updateSession = gql`
+  mutation updateSession($input: sessions_set_input!, $id: sessions_pk_columns_input!) {
+    update_sessions_by_pk(_set: $input, pk_columns: $id) {
+      id
+      name
     }
   }
 `

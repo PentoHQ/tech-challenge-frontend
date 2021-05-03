@@ -1,0 +1,6 @@
+@import 'common.scss';
+
+.wrapper {
+  @extend %flexCentered;
+  height: 100%;
+}

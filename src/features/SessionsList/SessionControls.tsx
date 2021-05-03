@@ -1,43 +1,70 @@
 import { SyntheticEvent, useState } from 'react'
-import CountDown from '../../components/CountDown'
+import ContentLoader from 'react-content-loader'
 import FormRow from '../../components/FormRow'
 import InputText from '../../components/InputText'
 import PlayButton from '../../components/PlayButton'
 import StopButton from '../../components/StopButton'
 import { useRunningSession } from './hooks'
+import Timer from './Timer'
 
 interface RunningProps {
+  isLoading: boolean
   name: string
   startDate: Date
+  stop: () => void
 }
 
-function RunningSession({ name, startDate }: RunningProps) {
-  const [isPaused, togglePause] = useState(false)
-  const { stop, isLoading } = useRunningSession()
+interface SessionInputProps {
+  isLoading: boolean
+  startSession: (name: string) => void
+}
 
-  const handleStopButtonClick = () => {
-    stop()
-    togglePause(true)
-  }
-
+function LoadingSkeleton() {
   return (
-    <FormRow alignY="center" stretchLastChild={false}>
-      {name}
-      <CountDown isPaused={isPaused} />
-      <StopButton onClick={handleStopButtonClick} disabled={isLoading} />
+    <FormRow>
+      <ContentLoader
+        width={680}
+        height={42}
+        viewBox="0 0 680 42"
+        backgroundColor="#f0f1f5"
+        foregroundColor="#dde0e9"
+      >
+        <rect x="0" y="13" rx="3" ry="3" width="128" height="14" />
+        <rect x="352" y="13" rx="3" ry="3" width="72" height="14" />
+      </ContentLoader>
+      <ContentLoader
+        width={48}
+        height={48}
+        viewBox="0 0 48 48"
+        backgroundColor="#f0f1f5"
+        foregroundColor="#dde0e9"
+      >
+        <rect x="0" y="0" rx="5" ry="5" width="48" height="48" />
+      </ContentLoader>
     </FormRow>
   )
 }
 
-function SessionInput() {
+function RunningSession({ isLoading, name, startDate, stop }: RunningProps) {
+  return (
+    <FormRow alignY="center" stretchLastChild={false}>
+      {name}
+      <Timer startDate={startDate} />
+      <StopButton onClick={stop} disabled={isLoading} />
+    </FormRow>
+  )
+}
+
+function SessionInput({ isLoading, startSession }: SessionInputProps) {
   const [sessionName, setSessionName] = useState('')
-  const { isLoading, startSession } = useRunningSession()
 
   const submit = (e?: SyntheticEvent) => {
     e?.preventDefault()
+
     if (!sessionName) {
       return
     }
+
     startSession(sessionName)
   }
 
@@ -52,19 +79,20 @@ function SessionInput() {
 }
 
 export default function SessionControls() {
-  const { isLoading, runningSession } = useRunningSession()
+  const { isLoading, runningSession, startSession, stop } = useRunningSession()
 
   if (isLoading) {
-    return (
-      <FormRow>
-        <span>Loading</span> ...
-      </FormRow>
-    )
+    return <LoadingSkeleton />
   }
 
   return runningSession ? (
-    <RunningSession name={runningSession.name} startDate={new Date(runningSession.startDate)} />
+    <RunningSession
+      isLoading={isLoading}
+      name={runningSession.name}
+      startDate={new Date(runningSession.startDate)}
+      stop={stop}
+    />
   ) : (
-    <SessionInput />
+    <SessionInput isLoading={isLoading} startSession={startSession} />
   )
 }

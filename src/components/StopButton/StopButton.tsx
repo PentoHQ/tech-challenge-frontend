@@ -4,7 +4,7 @@ import IconButton, { IconButtonProps } from '../IconButton'
 /**
  * Primary UI component for user interaction
  */
-export const PlayButton = ({ className = '', ...props }: Partial<IconButtonProps>) => {
+export const StopButton = ({ className = '', ...props }: Partial<IconButtonProps>) => {
   return (
     <IconButton color="danger" {...props}>
       <StopIcon></StopIcon>
@@ -12,4 +12,4 @@ export const PlayButton = ({ className = '', ...props }: Partial<IconButtonProps
   )
 }
 
-export default PlayButton
+export default StopButton
