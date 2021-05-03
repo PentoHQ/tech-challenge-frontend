@@ -84,31 +84,38 @@ export function useSwitchSession() {
   return switchSession
 }
 
-export function useEditSession() {
+export function useUpdateSession() {
   const [update, updateResult] = useUpdateSessionMutation()
-  const [delSession, delSessionResult] = useDeleteSessionMutation()
 
   return {
-    isLoading: updateResult.loading || delSessionResult.loading,
+    isLoading: updateResult.loading,
     updateSession: (id: string, input: any) =>
       update({
         variables: {
           input,
           id,
         },
-        refetchQueries: [
+        awaitRefetchQueries: true,
+        refetchQueries: () => [
           {
             query: getSessionsQuery,
           },
         ],
       }),
+  }
+}
+
+export function useDeleteSession() {
+  const [delSession, result] = useDeleteSessionMutation()
+  return {
+    isLoading: result.loading,
     deleteSession: (id: string) =>
       delSession({
         variables: {
           id,
         },
         awaitRefetchQueries: true,
-        refetchQueries: [
+        refetchQueries: () => [
           {
             query: getSessionsQuery,
           },

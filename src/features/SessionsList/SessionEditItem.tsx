@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import { formatDateToHuman } from 'util/formatters/formatDateDiff'
-import { useEditSession } from './hooks'
+import { useDeleteSession, useUpdateSession } from './hooks'
 
 import Button from 'components/Button'
 import Card, { CardHeader, CardContent } from 'components/Card'
@@ -31,7 +31,8 @@ export default function SessionEditItem({
     endDate: formatDateToHuman(endDate),
   })
 
-  const { isLoading, updateSession, deleteSession } = useEditSession()
+  const { isLoading: isDeleting, deleteSession } = useDeleteSession()
+  const { isLoading: isUpdating, updateSession } = useUpdateSession()
 
   const handleInputChange = (key: string, value: string) => {
     setDraft(() => ({ ...draft, [key]: value }))
@@ -51,12 +52,12 @@ export default function SessionEditItem({
       footer={
         <CardContent>
           <div className={styles.footer}>
-            <Button color="danger" onClick={handleDelete}>
+            <Button isLoading={isDeleting} color="danger" onClick={handleDelete}>
               Delete
             </Button>
             <div className={styles.group}>
               <Button onClick={onCancel}>Cancel</Button>
-              <Button color="success" onClick={handleSave}>
+              <Button isLoading={isUpdating} color="success" onClick={handleSave}>
                 Save
               </Button>
             </div>

@@ -9,53 +9,72 @@ import PlayButton from '../../components/PlayButton'
 import StopButton from '../../components/StopButton'
 import { useRunningSession } from './hooks'
 interface RunningProps {
+  isLoading: boolean
+  onSubmit: () => void
   name: string
   startDate: Date
 }
 
-function RunningSession({ name, startDate }: RunningProps) {
-  const { stop, isLoading } = useRunningSession()
-
+function RunningSession({ isLoading, onSubmit, name, startDate }: RunningProps) {
   return (
     <FormRow alignY="center" stretchLastChild={false}>
       {name}
       <StopWatch startDate={startDate} />
-      <StopButton onClick={stop} disabled={isLoading}></StopButton>
+      <StopButton onClick={onSubmit} disabled={isLoading}></StopButton>
     </FormRow>
   )
 }
 
 export default function SessionControls() {
-  const { isLoading, runningSession } = useRunningSession()
-  if (isLoading)
-    return (
-      <FormRow>
-        <Loader type="inline" /> ...
-      </FormRow>
-    )
-  return runningSession ? (
-    <RunningSession name={runningSession.name} startDate={new Date(runningSession.startDate)} />
-  ) : (
-    <SessionInput />
-  )
-}
+  const { isLoading, runningSession, startSession, stop } = useRunningSession()
 
-function SessionInput() {
-  const [sessionName, setSessionName] = useState('')
-  const { isLoading, startSession } = useRunningSession()
-  const submit = (e?: SyntheticEvent) => {
-    e?.preventDefault()
+  const handleStartSession = (sessionName: string) => {
     if (!sessionName) {
       return
     }
     startSession(sessionName)
   }
 
+  const handleStopSession = () => {
+    stop()
+  }
+
+  if (isLoading)
+    return (
+      <FormRow>
+        <Loader type="inline" />
+      </FormRow>
+    )
+  return runningSession ? (
+    <RunningSession
+      isLoading={isLoading}
+      onSubmit={handleStopSession}
+      name={runningSession.name}
+      startDate={new Date(runningSession.startDate)}
+    />
+  ) : (
+    <SessionInput isLoading={isLoading} onSubmit={handleStartSession} />
+  )
+}
+
+interface SessionInputProps {
+  onSubmit: any
+  isLoading: boolean
+}
+
+function SessionInput({ onSubmit, isLoading }: SessionInputProps) {
+  const [sessionName, setSessionName] = useState('')
+
+  const handleSubmit = (e?: SyntheticEvent) => {
+    e?.preventDefault()
+    onSubmit(sessionName)
+  }
+
   return (
-    <form onSubmit={submit}>
+    <form onSubmit={handleSubmit}>
       <FormRow alignY="center" stretchLastChild={false}>
         <InputText onChange={setSessionName} value={sessionName}></InputText>
-        <PlayButton onClick={submit} disabled={isLoading} />
+        <PlayButton onClick={handleSubmit} disabled={isLoading} />
       </FormRow>
     </form>
   )
