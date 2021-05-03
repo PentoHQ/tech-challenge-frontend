@@ -16,9 +16,13 @@
 
 .footer {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
 
-  button:not(:last-of-type) {
-    margin-right: $margin8;
+  .group {
+    display: flex;
+
+    button:not(:last-of-type) {
+      margin-right: $margin8;
+    }
   }
 }

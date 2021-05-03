@@ -1,5 +1,6 @@
 import {
   useCreateSessionMutation,
+  useDeleteSessionMutation,
   useRunningSessionQuery,
   useSessionsQueryQuery,
   useStartSessionMutation,
@@ -83,10 +84,12 @@ export function useSwitchSession() {
   return switchSession
 }
 
-export function useUpdateSession() {
+export function useEditSession() {
   const [update, updateResult] = useUpdateSessionMutation()
+  const [delSession, delSessionResult] = useDeleteSessionMutation()
+
   return {
-    isLoading: updateResult.loading,
+    isLoading: updateResult.loading || delSessionResult.loading,
     updateSession: (id: string, input: any) =>
       update({
         variables: {
@@ -97,8 +100,17 @@ export function useUpdateSession() {
           {
             query: getSessionsQuery,
           },
+        ],
+      }),
+    deleteSession: (id: string) =>
+      delSession({
+        variables: {
+          id,
+        },
+        awaitRefetchQueries: true,
+        refetchQueries: [
           {
-            query: runningQuery,
+            query: getSessionsQuery,
           },
         ],
       }),
