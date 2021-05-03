@@ -50,7 +50,8 @@ export const ListItem = ({
   disableGutters,
   subtitle,
   action,
-  ...props
+  onClick,
+  ...rest
 }: ListItemProps) => {
   const classes = [
     styles.wrapper,
@@ -61,9 +62,10 @@ export const ListItem = ({
   ]
     .join(' ')
     .trim()
+
   return (
-    <li className={classes} {...props}>
-      <div className={styles.text}>
+    <li className={classes} {...rest}>
+      <div className={styles.text} onClick={onClick}>
         <div className={styles.title}>{title}</div>
         <div className={styles.subtitle}>{subtitle}</div>
       </div>

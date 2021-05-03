@@ -12,6 +12,9 @@
   text-align: left;
   padding-top: $padding8;
   padding-bottom: $padding8;
+  &:hover {
+    background-color: $grey-tint;
+  }
   &.focusVisible {
     background-color: $grey-tint;
   }
@@ -24,6 +27,7 @@
   }
   .text {
     flex: 1;
+    cursor: pointer;
   }
   .title {
     font: $text14SemiBold;
