@@ -24,3 +24,10 @@ export function formatStartDate(date: DateCompatible) {
 export function msToHuman(ms: number) {
   return formatMinutes4Human(ms / 60000)
 }
+
+/**
+ * Returns human readable date format
+ */
+export function formatDateToHuman(date: DateCompatible) {
+  return format(new Date(date), 'yyyy-MM-dd hh:mm:ss')
+}

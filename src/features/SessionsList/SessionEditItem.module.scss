@@ -1,0 +1,24 @@
+@import 'common.scss';
+@import 'colors.scss';
+
+.wrapper {
+  margin: 0 $margin16;
+}
+
+.dateInputs {
+  display: flex;
+  padding-top: $padding16;
+
+  div:not(:last-of-type) {
+    margin-right: $margin8;
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+
+  button:not(:last-of-type) {
+    margin-right: $margin8;
+  }
+}

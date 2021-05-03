@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import { RawCard } from '../../components/Card'
 import List from '../../components/List'
 import ListItem from '../../components/ListItem'
@@ -11,6 +13,8 @@ import SessionControls from './SessionControls'
 
 import Loader from 'components/Loader'
 
+import SessionEditItem from './SessionEditItem'
+
 function RowAction({ name }: { name: string }) {
   const switchSession = useSwitchSession()
   return <PlayButton size="small" onClick={() => switchSession(name)}></PlayButton>
@@ -18,6 +22,12 @@ function RowAction({ name }: { name: string }) {
 
 export default function SessionsListPage(props: any) {
   const { data, isLoading, error } = useGetSessions()
+  const [editingId, setEditingId] = useState(null)
+
+  const resetEditingId = () => {
+    setEditingId(null)
+  }
+
   return (
     <PageBody>
       <Spacer pb={4}>
@@ -25,19 +35,31 @@ export default function SessionsListPage(props: any) {
       </Spacer>
       <RawCard>
         {isLoading ? (
-          <Loader type="inline" />
+          <Loader type="spinner" />
         ) : error ? (
           error.message
         ) : (
           <List>
-            {data?.sessions.map(({ id, name, startDate, endDate }) => (
-              <ListItem
-                key={id}
-                title={name}
-                subtitle={msToHuman(diffDateStrings(startDate, endDate))}
-                action={<RowAction name={name} />}
-              />
-            ))}
+            {data?.sessions.map(({ id, name, startDate, endDate }) => {
+              return editingId === id ? (
+                <SessionEditItem
+                  key={id}
+                  id={id}
+                  name={name}
+                  startDate={startDate}
+                  endDate={endDate}
+                  onClick={resetEditingId}
+                />
+              ) : (
+                <ListItem
+                  key={id}
+                  title={name}
+                  subtitle={msToHuman(diffDateStrings(startDate, endDate))}
+                  onClick={() => setEditingId(id)}
+                  action={<RowAction name={name} />}
+                />
+              )
+            })}
           </List>
         )}
       </RawCard>
