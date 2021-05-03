@@ -1,6 +1,6 @@
 # Pento Frontend Tech Challenge
 
-**Welcome !**
+**Welcome!**
 Thanks for taking the time to do our frontend tech challenge.
 
 The challenge is to finish building a small web app, that can help freelancers track their work time.
