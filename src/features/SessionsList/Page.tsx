@@ -1,5 +1,5 @@
 import ContentLoader from 'react-content-loader'
-import { memo, MouseEvent, useState } from 'react'
+import { MouseEvent, useState } from 'react'
 import { RawCard } from '../../components/Card'
 import List from '../../components/List'
 import ListItem from '../../components/ListItem'
@@ -12,9 +12,6 @@ import { useGetSessions, useSwitchSession } from './hooks'
 import EditSession from './EditSession'
 import SessionControls from './SessionControls'
 import styles from './SessionList.module.scss'
-import { Session } from '../../types'
-
-const MemoListItem = memo(ListItem)
 
 function LoadingSkeleton() {
   return (
@@ -76,7 +73,7 @@ export default function SessionsListPage() {
           ) : (
             <List>
               {data?.sessions.map(({ id, name, startDate, endDate }) => (
-                <MemoListItem
+                <ListItem
                   className={styles.sessionListItem}
                   key={id}
                   title={name}
