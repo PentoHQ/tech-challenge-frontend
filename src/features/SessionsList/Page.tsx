@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import styles from './Page.module.scss'
+
 import { RawCard } from '../../components/Card'
 import List from '../../components/List'
 import ListItem from '../../components/ListItem'
@@ -33,7 +35,7 @@ export default function SessionsListPage(props: any) {
       <Spacer pb={4}>
         <SessionControls />
       </Spacer>
-      <RawCard>
+      <RawCard className={styles.sessionListWrapper}>
         {isLoading ? (
           <Loader type="spinner" />
         ) : error ? (
