@@ -42,7 +42,7 @@ export const Loader = ({
     return <div className={styles.inlineLoader}>loading...</div>
   }
 
-  const classes = [styles.spinnerLoader, styles[color], className].join(' ').trim()
+  const classes = [styles.spinnerLoader, styles[size], styles[color], className].join(' ').trim()
   return (
     <div className={styles.wrapper}>
       <div className={classes} style={{ backgroundColor }} {...props} />

@@ -2,6 +2,8 @@ import { motion, Target } from 'framer-motion'
 import React from 'react'
 import styles from './Button.module.scss'
 
+import Loader from 'components/Loader'
+
 export interface ButtonProps {
   /**
    * Is this the principal call to action on the page?
@@ -26,6 +28,10 @@ export interface ButtonProps {
   onClick?: () => void
   whileTap?: Target
   disabled?: boolean
+  /**
+   * shows a loader if loading
+   */
+  isLoading?: boolean
 }
 
 /**
@@ -35,9 +41,11 @@ export const Button = ({
   color = 'primary',
   size = 'medium',
   className = '',
-  children,
   disabled,
-  ...props
+  isLoading,
+  onClick,
+  children,
+  ...rest
 }: ButtonProps) => {
   const classes = [
     styles.wrapper,
@@ -48,9 +56,23 @@ export const Button = ({
   ]
     .join(' ')
     .trim()
+
+  const handleClick = () => {
+    if (isLoading || disabled) {
+      return
+    }
+    return onClick ? onClick() : undefined
+  }
+
   return (
-    <motion.button type="button" className={classes} disabled={disabled} {...props}>
-      {children}
+    <motion.button
+      type="button"
+      className={classes}
+      disabled={disabled}
+      onClick={handleClick}
+      {...rest}
+    >
+      {isLoading ? <Loader type="spinner" size="small" /> : children}
     </motion.button>
   )
 }

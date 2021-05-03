@@ -3,7 +3,7 @@
 
 .wrapper {
   @extend %flexCentered;
-  height: 100vh;
+  // height: 100vh;
   font-family: $primaryFont;
   font-weight: $mediumFontWeight;
   font: $text14Regular;
@@ -15,26 +15,39 @@
 
 .spinnerLoader {
   text-indent: -9999em;
-  width: 8em;
-  height: 8em;
   border-radius: 50%;
-  background: $success40;
-  background: -moz-linear-gradient(left, $success40 10%, rgba(255, 255, 255, 0) 42%);
-  background: -webkit-linear-gradient(left, $success40 10%, rgba(255, 255, 255, 0) 42%);
-  background: -o-linear-gradient(left, $success40 10%, rgba(255, 255, 255, 0) 42%);
-  background: -ms-linear-gradient(left, $success40 10%, rgba(255, 255, 255, 0) 42%);
-  background: linear-gradient(to right, $success40 10%, rgba(255, 255, 255, 0) 42%);
+  width: 3em;
+  height: 3em;
+  background: $primary80;
+  background: -moz-linear-gradient(left, $primary80 10%, rgba(255, 255, 255, 0) 42%);
+  background: -webkit-linear-gradient(left, $primary80 10%, rgba(255, 255, 255, 0) 42%);
+  background: -o-linear-gradient(left, $primary80 10%, rgba(255, 255, 255, 0) 42%);
+  background: -ms-linear-gradient(left, $primary80 10%, rgba(255, 255, 255, 0) 42%);
+  background: linear-gradient(to right, $primary80 10%, rgba(255, 255, 255, 0) 42%);
   position: relative;
   -webkit-animation: load3 1.4s infinite linear;
   animation: load3 1.4s infinite linear;
   -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);
   transform: translateZ(0);
+
+  &.small {
+    width: 1em;
+    height: 1em;
+  }
+  &.medium {
+    width: 3em;
+    height: 3em;
+  }
+  &.large {
+    width: 8em;
+    height: 8em;
+  }
 }
 .spinnerLoader:before {
   width: 50%;
   height: 50%;
-  background: $success40;
+  background: $primary80;
   border-radius: 100% 0 0 0;
   position: absolute;
   top: 0;
@@ -83,17 +96,17 @@
 .inlineLoader:before,
 .inlineLoader:after {
   border-radius: 50%;
-  width: 2.5em;
-  height: 2.5em;
+  width: 1em;
+  height: 1em;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
   -webkit-animation: load7 1.8s infinite ease-in-out;
   animation: load7 1.8s infinite ease-in-out;
 }
 .inlineLoader {
-  color: #ffffff;
+  color: $primary90;
   font-size: 10px;
-  margin: 80px auto;
+  margin: 0 auto;
   position: relative;
   text-indent: -9999em;
   -webkit-transform: translateZ(0);
@@ -109,30 +122,30 @@
   top: 0;
 }
 .inlineLoader:before {
-  left: -3.5em;
+  left: -1em;
   -webkit-animation-delay: -0.32s;
   animation-delay: -0.32s;
 }
 .inlineLoader:after {
-  left: 3.5em;
+  left: 1em;
 }
 @-webkit-keyframes load7 {
   0%,
   80%,
   100% {
-    box-shadow: 0 2.5em 0 -1.3em;
+    box-shadow: 0 1em 0 -0.5em;
   }
   40% {
-    box-shadow: 0 2.5em 0 0;
+    box-shadow: 0 1em 0 0;
   }
 }
 @keyframes load7 {
   0%,
   80%,
   100% {
-    box-shadow: 0 2.5em 0 -1.3em;
+    box-shadow: 0 1em 0 -0.5em;
   }
   40% {
-    box-shadow: 0 2.5em 0 0;
+    box-shadow: 0 1em 0 0;
   }
 }
