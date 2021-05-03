@@ -40,6 +40,7 @@ Hey guys! I tried to be consistent in my approach and finish the Sessions page u
 - The Sessions page took all my time, leaving the Stats page with no juicy updates 💔
 - Add error state to input fields when trying to submit an empty string (for instance, on EditSession)
 - Implement banner notifications to show errors or relevant information to the user
+- Properly update storybook features on the components I've created
 
 ## Observations
 
