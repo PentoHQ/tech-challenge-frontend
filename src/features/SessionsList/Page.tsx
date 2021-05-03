@@ -50,7 +50,7 @@ export default function SessionsListPage(props: any) {
                   name={name}
                   startDate={startDate}
                   endDate={endDate}
-                  onClick={resetEditingId}
+                  onCancel={resetEditingId}
                 />
               ) : (
                 <ListItem
