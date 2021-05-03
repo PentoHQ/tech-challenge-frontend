@@ -51,10 +51,12 @@ export default function SessionEditItem({
       footer={
         <CardContent>
           <div className={styles.footer}>
-            <Button onClick={handleDelete}>Delete</Button>
+            <Button color="danger" onClick={handleDelete}>
+              Delete
+            </Button>
             <div className={styles.group}>
               <Button onClick={onCancel}>Cancel</Button>
-              <Button color="primary" onClick={handleSave}>
+              <Button color="success" onClick={handleSave}>
                 Save
               </Button>
             </div>
