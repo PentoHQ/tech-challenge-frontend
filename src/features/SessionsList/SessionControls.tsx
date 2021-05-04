@@ -4,6 +4,7 @@ import FormRow from '../../components/FormRow'
 import InputText from '../../components/InputText'
 import PlayButton from '../../components/PlayButton'
 import StopButton from '../../components/StopButton'
+import LoadingSpinner from '../../components/LoadingSpinner'
 import { useRunningSession } from './hooks'
 
 interface RunningProps {
@@ -14,6 +15,7 @@ interface RunningProps {
 function RunningSession({ name, startDate }: RunningProps) {
   const { stop, isLoading } = useRunningSession()
   const { hours, minutes, seconds } = intervalToDuration({ start: startDate, end: new Date() })
+
   return (
     <FormRow alignY="center" stretchLastChild={false}>
       {name}
@@ -30,7 +32,7 @@ export default function SessionControls() {
   if (isLoading)
     return (
       <FormRow>
-        <span>Loading</span> ...
+        <LoadingSpinner />
       </FormRow>
     )
   return runningSession ? (

@@ -1,6 +1,7 @@
 import { RawCard } from '../../components/Card'
 import List from '../../components/List'
 import ListItem from '../../components/ListItem'
+import LoadingSpinner from '../../components/LoadingSpinner'
 import { PageBody } from '../../components/Page'
 import PlayButton from '../../components/PlayButton'
 import Spacer from '../../components/Spacer'
@@ -23,7 +24,7 @@ export default function SessionsListPage(props: any) {
       </Spacer>
       <RawCard>
         {isLoading ? (
-          'Loading'
+          <LoadingSpinner />
         ) : error ? (
           error.message
         ) : (

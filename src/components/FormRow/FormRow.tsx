@@ -1,4 +1,3 @@
-//@flow
 import { Children, ReactChild } from 'react'
 import styles from './FormRow.module.scss'
 import Button from '../Button'
@@ -39,7 +38,7 @@ interface Props {
    * This has precedence over stretchChildren
    */
   sizeEvenly?: boolean
-  children: ReactChild[]
+  children: ReactChild | ReactChild[]
   /**
    * If you need to space each item in a compact way (8px vs 24px)
    */
