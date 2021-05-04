@@ -30,6 +30,8 @@ export default function SessionsListPage(props: any) {
     setEditingId(null)
   }
 
+  console.log('session count => ', data?.sessions?.length)
+
   return (
     <PageBody>
       <Spacer pb={4}>
@@ -37,15 +39,17 @@ export default function SessionsListPage(props: any) {
       </Spacer>
       <RawCard className={styles.sessionListWrapper}>
         {isLoading ? (
-          <Loader type="spinner" />
+          <div className={styles.flexCentered}>
+            <Loader type="spinner" />
+          </div>
         ) : error ? (
-          error.message
+          <div className={styles.flexCentered}>{error.message}</div>
         ) : (
           <List>
             {data?.sessions.map(({ id, name, startDate, endDate }) => {
               return editingId === id ? (
                 <SessionEditItem
-                  key={id}
+                  key={`edit-${id}`}
                   id={id}
                   name={name}
                   startDate={startDate}

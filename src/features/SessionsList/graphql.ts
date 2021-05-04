@@ -3,7 +3,7 @@ import { gql } from '@apollo/client'
 
 export const getSessionsQuery = gql`
   query SessionsQuery {
-    sessions {
+    sessions(order_by: { startDate: desc }) {
       id
       name
       startDate

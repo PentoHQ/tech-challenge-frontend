@@ -39,7 +39,7 @@ export function useRunningSession({ onCompleted }: UseRunningSession = {}) {
         },
         awaitRefetchQueries: true,
         // https://github.com/apollographql/apollo-client/issues/4922
-        refetchQueries: [
+        refetchQueries: () => [
           {
             query: runningQuery,
           },
@@ -59,7 +59,7 @@ export function useRunningSession({ onCompleted }: UseRunningSession = {}) {
           },
         },
         awaitRefetchQueries: true,
-        refetchQueries: [
+        refetchQueries: () => [
           {
             query: getSessionsQuery,
           },
