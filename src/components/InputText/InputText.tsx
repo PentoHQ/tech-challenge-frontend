@@ -1,3 +1,4 @@
+import { KeyboardEventHandler, FocusEvent } from 'react'
 import capitalize from '../../util/capitaize'
 import styles from './InputText.module.scss'
 
@@ -16,6 +17,10 @@ export interface InputProps {
   onChange: (val: string) => any
   placeholder?: string
   type?: 'text' | 'search' | 'password'
+  // Ideally, we should allow all React props for Input
+  autoFocus?: true // If autoFocus is not needed, props should not be present
+  onKeyDown?: KeyboardEventHandler
+  onBlur?: (e: FocusEvent<HTMLInputElement>) => void
 }
 
 /**

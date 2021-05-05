@@ -12,9 +12,13 @@ Click on any row will trigger an edit mode, however click on play/delete buttons
 # Features added:
 
 - Deleting session: during my testing, I ended up with a lot of sessions, so I decided to add button to delete session.
+- Fixed test (using react-testing-library)
+- Added typescript script to detect typescript errors
 
-TODO:
+# Possibles improvements
 
-- fix session
-- make edit session possible
-- ListItem: update test
+- [ ] Finish the requirements 😃
+- [ ] Handling errors more gracefully (retry, user friendly error messages)
+- [ ] Proper feedback to users while loading data, handling user input
+- [ ] Potential memory leak with state update after component is unmounted
+- [ ] Fix storybook for list

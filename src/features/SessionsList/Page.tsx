@@ -13,11 +13,11 @@ import SessionControls from './SessionControls'
 
 function RowAction({ id, name }: { id: number; name: string }) {
   const switchSession = useSwitchSession()
-  const { deleteSession } = useDeleteSession(id)
+  const { deleteSession } = useDeleteSession()
 
   return (
     <>
-      <DeleteButton size="small" onClick={() => deleteSession()} />
+      <DeleteButton size="small" onClick={() => deleteSession(id)} />
       <PlayButton size="small" onClick={() => switchSession(name)} />
     </>
   )
@@ -40,6 +40,7 @@ export default function SessionsListPage(props: any) {
             {data?.sessions.map(({ id, name, startDate, endDate }) => (
               <ListItem
                 key={id}
+                id={id}
                 title={name}
                 subtitle={msToHuman(diffDateStrings(startDate, endDate))}
                 action={<RowAction name={name} id={id} />}

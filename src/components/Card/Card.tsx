@@ -3,14 +3,14 @@ import { ReactElement, cloneElement, ReactNode } from 'react'
 import styles from './Card.module.scss'
 
 type BackgroundColor = 'default' | 'grey'
-type Props = {
+export type CardProps = {
   className?: string
   footer?: ReactElement<{ className?: string }>
   children: ReactNode
   bgColor: BackgroundColor
 }
 
-function Card({ className, children, footer, bgColor }: Props) {
+function Card({ className, children, footer, bgColor }: CardProps) {
   const classes = [styles.wrapper, bgColor === 'grey' ? styles.greyBg : '', className].join(' ')
   if (footer && footer.props) {
     const footerClasses = footer.props.className || ''

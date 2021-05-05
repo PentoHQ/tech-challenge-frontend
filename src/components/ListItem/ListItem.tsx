@@ -1,7 +1,10 @@
-import React, { MouseEventHandler, ReactChild } from 'react'
+import { MouseEventHandler, ReactChild, useState, useCallback } from 'react'
 import styles from './ListItem.module.scss'
+import { useUpdateSession } from '../../features/SessionsList/hooks'
+import InputText from '../InputText'
 
 export interface ListItemProps {
+  id: number
   /**
    * Is this the principal call to action on the page?
    */
@@ -50,6 +53,8 @@ export const ListItem = ({
   disableGutters,
   subtitle,
   action,
+  onClick,
+  id,
   ...props
 }: ListItemProps) => {
   const classes = [
@@ -61,11 +66,56 @@ export const ListItem = ({
   ]
     .join(' ')
     .trim()
+
+  const [editMode, setEditMode] = useState(false)
+  const [name, setName] = useState(title)
+  const { updateSession, loading } = useUpdateSession()
+
+  const resetInput = useCallback(() => {
+    if (loading) {
+      return
+    }
+    setName(title)
+    setEditMode(false)
+  }, [title, loading])
+
+  const onKeyDown = useCallback(
+    (e) => {
+      if (e.key === 'Escape') {
+        resetInput()
+      }
+    },
+    [resetInput],
+  )
+
+  const onSubmit = useCallback(
+    async (e) => {
+      e.preventDefault()
+      await updateSession(id, name)
+      setEditMode(false)
+    },
+    [id, name, updateSession],
+  )
+
   return (
     <li className={classes} {...props}>
-      <div className={styles.text}>
-        <div className={styles.title}>{title}</div>
-        <div className={styles.subtitle}>{subtitle}</div>
+      <div className={styles.text} onClick={() => setEditMode(true)}>
+        {editMode ? (
+          <form onSubmit={onSubmit}>
+            <InputText
+              value={name}
+              autoFocus
+              onKeyDown={onKeyDown}
+              onChange={(value) => setName(value)}
+              onBlur={resetInput}
+            />
+          </form>
+        ) : (
+          <>
+            <div className={styles.title}>{name}</div>
+            <div className={styles.subtitle}>{subtitle}</div>
+          </>
+        )}
       </div>
       {action && <div className={styles.action}>{action}</div>}
     </li>

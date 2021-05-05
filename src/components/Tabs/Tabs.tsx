@@ -1,5 +1,5 @@
 import { AnimateSharedLayout, motion } from 'framer-motion'
-import React, { Children } from 'react'
+import React, { Children, MouseEventHandler } from 'react'
 import capitalize from '../../util/capitaize'
 import styles from './Tabs.module.scss'
 
@@ -17,10 +17,6 @@ export interface TabsProps {
    * be applied to the root of the component (edit to match reality)
    */
   className?: string
-  /**
-   * Optional click handler
-   */
-  onClick?: (e: MouseEvent) => void
   noUnderline?: boolean
   selected: string
   onChange?: (v: string) => void
@@ -67,7 +63,7 @@ type TabProps = {
   /**
    * Will be injected by Tabs component, don't provide it
    */
-  onClick?: (e: MouseEvent) => void
+  onClick?: MouseEventHandler<HTMLElement>
   badge?: string
   /**
    * The component to use for rendering the tab.
@@ -93,6 +89,7 @@ export const Tab = ({
   ...props
 }: TabProps) => {
   const classes = [styles.tab, isActive ? styles.active : '', className].join(' ').trim()
+
   return (
     <div className={styles.tabWrapper}>
       <Component {...props} className={classes}>

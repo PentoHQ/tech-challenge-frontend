@@ -4,7 +4,7 @@ import styles from './Spacer.module.scss'
 
 export type SpacerSize = 1 | 2 | 3 | 4 | 5 | 6
 
-type Props = {
+export type SpacerProps = {
   /**
    * Margin all around (8px grid)
    */
@@ -54,7 +54,7 @@ type Props = {
  * but still adhering to the the 8px grid that spring uses.
  * If you need anything more than basic spacing, do not use this component
  */
-function Spacer({ m, mr, ml, mt, mb, p, pt, pb, pr, pl, children, className }: Props) {
+function Spacer({ m, mr, ml, mt, mb, p, pt, pb, pr, pl, children, className }: SpacerProps) {
   const classes = [
     mr ? styles[`mr${mr}`] : '',
     ml ? styles[`ml${ml}`] : '',

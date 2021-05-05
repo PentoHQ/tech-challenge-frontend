@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { MouseEventHandler } from 'react'
 import styles from './List.module.scss'
 
 export interface ListProps {
@@ -19,7 +19,7 @@ export interface ListProps {
   /**
    * Optional click handler
    */
-  onClick?: () => void
+  onClick?: MouseEventHandler<HTMLElement>
   disablePadding?: boolean
 }
 

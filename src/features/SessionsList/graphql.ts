@@ -46,9 +46,18 @@ export const startSession = gql`
 `
 
 export const deleteSession = gql`
-  mutation deleteSession($id: uuid) {
-    delete_sessions(where: { id: { _eq: $id } }) {
-      affected_rows
+  mutation deleteSession($id: uuid!) {
+    delete_sessions_by_pk(id: $id) {
+      id
+    }
+  }
+`
+
+export const updateSession = gql`
+  mutation updateSession($input: sessions_set_input!, $id: sessions_pk_columns_input!) {
+    update_sessions_by_pk(_set: $input, pk_columns: $id) {
+      id
+      name
     }
   }
 `

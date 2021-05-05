@@ -1,30 +1,14 @@
-import React from 'react'
-import { shallow } from 'enzyme'
+import { render } from '@testing-library/react'
 import DeleteButton, { DeleteButtonProps } from './DeleteButton'
 
 function getWrapper(props: DeleteButtonProps) {
-  return shallow(<DeleteButton {...props} />)
+  return render(<DeleteButton {...props} />)
 }
 
-describe('<PlayButton/>', () => {
+describe('<DeleteButton/>', () => {
   it('renders', () => {
     const wrapper = getWrapper({ children: 'Hello!' })
 
-    expect(wrapper.text()).toEqual('Hello!')
-  })
-
-  it('passes down the provided class name', () => {
-    const wrapper = getWrapper({ children: 'Hello!', className: 'test-class' })
-
-    expect(wrapper.hasClass('test-class')).toBeTruthy()
-  })
-
-  it('on click', () => {
-    const onClick = jest.fn()
-    const wrapper = getWrapper({ onClick })
-
-    wrapper.simulate('click')
-
-    expect(onClick).toHaveBeenCalledTimes(1)
+    expect(wrapper.queryByRole('button')).toBeInTheDocument()
   })
 })

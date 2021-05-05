@@ -1,7 +1,7 @@
 ---
 to: src/components/<%= h.capitalize(name) %>/<%= h.capitalize(name) %>.tsx
 ---
-import React from 'react'
+import React, { MouseEventHandler } from 'react'
 import styles from './<%= h.capitalize(name) %>.module.scss'
 
 export interface <%= h.capitalize(name) %>Props {
@@ -29,7 +29,7 @@ export interface <%= h.capitalize(name) %>Props {
   /**
    * Optional click handler
    */
-  onClick?: (e: MouseEvent) => void
+  onClick?: MouseEventHandler<HTMLElement>
 }
 
 /**

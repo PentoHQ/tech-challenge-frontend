@@ -4,6 +4,7 @@ import {
   useSessionsQueryQuery,
   useStartSessionMutation,
   useDeleteSessionMutation,
+  useUpdateSessionMutation,
 } from '../../generated/graphql'
 import { runningQuery, getSessionsQuery } from './graphql'
 
@@ -83,32 +84,53 @@ export function useSwitchSession() {
   return switchSession
 }
 
-export function useDeleteSession(id: number) {
-  const [deleteSessionMutation, { loading, error }] = useDeleteSessionMutation({
-    variables: {
-      id,
-    },
-    refetchQueries: [
-      {
-        query: getSessionsQuery, // Propagate the change
-      },
-    ],
-  })
+export function useDeleteSession() {
+  const [deleteSessionMutation, { loading, error }] = useDeleteSessionMutation()
   const { stop, runningSession } = useRunningSession()
 
-  const deleteSession = async () => {
-    if (loading) {
-      throw new Error('Session is already being deleted')
-    }
-    if (runningSession?.id === id) {
-      // If the session is currently running, stop it first
-      await stop()
-    }
-    return deleteSessionMutation(id as any)
-  }
   return {
     loading,
     error,
-    deleteSession,
+    deleteSession: async (id: number) => {
+      if (loading) {
+        throw new Error('Session is already being deleted')
+      }
+      if (runningSession?.id === id) {
+        // If the session is currently running, stop it first
+        await stop()
+      }
+
+      return deleteSessionMutation({
+        variables: {
+          id,
+        },
+        refetchQueries: [
+          {
+            query: getSessionsQuery, // Propagate the change
+          },
+        ],
+      })
+    },
+  }
+}
+
+export function useUpdateSession() {
+  const [updateSessionMutation, { loading, error }] = useUpdateSessionMutation()
+  return {
+    loading,
+    error,
+    updateSession: (id: number, name: string) => {
+      return updateSessionMutation({
+        variables: {
+          input: { name },
+          id: { id },
+        },
+        refetchQueries: [
+          {
+            query: getSessionsQuery, // Propagate the change
+          },
+        ],
+      })
+    },
   }
 }

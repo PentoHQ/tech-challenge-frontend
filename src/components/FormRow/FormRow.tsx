@@ -4,7 +4,7 @@ import Button from '../Button'
 
 type AlignY = 'center' | 'bottom' | 'top' | 'baseline'
 
-interface Props {
+export interface FormRowProps {
   /**
    * If further customization is needed provide a custom class name,
    * it will be applied to the root of the component as the last class,
@@ -64,7 +64,7 @@ function FormRow({
   compact,
   childSpacing,
   sizeEvenly,
-}: Props) {
+}: FormRowProps) {
   const classes = [
     styles.wrapper,
     compact ? styles.compact : '',

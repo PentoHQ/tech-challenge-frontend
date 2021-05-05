@@ -1,4 +1,3 @@
-// @flow
 /* This file is auto-generated, do not edit it manually, just add new colors to the styles file
  * and run generate-color-types.js from scripts
  */

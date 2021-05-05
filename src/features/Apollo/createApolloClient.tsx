@@ -16,7 +16,20 @@ const createApolloClient = (authToken: string) => {
   })
 
   const client = new ApolloClient({
-    cache: new InMemoryCache({}),
+    cache: new InMemoryCache({
+      typePolicies: {
+        Query: {
+          fields: {
+            running_sessions: {
+              merge: (_, incoming) => incoming,
+            },
+            sessions: {
+              merge: (_, incoming) => incoming,
+            },
+          },
+        },
+      },
+    }),
     link: authLink.concat(httpLink),
   })
   return client

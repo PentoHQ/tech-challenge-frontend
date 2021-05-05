@@ -1,30 +1,20 @@
-import React from 'react'
-import { shallow } from 'enzyme'
-import InputText from './InputText'
+import { render } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import InputText, { InputProps } from './InputText'
 
-function getWrapper(props) {
-  return shallow(<InputText {...props} />)
+function getWrapper(props: InputProps) {
+  return render(<InputText {...props} />)
 }
 
 describe('<Input/>', () => {
-  it('renders', () => {
-    const wrapper = getWrapper({ children: 'Hello!' })
+  it('renders', async () => {
+    const onChange = jest.fn()
+    const wrapper = getWrapper({ placeholder: 'label', value: 'val', onChange })
+    const input = wrapper.getByDisplayValue('val')
+    expect(wrapper.getByPlaceholderText('Label')).toBeInTheDocument()
+    expect(input).toBeInTheDocument()
 
-    expect(wrapper.text()).toEqual('Hello!')
-  })
-
-  it('passes down the provided class name', () => {
-    const wrapper = getWrapper({ children: 'Hello!', className: 'test-class' })
-
-    expect(wrapper.hasClass('test-class')).toBeTruthy()
-  })
-
-  it('on click', () => {
-    const onClick = jest.fn()
-    const wrapper = getWrapper({ onClick })
-
-    wrapper.simulate('click')
-
-    expect(onClick).toHaveBeenCalledTimes(1)
+    userEvent.type(input, '{selectall}{del}new')
+    expect(onChange).toHaveBeenCalledTimes(4)
   })
 })

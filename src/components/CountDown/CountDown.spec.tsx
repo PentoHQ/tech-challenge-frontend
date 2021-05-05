@@ -1,30 +1,15 @@
-import React from 'react'
-import { shallow } from 'enzyme'
-import CountDown from './CountDown'
+import { render } from '@testing-library/react'
 
-function getWrapper(props) {
-  return shallow(<CountDown {...props} />)
+import CountDown, { CountDownProps } from './CountDown'
+
+function getWrapper(props: CountDownProps) {
+  return render(<CountDown {...props} />)
 }
 
 describe('<CountDown/>', () => {
   it('renders', () => {
-    const wrapper = getWrapper({ children: 'Hello!' })
+    const wrapper = getWrapper({ startTime: new Date(Date.now() - 8000) })
 
-    expect(wrapper.text()).toEqual('Hello!')
-  })
-
-  it('passes down the provided class name', () => {
-    const wrapper = getWrapper({ children: 'Hello!', className: 'test-class' })
-
-    expect(wrapper.hasClass('test-class')).toBeTruthy()
-  })
-
-  it('on click', () => {
-    const onClick = jest.fn()
-    const wrapper = getWrapper({ onClick })
-
-    wrapper.simulate('click')
-
-    expect(onClick).toHaveBeenCalledTimes(1)
+    expect(wrapper.getByText('0:0:8')).toBeInTheDocument()
   })
 })
