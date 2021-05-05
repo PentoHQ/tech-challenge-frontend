@@ -1,4 +1,4 @@
-import React, { ReactChild } from 'react'
+import React, { MouseEventHandler, ReactChild } from 'react'
 import styles from './ListItem.module.scss'
 
 export interface ListItemProps {
@@ -18,7 +18,7 @@ export interface ListItemProps {
   /**
    * Optional click handler
    */
-  onClick?: () => void
+  onClick?: MouseEventHandler<HTMLElement>
   dense?: boolean
   disabled?: boolean
   /**

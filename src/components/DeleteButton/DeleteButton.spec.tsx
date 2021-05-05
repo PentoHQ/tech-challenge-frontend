@@ -1,9 +1,9 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import PlayButton, { PlayButtonProps } from './PlayButton'
+import DeleteButton, { DeleteButtonProps } from './DeleteButton'
 
-function getWrapper(props: PlayButtonProps) {
-  return shallow(<PlayButton {...props} />)
+function getWrapper(props: DeleteButtonProps) {
+  return shallow(<DeleteButton {...props} />)
 }
 
 describe('<PlayButton/>', () => {

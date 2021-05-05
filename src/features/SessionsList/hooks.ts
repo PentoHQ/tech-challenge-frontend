@@ -3,6 +3,7 @@ import {
   useRunningSessionQuery,
   useSessionsQueryQuery,
   useStartSessionMutation,
+  useDeleteSessionMutation,
 } from '../../generated/graphql'
 import { runningQuery, getSessionsQuery } from './graphql'
 
@@ -45,7 +46,7 @@ export function useRunningSession({ onCompleted }: UseRunningSession = {}) {
       }),
     stop: () => {
       if (!runningSession) {
-        throw new Error('Don not mutate before data has finished loading')
+        throw new Error('Do not mutate before data has finished loading')
       }
 
       return createSession({
@@ -80,4 +81,34 @@ export function useSwitchSession() {
     return stop().then(() => startSession(name))
   }
   return switchSession
+}
+
+export function useDeleteSession(id: number) {
+  const [deleteSessionMutation, { loading, error }] = useDeleteSessionMutation({
+    variables: {
+      id,
+    },
+    refetchQueries: [
+      {
+        query: getSessionsQuery, // Propagate the change
+      },
+    ],
+  })
+  const { stop, runningSession } = useRunningSession()
+
+  const deleteSession = async () => {
+    if (loading) {
+      throw new Error('Session is already being deleted')
+    }
+    if (runningSession?.id === id) {
+      // If the session is currently running, stop it first
+      await stop()
+    }
+    return deleteSessionMutation(id as any)
+  }
+  return {
+    loading,
+    error,
+    deleteSession,
+  }
 }

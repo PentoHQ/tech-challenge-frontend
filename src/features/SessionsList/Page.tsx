@@ -4,15 +4,23 @@ import ListItem from '../../components/ListItem'
 import LoadingSpinner from '../../components/LoadingSpinner'
 import { PageBody } from '../../components/Page'
 import PlayButton from '../../components/PlayButton'
+import DeleteButton from '../../components/DeleteButton'
 import Spacer from '../../components/Spacer'
 import { diffDateStrings } from '../../util/diffDateStrings'
 import { msToHuman } from '../../util/formatters/formatDateDiff'
-import { useGetSessions, useSwitchSession } from './hooks'
+import { useGetSessions, useDeleteSession, useSwitchSession } from './hooks'
 import SessionControls from './SessionControls'
 
-function RowAction({ name }: { name: string }) {
+function RowAction({ id, name }: { id: number; name: string }) {
   const switchSession = useSwitchSession()
-  return <PlayButton size="small" onClick={() => switchSession(name)}></PlayButton>
+  const { deleteSession } = useDeleteSession(id)
+
+  return (
+    <>
+      <DeleteButton size="small" onClick={() => deleteSession()} />
+      <PlayButton size="small" onClick={() => switchSession(name)} />
+    </>
+  )
 }
 
 export default function SessionsListPage(props: any) {
@@ -34,7 +42,7 @@ export default function SessionsListPage(props: any) {
                 key={id}
                 title={name}
                 subtitle={msToHuman(diffDateStrings(startDate, endDate))}
-                action={<RowAction name={name} />}
+                action={<RowAction name={name} id={id} />}
               />
             ))}
           </List>

@@ -29,6 +29,7 @@ export const createSession = gql`
 export const runningQuery = gql`
   query RunningSession {
     running_sessions {
+      id
       name
       startDate
     }
@@ -40,6 +41,14 @@ export const startSession = gql`
       id
       name
       startDate
+    }
+  }
+`
+
+export const deleteSession = gql`
+  mutation deleteSession($id: uuid) {
+    delete_sessions(where: { id: { _eq: $id } }) {
+      affected_rows
     }
   }
 `

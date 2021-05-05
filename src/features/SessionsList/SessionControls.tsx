@@ -1,4 +1,3 @@
-import { intervalToDuration } from 'date-fns'
 import { SyntheticEvent, useState } from 'react'
 import FormRow from '../../components/FormRow'
 import InputText from '../../components/InputText'
@@ -6,6 +5,7 @@ import PlayButton from '../../components/PlayButton'
 import StopButton from '../../components/StopButton'
 import LoadingSpinner from '../../components/LoadingSpinner'
 import { useRunningSession } from './hooks'
+import CountDown from '../../components/CountDown'
 
 interface RunningProps {
   name: string
@@ -14,13 +14,12 @@ interface RunningProps {
 
 function RunningSession({ name, startDate }: RunningProps) {
   const { stop, isLoading } = useRunningSession()
-  const { hours, minutes, seconds } = intervalToDuration({ start: startDate, end: new Date() })
 
   return (
     <FormRow alignY="center" stretchLastChild={false}>
       {name}
       <div>
-        {hours}:{minutes}:{seconds}
+        <CountDown startTime={startDate} />
       </div>
       <StopButton onClick={stop} disabled={isLoading}></StopButton>
     </FormRow>

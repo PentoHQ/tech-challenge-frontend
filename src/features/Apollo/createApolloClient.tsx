@@ -16,7 +16,7 @@ const createApolloClient = (authToken: string) => {
   })
 
   const client = new ApolloClient({
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({}),
     link: authLink.concat(httpLink),
   })
   return client

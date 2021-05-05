@@ -1,7 +1,7 @@
 import Button, { ButtonProps } from '../Button'
 import styles from './IconButton.module.scss'
 import { motion } from 'framer-motion'
-import { ReactChild } from 'react'
+import { ReactChild, MouseEventHandler } from 'react'
 
 export interface IconButtonProps extends Partial<ButtonProps> {
   /**
@@ -12,7 +12,7 @@ export interface IconButtonProps extends Partial<ButtonProps> {
   /**
    * Optional click handler
    */
-  onClick?: () => void
+  onClick?: MouseEventHandler<HTMLElement>
   children: ReactChild
 }
 
@@ -27,6 +27,7 @@ export const IconButton = ({
   ...props
 }: IconButtonProps) => {
   const classes = [styles.iconBtn, styles[size], className].join(' ').trim()
+
   return (
     <motion.div>
       <Button className={classes} color={color} {...props} whileTap={{ scale: 0.8 }}>

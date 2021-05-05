@@ -1,10 +1,8 @@
 import { PlayIcon } from '@heroicons/react/outline'
 import IconButton, { IconButtonProps } from '../IconButton'
 
-/**
- * Primary UI component for user interaction
- */
-export const PlayButton = ({ className = '', ...props }: Partial<IconButtonProps>) => {
+export type PlayButtonProps = Partial<IconButtonProps>
+export const PlayButton = ({ ...props }: PlayButtonProps) => {
   return (
     <IconButton color="success" {...props}>
       <PlayIcon></PlayIcon>

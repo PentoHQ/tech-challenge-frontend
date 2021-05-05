@@ -29,7 +29,7 @@ export interface <%= h.capitalize(name) %>Props {
   /**
    * Optional click handler
    */
-  onClick?: () => void
+  onClick?: (e: MouseEvent) => void
 }
 
 /**

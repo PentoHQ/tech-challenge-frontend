@@ -1,6 +1,5 @@
 import { AnimateSharedLayout, motion } from 'framer-motion'
 import React, { Children } from 'react'
-import classNames from 'classnames'
 import capitalize from '../../util/capitaize'
 import styles from './Tabs.module.scss'
 
@@ -21,7 +20,7 @@ export interface TabsProps {
   /**
    * Optional click handler
    */
-  onClick?: () => void
+  onClick?: (e: MouseEvent) => void
   noUnderline?: boolean
   selected: string
   onChange?: (v: string) => void
@@ -37,10 +36,12 @@ function Tabs({
   size,
   noUnderline,
 }: TabsProps) {
-  const classes = classNames(styles.wrapper, className, {
-    [styles.tallTabs]: size === 'large',
-    [styles.noUnderline]: noUnderline,
-  })
+  const classes = [
+    styles.wrapper,
+    size === 'large' ? styles.tallTabs : '',
+    noUnderline ? styles.noUnderline : '',
+    className,
+  ].join(' ')
   return (
     <div className={classes}>
       <AnimateSharedLayout>
@@ -66,7 +67,7 @@ type TabProps = {
   /**
    * Will be injected by Tabs component, don't provide it
    */
-  onClick?: () => void
+  onClick?: (e: MouseEvent) => void
   badge?: string
   /**
    * The component to use for rendering the tab.
