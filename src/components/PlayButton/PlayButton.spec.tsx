@@ -1,16 +1,16 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { mount } from 'enzyme'
 import PlayButton from './PlayButton'
 
 function getWrapper(props) {
-  return shallow(<PlayButton {...props} />)
+  return mount(<PlayButton {...props} />)
 }
 
 describe('<PlayButton/>', () => {
   it('renders', () => {
     const wrapper = getWrapper({ children: 'Hello!' })
 
-    expect(wrapper.text()).toEqual('Hello!')
+    expect(wrapper.html()).toBeTruthy()
   })
 
   it('passes down the provided class name', () => {
@@ -23,7 +23,7 @@ describe('<PlayButton/>', () => {
     const onClick = jest.fn()
     const wrapper = getWrapper({ onClick })
 
-    wrapper.simulate('click')
+    wrapper.find('button').simulate('click')
 
     expect(onClick).toHaveBeenCalledTimes(1)
   })
