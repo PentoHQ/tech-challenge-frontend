@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import Tabs from './Tabs'
+import Tabs, { Tab } from './Tabs'
 
 function getWrapper(props) {
   return shallow(<Tabs {...props} />)
@@ -8,23 +8,14 @@ function getWrapper(props) {
 
 describe('<Tabs/>', () => {
   it('renders', () => {
-    const wrapper = getWrapper({ children: 'Hello!' })
+    const wrapper = getWrapper({ children: <Tab /> })
 
-    expect(wrapper.text()).toEqual('Hello!')
+    expect(wrapper.html()).toBeTruthy()
   })
 
   it('passes down the provided class name', () => {
-    const wrapper = getWrapper({ children: 'Hello!', className: 'test-class' })
+    const wrapper = getWrapper({ children: <Tab />, className: 'test-class' })
 
     expect(wrapper.hasClass('test-class')).toBeTruthy()
-  })
-
-  it('on click', () => {
-    const onClick = jest.fn()
-    const wrapper = getWrapper({ onClick })
-
-    wrapper.simulate('click')
-
-    expect(onClick).toHaveBeenCalledTimes(1)
   })
 })

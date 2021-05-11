@@ -8,15 +8,15 @@ function getWrapper(props) {
 
 describe('<PlayButton/>', () => {
   it('renders', () => {
-    const wrapper = getWrapper({ children: 'Hello!' })
+    const wrapper = getWrapper()
 
     expect(wrapper.html()).toBeTruthy()
   })
 
   it('passes down the provided class name', () => {
-    const wrapper = getWrapper({ children: 'Hello!', className: 'test-class' })
+    const wrapper = getWrapper({ className: 'test-class' })
 
-    expect(wrapper.hasClass('test-class')).toBeTruthy()
+    expect(wrapper.find('button').hasClass('test-class')).toBeTruthy()
   })
 
   it('on click', () => {

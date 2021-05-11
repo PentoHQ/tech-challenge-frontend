@@ -5,5 +5,9 @@
 import '@testing-library/jest-dom'
 import { configure } from 'enzyme'
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17'
+jest.mock('react', () => ({
+  ...jest.requireActual('react'),
+  useLayoutEffect: jest.requireActual('react').useEffect,
+}))
 
 configure({ adapter: new Adapter() })

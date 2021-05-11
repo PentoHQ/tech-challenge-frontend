@@ -1,6 +1,6 @@
 {
   "files.associations": {
-    "ejs": "html"
+    "*.yaml": "home-assistant"
   },
   "[html]": {
     "editor.formatOnSave": false

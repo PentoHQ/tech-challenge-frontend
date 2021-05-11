@@ -1,30 +1,30 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { mount } from 'enzyme'
 import InputText from './InputText'
 
 function getWrapper(props) {
-  return shallow(<InputText {...props} />)
+  return mount(<InputText {...props} />)
 }
 
 describe('<Input/>', () => {
   it('renders', () => {
-    const wrapper = getWrapper({ children: 'Hello!' })
+    const wrapper = getWrapper({ label: 'Hello!' })
 
     expect(wrapper.text()).toEqual('Hello!')
   })
 
   it('passes down the provided class name', () => {
-    const wrapper = getWrapper({ children: 'Hello!', className: 'test-class' })
+    const wrapper = getWrapper({ label: 'Hello!', className: 'test-class' })
 
     expect(wrapper.hasClass('test-class')).toBeTruthy()
   })
 
-  it('on click', () => {
-    const onClick = jest.fn()
-    const wrapper = getWrapper({ onClick })
+  it('on change input', () => {
+    const onChange = jest.fn()
+    const wrapper = getWrapper({ onChange })
 
-    wrapper.simulate('click')
+    wrapper.find('input').simulate('change', { target: { value: 'input value' } })
 
-    expect(onClick).toHaveBeenCalledTimes(1)
+    expect(onChange).toHaveBeenCalledTimes(1)
   })
 })

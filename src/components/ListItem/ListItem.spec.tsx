@@ -8,13 +8,13 @@ function getWrapper(props) {
 
 describe('<ListItem/>', () => {
   it('renders', () => {
-    const wrapper = getWrapper({ children: 'Hello!' })
+    const wrapper = getWrapper({ title: 'Hello!' })
 
     expect(wrapper.text()).toEqual('Hello!')
   })
 
   it('passes down the provided class name', () => {
-    const wrapper = getWrapper({ children: 'Hello!', className: 'test-class' })
+    const wrapper = getWrapper({ title: 'Hello!', className: 'test-class' })
 
     expect(wrapper.hasClass('test-class')).toBeTruthy()
   })

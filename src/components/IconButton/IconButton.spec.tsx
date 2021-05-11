@@ -1,29 +1,29 @@
 import React from 'react'
-import { shallow } from 'enzyme'
-import PlayButton from './IconButton'
+import { mount } from 'enzyme'
+import IconButton from './IconButton'
 
 function getWrapper(props) {
-  return shallow(<PlayButton {...props} />)
+  return mount(<IconButton {...props} />)
 }
 
-describe('<PlayButton/>', () => {
+describe('<IconIconButton', () => {
   it('renders', () => {
-    const wrapper = getWrapper({ children: 'Hello!' })
+    const wrapper = getWrapper()
 
-    expect(wrapper.text()).toEqual('Hello!')
+    expect(wrapper.html()).toBeTruthy()
   })
 
   it('passes down the provided class name', () => {
-    const wrapper = getWrapper({ children: 'Hello!', className: 'test-class' })
+    const wrapper = getWrapper({ className: 'test-class' })
 
-    expect(wrapper.hasClass('test-class')).toBeTruthy()
+    expect(wrapper.find('button').hasClass('test-class')).toBeTruthy()
   })
 
   it('on click', () => {
     const onClick = jest.fn()
     const wrapper = getWrapper({ onClick })
 
-    wrapper.simulate('click')
+    wrapper.find('button').simulate('click')
 
     expect(onClick).toHaveBeenCalledTimes(1)
   })
