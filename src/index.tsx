@@ -16,6 +16,7 @@ ReactDOM.render(
       clientId={auth0.clientId}
       redirectUri={window.location.origin}
       audience="pento-time-track"
+      cacheLocation="localstorage"
     >
       <AuthWrapper>
         <ApolloWrapper>

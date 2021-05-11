@@ -49,88 +49,6 @@ export type String_Comparison_Exp = {
   _similar?: Maybe<Scalars['String']>
 }
 
-/** mutation root */
-export type Mutation_Root = {
-  __typename?: 'mutation_root'
-  /** delete data from the table: "running_sessions" */
-  delete_running_sessions?: Maybe<Running_Sessions_Mutation_Response>
-  /** delete data from the table: "sessions" */
-  delete_sessions?: Maybe<Sessions_Mutation_Response>
-  /** delete single row from the table: "sessions" */
-  delete_sessions_by_pk?: Maybe<Sessions>
-  /** insert data into the table: "running_sessions" */
-  insert_running_sessions?: Maybe<Running_Sessions_Mutation_Response>
-  /** insert a single row into the table: "running_sessions" */
-  insert_running_sessions_one?: Maybe<Running_Sessions>
-  /** insert data into the table: "sessions" */
-  insert_sessions?: Maybe<Sessions_Mutation_Response>
-  /** insert a single row into the table: "sessions" */
-  insert_sessions_one?: Maybe<Sessions>
-  /** update data of the table: "running_sessions" */
-  update_running_sessions?: Maybe<Running_Sessions_Mutation_Response>
-  /** update data of the table: "sessions" */
-  update_sessions?: Maybe<Sessions_Mutation_Response>
-  /** update single row of the table: "sessions" */
-  update_sessions_by_pk?: Maybe<Sessions>
-}
-
-/** mutation root */
-export type Mutation_RootDelete_Running_SessionsArgs = {
-  where: Running_Sessions_Bool_Exp
-}
-
-/** mutation root */
-export type Mutation_RootDelete_SessionsArgs = {
-  where: Sessions_Bool_Exp
-}
-
-/** mutation root */
-export type Mutation_RootDelete_Sessions_By_PkArgs = {
-  id: Scalars['uuid']
-}
-
-/** mutation root */
-export type Mutation_RootInsert_Running_SessionsArgs = {
-  objects: Array<Running_Sessions_Insert_Input>
-  on_conflict?: Maybe<Running_Sessions_On_Conflict>
-}
-
-/** mutation root */
-export type Mutation_RootInsert_Running_Sessions_OneArgs = {
-  object: Running_Sessions_Insert_Input
-  on_conflict?: Maybe<Running_Sessions_On_Conflict>
-}
-
-/** mutation root */
-export type Mutation_RootInsert_SessionsArgs = {
-  objects: Array<Sessions_Insert_Input>
-  on_conflict?: Maybe<Sessions_On_Conflict>
-}
-
-/** mutation root */
-export type Mutation_RootInsert_Sessions_OneArgs = {
-  object: Sessions_Insert_Input
-  on_conflict?: Maybe<Sessions_On_Conflict>
-}
-
-/** mutation root */
-export type Mutation_RootUpdate_Running_SessionsArgs = {
-  _set?: Maybe<Running_Sessions_Set_Input>
-  where: Running_Sessions_Bool_Exp
-}
-
-/** mutation root */
-export type Mutation_RootUpdate_SessionsArgs = {
-  _set?: Maybe<Sessions_Set_Input>
-  where: Sessions_Bool_Exp
-}
-
-/** mutation root */
-export type Mutation_RootUpdate_Sessions_By_PkArgs = {
-  _set?: Maybe<Sessions_Set_Input>
-  pk_columns: Sessions_Pk_Columns_Input
-}
-
 /** column ordering options */
 export enum Order_By {
   /** in ascending order, nulls last */
@@ -305,11 +223,86 @@ export enum Sessions_Constraint {
   SessionsPkey = 'sessions_pkey',
 }
 
-/** input type for inserting data into table "sessions" */
-export type Sessions_Insert_Input = {
-  endDate?: Maybe<Scalars['timestamptz']>
-  name?: Maybe<Scalars['String']>
-  startDate?: Maybe<Scalars['timestamptz']>
+/** mutation root */
+export type Mutation_Root = {
+  __typename?: 'mutation_root'
+  /** delete data from the table: "running_sessions" */
+  delete_running_sessions?: Maybe<Running_Sessions_Mutation_Response>
+  /** delete data from the table: "sessions" */
+  delete_sessions?: Maybe<Sessions_Mutation_Response>
+  /** delete single row from the table: "sessions" */
+  delete_sessions_by_pk?: Maybe<Sessions>
+  /** insert data into the table: "running_sessions" */
+  insert_running_sessions?: Maybe<Running_Sessions_Mutation_Response>
+  /** insert a single row into the table: "running_sessions" */
+  insert_running_sessions_one?: Maybe<Running_Sessions>
+  /** insert data into the table: "sessions" */
+  insert_sessions?: Maybe<Sessions_Mutation_Response>
+  /** insert a single row into the table: "sessions" */
+  insert_sessions_one?: Maybe<Sessions>
+  /** update data of the table: "running_sessions" */
+  update_running_sessions?: Maybe<Running_Sessions_Mutation_Response>
+  /** update data of the table: "sessions" */
+  update_sessions?: Maybe<Sessions_Mutation_Response>
+  /** update single row of the table: "sessions" */
+  update_sessions_by_pk?: Maybe<Sessions>
+}
+
+/** mutation root */
+export type Mutation_RootDelete_Running_SessionsArgs = {
+  where: Running_Sessions_Bool_Exp
+}
+
+/** mutation root */
+export type Mutation_RootDelete_SessionsArgs = {
+  where: Sessions_Bool_Exp
+}
+
+/** mutation root */
+export type Mutation_RootDelete_Sessions_By_PkArgs = {
+  id: Scalars['uuid']
+}
+
+/** mutation root */
+export type Mutation_RootInsert_Running_SessionsArgs = {
+  objects: Array<Running_Sessions_Insert_Input>
+  on_conflict?: Maybe<Running_Sessions_On_Conflict>
+}
+
+/** mutation root */
+export type Mutation_RootInsert_Running_Sessions_OneArgs = {
+  object: Running_Sessions_Insert_Input
+  on_conflict?: Maybe<Running_Sessions_On_Conflict>
+}
+
+/** mutation root */
+export type Mutation_RootInsert_SessionsArgs = {
+  objects: Array<Sessions_Insert_Input>
+  on_conflict?: Maybe<Sessions_On_Conflict>
+}
+
+/** mutation root */
+export type Mutation_RootInsert_Sessions_OneArgs = {
+  object: Sessions_Insert_Input
+  on_conflict?: Maybe<Sessions_On_Conflict>
+}
+
+/** mutation root */
+export type Mutation_RootUpdate_Running_SessionsArgs = {
+  _set?: Maybe<Running_Sessions_Set_Input>
+  where: Running_Sessions_Bool_Exp
+}
+
+/** mutation root */
+export type Mutation_RootUpdate_SessionsArgs = {
+  _set?: Maybe<Sessions_Set_Input>
+  where: Sessions_Bool_Exp
+}
+
+/** mutation root */
+export type Mutation_RootUpdate_Sessions_By_PkArgs = {
+  _set?: Maybe<Sessions_Set_Input>
+  pk_columns: Sessions_Pk_Columns_Input
 }
 
 /** response of any mutation on the table "sessions" */
@@ -471,6 +464,13 @@ export type Uuid_Comparison_Exp = {
   _lte?: Maybe<Scalars['uuid']>
   _neq?: Maybe<Scalars['uuid']>
   _nin?: Maybe<Array<Scalars['uuid']>>
+}
+
+/** input type for inserting data into table "sessions" */
+export type Sessions_Insert_Input = {
+  endDate?: Maybe<Scalars['timestamptz']>
+  name?: Maybe<Scalars['String']>
+  startDate?: Maybe<Scalars['timestamptz']>
 }
 
 export type SessionsQueryQueryVariables = Exact<{ [key: string]: never }>
