@@ -1,4 +1,3 @@
-//@flow
 import { ReactChild } from 'react'
 import styles from './Spacer.module.scss'
 

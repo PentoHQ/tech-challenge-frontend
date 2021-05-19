@@ -1,4 +1,3 @@
-//@flow
 import { Children, ReactChild } from 'react'
 import styles from './FormRow.module.scss'
 import Button from '../Button'

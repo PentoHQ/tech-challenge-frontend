@@ -1,4 +1,3 @@
-//@flow
 import { ReactChild } from 'react'
 import styles from './Text.module.scss'
 import type { TextColor } from './textColorTypes'

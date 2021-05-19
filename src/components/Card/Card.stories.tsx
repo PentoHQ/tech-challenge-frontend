@@ -1,4 +1,3 @@
-//@flow
 import React from 'react'
 import css from './story.module.scss'
 import Button from '../Button'

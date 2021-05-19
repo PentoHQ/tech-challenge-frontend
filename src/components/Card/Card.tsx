@@ -1,4 +1,3 @@
-//@flow
 import { ReactElement, cloneElement, ReactNode } from 'react'
 import styles from './Card.module.scss'
 

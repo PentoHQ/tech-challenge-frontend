@@ -1,4 +1,3 @@
-//@flow
 import { Meta, Story } from '@storybook/react/types-6-0'
 import Text, { TextProps } from './Text'
 import { colors } from './textColorTypes'
