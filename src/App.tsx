@@ -1,6 +1,6 @@
 import styles from './App.module.scss';
 import { Switch } from 'react-router';
-import SessionsListPage from './features/SessionsList/Page';
+import SessionsList from './screens/SessionsList';
 import { Link, Route, useLocation } from 'react-router-dom';
 import Tabs, { Tab } from './components/Tabs';
 import Page from './components/Page';
@@ -16,7 +16,7 @@ function App() {
         <Tab label="Stats" value="/stats" to="/stats"></Tab>
       </Tabs>
       <Switch>
-        <Route path="/" exact component={SessionsListPage} />
+        <Route path="/" exact component={SessionsList} />
         <Route path="/stats" exact component={StatsPage} />
       </Switch>
     </Page>
