@@ -1,13 +1,13 @@
-import styles from './App.module.scss'
-import { Switch } from 'react-router'
-import SessionsListPage from './features/SessionsList/Page'
-import { Link, Route, useLocation } from 'react-router-dom'
-import Tabs, { Tab } from './components/Tabs'
-import Page from './components/Page'
-import StatsPage from './features/Stats'
+import styles from './App.module.scss';
+import { Switch } from 'react-router';
+import SessionsListPage from './features/SessionsList/Page';
+import { Link, Route, useLocation } from 'react-router-dom';
+import Tabs, { Tab } from './components/Tabs';
+import Page from './components/Page';
+import StatsPage from './features/Stats';
 
 function App() {
-  const location = useLocation()
+  const location = useLocation();
 
   return (
     <Page className={styles.APP}>
@@ -20,7 +20,7 @@ function App() {
         <Route path="/stats" exact component={StatsPage} />
       </Switch>
     </Page>
-  )
+  );
 }
 
-export default App
+export default App;

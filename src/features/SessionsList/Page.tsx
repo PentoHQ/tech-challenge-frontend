@@ -1,21 +1,23 @@
-import { RawCard } from '../../components/Card'
-import List from '../../components/List'
-import ListItem from '../../components/ListItem'
-import { PageBody } from '../../components/Page'
-import PlayButton from '../../components/PlayButton'
-import Spacer from '../../components/Spacer'
-import { diffDateStrings } from '../../util/diffDateStrings'
-import { msToHuman } from '../../util/formatters/formatDateDiff'
-import { useGetSessions, useSwitchSession } from './hooks'
-import SessionControls from './SessionControls'
+import { RawCard } from '../../components/Card';
+import List from '../../components/List';
+import ListItem from '../../components/ListItem';
+import { PageBody } from '../../components/Page';
+import PlayButton from '../../components/PlayButton';
+import Spacer from '../../components/Spacer';
+import { diffDateStrings } from '../../util/diffDateStrings';
+import { msToHuman } from '../../util/formatters/formatDateDiff';
+import { useGetSessions, useSwitchSession } from './hooks';
+import SessionControls from './SessionControls';
 
 function RowAction({ name }: { name: string }) {
-  const switchSession = useSwitchSession()
-  return <PlayButton size="small" onClick={() => switchSession(name)}></PlayButton>
+  const switchSession = useSwitchSession();
+  return (
+    <PlayButton size="small" onClick={() => switchSession(name)}></PlayButton>
+  );
 }
 
 export default function SessionsListPage(props: any) {
-  const { data, isLoading, error } = useGetSessions()
+  const { data, isLoading, error } = useGetSessions();
   return (
     <PageBody>
       <Spacer pb={4}>
@@ -40,5 +42,5 @@ export default function SessionsListPage(props: any) {
         )}
       </RawCard>
     </PageBody>
-  )
+  );
 }

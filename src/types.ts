@@ -1,19 +1,19 @@
 // This are the sessions already done
 export type Session = {
-  name: string
+  name: string;
   /**
    * Iso date format
    */
-  startDate: string
+  startDate: string;
   /**
    * Iso date format
    */
-  endDate: string
-  id: string
-}
+  endDate: string;
+  id: string;
+};
 export interface SessionGroup {
-  name: string
-  total: number
-  lastRun: string
-  sessions: Session[]
+  name: string;
+  total: number;
+  lastRun: string;
+  sessions: Session[];
 }

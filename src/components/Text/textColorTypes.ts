@@ -15,7 +15,7 @@ export type TextColor =
   | 'grey50'
   | 'grey20'
   | 'grey30'
-  | 'grey10'
+  | 'grey10';
 // For internal usage only on storybook
 export const colors: TextColor[] = [
   'primary',
@@ -29,4 +29,4 @@ export const colors: TextColor[] = [
   'grey20',
   'grey30',
   'grey10',
-]
+];

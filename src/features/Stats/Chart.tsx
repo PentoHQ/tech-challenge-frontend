@@ -1,4 +1,4 @@
-import React, { ReactChild } from 'react'
+import React, { ReactChild } from 'react';
 import {
   XAxis,
   YAxis,
@@ -9,26 +9,31 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-} from 'recharts'
-import PropTypes from 'prop-types'
-import Text from '../../components/Text'
-import { stringToColour } from '../../util/stringToColour'
+} from 'recharts';
+import PropTypes from 'prop-types';
+import Text from '../../components/Text';
+import { stringToColour } from '../../util/stringToColour';
 
 function Title({ children }: { children: ReactChild }) {
-  return <Text variant="title">{children}</Text>
+  return <Text variant="title">{children}</Text>;
 }
 
 interface ChartProps<T> {
-  sessions: T[]
-  title: string
-  names: string[]
-  formatter?: (value: T, index: number) => string
+  sessions: T[];
+  title: string;
+  names: string[];
+  formatter?: (value: T, index: number) => string;
 }
 
-export default function Chart<T>({ sessions, title, names, formatter }: ChartProps<T>) {
+export default function Chart<T>({
+  sessions,
+  title,
+  names,
+  formatter,
+}: ChartProps<T>) {
   const Bars = names.map((x: string) => (
     <Bar key={x} dataKey={x} name={x} stackId="a" fill={stringToColour(x)} />
-  ))
+  ));
   return (
     <React.Fragment>
       <Title>{title}</Title>
@@ -44,7 +49,12 @@ export default function Chart<T>({ sessions, title, names, formatter }: ChartPro
         >
           <XAxis dataKey="startDate" />
           <YAxis tickFormatter={formatter}>
-            <Label position="left" style={{ textAnchor: 'middle' }} offset={0} angle={-90}>
+            <Label
+              position="left"
+              style={{ textAnchor: 'middle' }}
+              offset={0}
+              angle={-90}
+            >
               Duration
             </Label>
           </YAxis>
@@ -55,7 +65,7 @@ export default function Chart<T>({ sessions, title, names, formatter }: ChartPro
         </BarChart>
       </ResponsiveContainer>
     </React.Fragment>
-  )
+  );
 }
 /**
  * The expected shape of the data is
@@ -67,8 +77,8 @@ Chart.propTypes = {
   names: PropTypes.arrayOf(PropTypes.string).isRequired,
   formatter: PropTypes.func,
   sessions: PropTypes.array,
-}
+};
 Chart.defaultProps = {
   sessions: [],
   formatter: () => {},
-}
+};

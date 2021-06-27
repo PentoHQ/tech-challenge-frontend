@@ -1,10 +1,10 @@
-import React from 'react'
-import css from './story.module.scss'
-import Button from '../Button'
-import Text from '../Text'
+import React from 'react';
+import css from './story.module.scss';
+import Button from '../Button';
+import Text from '../Text';
 
-import Card, { CardContent, CardDivider, CardHeader, RawCard } from './Card'
-import { Meta } from '@storybook/react/types-6-0'
+import Card, { CardContent, CardDivider, CardHeader, RawCard } from './Card';
+import { Meta } from '@storybook/react/types-6-0';
 
 export default {
   title: 'Example/Card',
@@ -12,7 +12,7 @@ export default {
   parameters: {
     options: { showPanel: true },
   },
-} as Meta
+} as Meta;
 
 /**
  * Use the default export to provide interactivity using knobs.
@@ -23,28 +23,29 @@ export const Default = () => {
     <Card>
       <CardContent>This are the card contents</CardContent>
     </Card>
-  )
-}
+  );
+};
 
 export const WithDivider = () => (
   <Card>
     <CardContent>
-      Set up a cycle to work salary sacrifice plan. The amount will be deducted from the net pay
-      each payroll.
+      Set up a cycle to work salary sacrifice plan. The amount will be deducted
+      from the net pay each payroll.
     </CardContent>
     <CardDivider />
     <CardContent>
-      Set up a loan repayment schedule that will be deducted from the net pay each payroll.
+      Set up a loan repayment schedule that will be deducted from the net pay
+      each payroll.
     </CardContent>
   </Card>
-)
+);
 
 export const ManyContents = () => {
-  const amount = 4
+  const amount = 4;
   const contents = [
     ' Set up a cycle to work salary sacrifice plan. The amount will be deducted from the net pay each payroll.',
     ' Set up a loan repayment schedule that will be deducted from the net pay each payroll. ',
-  ]
+  ];
   return (
     <Card>
       {Array(amount)
@@ -57,8 +58,8 @@ export const ManyContents = () => {
           </React.Fragment>
         ))}
     </Card>
-  )
-}
+  );
+};
 
 export const WithFooter = () => (
   <Card
@@ -69,10 +70,11 @@ export const WithFooter = () => (
     }
   >
     <CardContent>
-      Set up your connection for HMRC and RTI reporting by entering your company's credentials.
+      Set up your connection for HMRC and RTI reporting by entering your
+      company's credentials.
     </CardContent>
   </Card>
-)
+);
 
 export const Compact = () => (
   <Card>
@@ -80,24 +82,26 @@ export const Compact = () => (
       <Text>I'm compact as hell!!</Text>
     </CardContent>
   </Card>
-)
+);
 export const WithHeader = () => (
   <Card>
     <CardHeader>
-      <Text>Use the card header to separate the top content from the CardContent.</Text>
+      <Text>
+        Use the card header to separate the top content from the CardContent.
+      </Text>
     </CardHeader>
     <CardContent>
       <Button>Sure thing!</Button>
     </CardContent>
   </Card>
-)
+);
 export const GreyBackground = () => (
   <Card bgColor="grey">
     <CardContent compact>
       <Text>I'm just a card with a grey background. Is that cool?</Text>
     </CardContent>
   </Card>
-)
+);
 
 export const NoPaddingExample = () => (
   <RawCard>
@@ -120,4 +124,4 @@ export const NoPaddingExample = () => (
       </tr>
     </table>
   </RawCard>
-)
+);

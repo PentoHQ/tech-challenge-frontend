@@ -1,30 +1,30 @@
-import React from 'react'
-import { shallow } from 'enzyme'
-import Page from './Page'
+import React from 'react';
+import { shallow } from 'enzyme';
+import Page from './Page';
 
 function getWrapper(props) {
-  return shallow(<Page {...props} />)
+  return shallow(<Page {...props} />);
 }
 
 describe('<Page/>', () => {
   it('renders', () => {
-    const wrapper = getWrapper({ children: 'Hello!' })
+    const wrapper = getWrapper({ children: 'Hello!' });
 
-    expect(wrapper.text()).toEqual('Hello!')
-  })
+    expect(wrapper.text()).toEqual('Hello!');
+  });
 
   it('passes down the provided class name', () => {
-    const wrapper = getWrapper({ children: 'Hello!', className: 'test-class' })
+    const wrapper = getWrapper({ children: 'Hello!', className: 'test-class' });
 
-    expect(wrapper.hasClass('test-class')).toBeTruthy()
-  })
+    expect(wrapper.hasClass('test-class')).toBeTruthy();
+  });
 
   it('on click', () => {
-    const onClick = jest.fn()
-    const wrapper = getWrapper({ onClick })
+    const onClick = jest.fn();
+    const wrapper = getWrapper({ onClick });
 
-    wrapper.simulate('click')
+    wrapper.simulate('click');
 
-    expect(onClick).toHaveBeenCalledTimes(1)
-  })
-})
+    expect(onClick).toHaveBeenCalledTimes(1);
+  });
+});

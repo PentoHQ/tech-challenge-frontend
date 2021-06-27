@@ -1,6 +1,6 @@
-import { PageBody } from '../../components/Page'
-import Spacer from '../../components/Spacer'
-import MonthChart from './MonthChart'
+import { PageBody } from '../../components/Page';
+import Spacer from '../../components/Spacer';
+import MonthChart from './MonthChart';
 
 export default function StatsPage(props: any) {
   return (
@@ -8,5 +8,5 @@ export default function StatsPage(props: any) {
       <Spacer mb={4}></Spacer>
       <MonthChart />
     </PageBody>
-  )
+  );
 }

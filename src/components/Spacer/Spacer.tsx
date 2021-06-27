@@ -1,59 +1,72 @@
-import { ReactChild } from 'react'
-import styles from './Spacer.module.scss'
+import { ReactChild } from 'react';
+import styles from './Spacer.module.scss';
 
-export type SpacerSize = 1 | 2 | 3 | 4 | 5 | 6
+export type SpacerSize = 1 | 2 | 3 | 4 | 5 | 6;
 
 type Props = {
   /**
    * Margin all around (8px grid)
    */
-  m?: SpacerSize
+  m?: SpacerSize;
   /**
    * Margin top sizes (8px grid)
    */
-  mt?: SpacerSize
+  mt?: SpacerSize;
   /**
    * Margin bottom sizes (8px grid)
    */
-  mb?: SpacerSize
+  mb?: SpacerSize;
   /**
    * Margin right sizes (8px grid)
    */
-  mr?: SpacerSize
+  mr?: SpacerSize;
   /**
    * Margin left sizes (8px grid)
    */
-  ml?: SpacerSize
+  ml?: SpacerSize;
   /**
    * Padding all around (8px grid)
    */
-  p?: SpacerSize
+  p?: SpacerSize;
   /**
    * padding top (8px grid)
    */
-  pt?: SpacerSize
+  pt?: SpacerSize;
   /**
    * padding bottom (8px grid)
    */
-  pb?: SpacerSize
+  pb?: SpacerSize;
   /**
    * padding right (8px grid)
    */
-  pr?: SpacerSize
+  pr?: SpacerSize;
   /**
    * padding left (8px grid)
    */
-  pl?: SpacerSize
-  children?: ReactChild
-  className: string
-}
+  pl?: SpacerSize;
+  children?: ReactChild;
+  className: string;
+};
 
 /**
  * Spacer is a component meant for layout requirements
  * but still adhering to the the 8px grid that spring uses.
  * If you need anything more than basic spacing, do not use this component
  */
-function Spacer({ m, mr, ml, mt, mb, p, pt, pb, pr, pl, children, className }: Props) {
+function Spacer({
+  m,
+  mr,
+  ml,
+  mt,
+  mb,
+  p,
+  pt,
+  pb,
+  pr,
+  pl,
+  children,
+  className,
+}: Props) {
   const classes = [
     mr ? styles[`mr${mr}`] : '',
     ml ? styles[`ml${ml}`] : '',
@@ -68,12 +81,12 @@ function Spacer({ m, mr, ml, mt, mb, p, pt, pb, pr, pl, children, className }: P
     className,
   ]
     .join(' ')
-    .trim()
-  return <div className={classes}>{children}</div>
+    .trim();
+  return <div className={classes}>{children}</div>;
 }
 
 Spacer.defaultProps = {
   className: '',
-}
+};
 
-export default Spacer
+export default Spacer;

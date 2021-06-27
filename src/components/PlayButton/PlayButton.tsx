@@ -1,5 +1,5 @@
-import { PlayIcon } from '@heroicons/react/outline'
-import IconButton, { IconButtonProps } from '../IconButton'
+import { PlayIcon } from '@heroicons/react/outline';
+import IconButton, { IconButtonProps } from '../IconButton';
 
 /**
  * Primary UI component for user interaction
@@ -9,7 +9,7 @@ export const PlayButton = ({ ...props }: Partial<IconButtonProps>) => {
     <IconButton color="success" {...props}>
       <PlayIcon></PlayIcon>
     </IconButton>
-  )
-}
+  );
+};
 
-export default PlayButton
+export default PlayButton;

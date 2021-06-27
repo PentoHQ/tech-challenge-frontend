@@ -1,5 +1,8 @@
-import { useQuery, gql } from '@apollo/client'
-import { SessionsQueryQuery, SessionsQueryQueryVariables } from '../../generated/graphql'
+import { useQuery, gql } from '@apollo/client';
+import {
+  SessionsQueryQuery,
+  SessionsQueryQueryVariables,
+} from '../../generated/graphql';
 
 const sessionsQuery = gql`
   query SessionsQuery {
@@ -10,11 +13,12 @@ const sessionsQuery = gql`
       endDate
     }
   }
-`
+`;
 
 export function useGetSessions() {
-  const { data, loading, error } = useQuery<SessionsQueryQuery, SessionsQueryQueryVariables>(
-    sessionsQuery,
-  )
-  return { data, isLoading: loading, error }
+  const { data, loading, error } = useQuery<
+    SessionsQueryQuery,
+    SessionsQueryQueryVariables
+  >(sessionsQuery);
+  return { data, isLoading: loading, error };
 }

@@ -1,8 +1,8 @@
-import { InMemoryCache, ApolloClient, createHttpLink } from '@apollo/client'
-import { setContext } from '@apollo/client/link/context'
+import { InMemoryCache, ApolloClient, createHttpLink } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 const httpLink = createHttpLink({
   uri: process.env.REACT_APP_GRAPHQL_API,
-})
+});
 
 const createApolloClient = (authToken: string) => {
   const authLink = setContext((_, { headers }) => {
@@ -12,14 +12,14 @@ const createApolloClient = (authToken: string) => {
         ...headers,
         Authorization: `Bearer ${authToken}`,
       },
-    }
-  })
+    };
+  });
 
   const client = new ApolloClient({
     cache: new InMemoryCache(),
     link: authLink.concat(httpLink),
-  })
-  return client
-}
+  });
+  return client;
+};
 
-export default createApolloClient
+export default createApolloClient;

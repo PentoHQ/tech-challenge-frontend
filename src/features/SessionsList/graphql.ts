@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client'
+import { gql } from '@apollo/client';
 // This is picked up by graphql generator so it is not actually unused
 
 export const getSessionsQuery = gql`
@@ -10,7 +10,7 @@ export const getSessionsQuery = gql`
       endDate
     }
   }
-`
+`;
 
 export const createSession = gql`
   mutation createSession($input: sessions_insert_input!) {
@@ -24,7 +24,7 @@ export const createSession = gql`
       affected_rows
     }
   }
-`
+`;
 
 export const runningQuery = gql`
   query RunningSession {
@@ -33,7 +33,7 @@ export const runningQuery = gql`
       startDate
     }
   }
-`
+`;
 export const startSession = gql`
   mutation startSession($input: running_sessions_insert_input!) {
     insert_running_sessions_one(object: $input) {
@@ -42,4 +42,4 @@ export const startSession = gql`
       startDate
     }
   }
-`
+`;

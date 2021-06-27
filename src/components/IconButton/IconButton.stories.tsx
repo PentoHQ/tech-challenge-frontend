@@ -1,8 +1,8 @@
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
-import { PlayIcon, StopIcon } from '@heroicons/react/outline'
-import { Story, Meta } from '@storybook/react/types-6-0'
+import { PlayIcon, StopIcon } from '@heroicons/react/outline';
+import { Story, Meta } from '@storybook/react/types-6-0';
 
-import { IconButton, IconButtonProps } from './IconButton'
+import { IconButton, IconButtonProps } from './IconButton';
 
 export default {
   title: 'Example/IconButton',
@@ -10,21 +10,21 @@ export default {
   argTypes: {
     backgroundColor: { control: 'color' },
   },
-} as Meta
+} as Meta;
 
-const Template: Story<IconButtonProps> = (args) => <IconButton {...args} />
+const Template: Story<IconButtonProps> = (args) => <IconButton {...args} />;
 
-export const Primary = Template.bind({})
-Primary.args = { children: <StopIcon /> }
+export const Primary = Template.bind({});
+Primary.args = { children: <StopIcon /> };
 
-export const Large = Template.bind({})
+export const Large = Template.bind({});
 Large.args = {
   size: 'large',
   children: <PlayIcon />,
-}
+};
 
-export const Small = Template.bind({})
+export const Small = Template.bind({});
 Small.args = {
   size: 'small',
   children: <PlayIcon />,
-}
+};

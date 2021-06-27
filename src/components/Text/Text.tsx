@@ -1,6 +1,6 @@
-import { ReactChild } from 'react'
-import styles from './Text.module.scss'
-import type { TextColor } from './textColorTypes'
+import { ReactChild } from 'react';
+import styles from './Text.module.scss';
+import type { TextColor } from './textColorTypes';
 
 /**
  * This provides way better type hints than using $Keys
@@ -19,7 +19,7 @@ export type TextVariant =
   | 'interface14Number'
   | 'interface14NumberMedium'
   | 'text16Regular'
-  | 'text16Medium'
+  | 'text16Medium';
 
 export type TextProps = {
   /**
@@ -27,37 +27,38 @@ export type TextProps = {
    * it will be applied to the root of the component as the last class,
    * giving it the greatest precedence
    */
-  className?: string
-  children: ReactChild | ReactChild[]
-  variant: TextVariant
+  className?: string;
+  children: ReactChild | ReactChild[];
+  variant: TextVariant;
   /**
    * In case you need to override the color of the variant this are the supported colors
    */
-  color?: TextColor
+  color?: TextColor;
   /**
    * By default the text wrapper has display flex, but if we want to make it inline
    * just set this to true
    */
-  inline?: boolean
+  inline?: boolean;
   /**
    * Adds a line through the texts
    */
-  strikethrough?: boolean
+  strikethrough?: boolean;
   /**
    * New line characters will be preserved, instead of truncated (default HTML behaviour)
    */
-  preservesLines?: boolean
-}
+  preservesLines?: boolean;
+};
 
 /**
  * It is important this fails early, so we catch this on dev
  * @param {TextVariant} variant
  */
 const matchVariant = (variant: TextVariant) => {
-  const styleVariant = styles[variant]
-  if (!styleVariant) throw new Error('Provided an invalid text variant: ' + variant)
-  return styleVariant
-}
+  const styleVariant = styles[variant];
+  if (!styleVariant)
+    throw new Error('Provided an invalid text variant: ' + variant);
+  return styleVariant;
+};
 
 function Text({
   className,
@@ -79,8 +80,8 @@ function Text({
     className,
   ]
     .join(' ')
-    .trim()
-  return <span className={classes}>{children}</span>
+    .trim();
+  return <span className={classes}>{children}</span>;
 }
 
 Text.defaultProps = {
@@ -89,6 +90,6 @@ Text.defaultProps = {
   inline: false,
   strikethrough: false,
   preservesLines: false,
-}
+};
 
-export default Text
+export default Text;

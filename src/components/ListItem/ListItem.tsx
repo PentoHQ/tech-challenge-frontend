@@ -1,40 +1,40 @@
-import React, { ReactChild } from 'react'
-import styles from './ListItem.module.scss'
+import React, { ReactChild } from 'react';
+import styles from './ListItem.module.scss';
 
 export interface ListItemProps {
   /**
    * Is this the principal call to action on the page?
    */
-  color?: 'primary' | 'secondary'
+  color?: 'primary' | 'secondary';
   /**
    * How large should the listitem be?
    */
-  size?: 'small' | 'medium' | 'large'
+  size?: 'small' | 'medium' | 'large';
   /**
    * Provide your custom styles by passing a class name that will
    * be applied to the root of the component (edit to match reality)
    */
-  className?: string
+  className?: string;
   /**
    * Optional click handler
    */
-  onClick?: () => void
-  dense?: boolean
-  disabled?: boolean
+  onClick?: () => void;
+  dense?: boolean;
+  disabled?: boolean;
   /**
    * The primary text
    */
-  title: string
-  subtitle: string
+  title: string;
+  subtitle: string;
   /**
    * If you need to disable left-right gutters
    */
-  disableGutters?: boolean
+  disableGutters?: boolean;
 
   /**
    * An additional action per row
    */
-  action?: ReactChild
+  action?: ReactChild;
 }
 
 /**
@@ -60,7 +60,7 @@ export const ListItem = ({
     className,
   ]
     .join(' ')
-    .trim()
+    .trim();
   return (
     <li className={classes} {...props}>
       <div className={styles.text}>
@@ -69,7 +69,7 @@ export const ListItem = ({
       </div>
       {action && <div className={styles.action}>{action}</div>}
     </li>
-  )
-}
+  );
+};
 
-export default ListItem
+export default ListItem;

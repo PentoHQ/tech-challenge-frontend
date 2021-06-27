@@ -1,21 +1,21 @@
-import capitalize from '../../util/capitaize'
-import styles from './InputText.module.scss'
+import capitalize from '../../util/capitaize';
+import styles from './InputText.module.scss';
 
 export interface InputProps {
   /**
    * How large should the input be?
    */
-  size?: 'small' | 'medium' | 'large'
+  size?: 'small' | 'medium' | 'large';
   /**
    * Provide your custom styles by passing a class name that will
    * be applied to the root of the component (edit to match reality)
    */
-  className?: string
-  label?: string
-  value: string
-  onChange: (val: string) => any
-  placeholder?: string
-  type?: 'text' | 'search' | 'password'
+  className?: string;
+  label?: string;
+  value: string;
+  onChange: (val: string) => any;
+  placeholder?: string;
+  type?: 'text' | 'search' | 'password';
 }
 
 /**
@@ -30,7 +30,7 @@ export const InputText = ({
   onChange,
   ...props
 }: InputProps) => {
-  const classes = [styles.wrapper, className].join(' ').trim()
+  const classes = [styles.wrapper, className].join(' ').trim();
   return (
     <div className={classes}>
       {text && <label className={styles.label}>{capitalize(text)}</label>}
@@ -41,7 +41,7 @@ export const InputText = ({
         onChange={(e) => onChange(e.target.value)}
       />
     </div>
-  )
-}
+  );
+};
 
-export default InputText
+export default InputText;
