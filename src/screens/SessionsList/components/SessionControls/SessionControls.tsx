@@ -1,11 +1,11 @@
 import { SyntheticEvent, useState } from 'react';
 import { intervalToDuration } from 'date-fns';
-import { useRunningSession } from 'features/SessionsList/hooks';
 
 import FormRow from '../../../../components/FormRow';
 import StopButton from '../../../../components/StopButton';
 import InputText from '../../../../components/InputText';
 import PlayButton from '../../../../components/PlayButton';
+import { useRunningSession } from 'hooks';
 
 interface RunningProps {
   name: string;

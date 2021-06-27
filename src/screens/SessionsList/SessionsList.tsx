@@ -7,7 +7,8 @@ import { PageBody } from '../../components/Page';
 import { RawCard } from '../../components/Card';
 import { msToHuman } from '../../util/formatters/formatDateDiff';
 import { diffDateStrings } from '../../util/diffDateStrings';
-import { useGetSessions, useSwitchSession } from 'features/SessionsList/hooks';
+import useSwitchSession from 'hooks/useSwitchSession';
+import { useGetSessions } from 'hooks';
 
 function RowAction({ name }: { name: string }) {
   const switchSession = useSwitchSession();

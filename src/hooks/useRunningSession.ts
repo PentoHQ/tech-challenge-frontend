@@ -1,19 +1,9 @@
+import { getSessionsQuery, runningQuery } from 'features/SessionsList/graphql';
 import {
   useCreateSessionMutation,
   useRunningSessionQuery,
-  useSessionsQueryQuery,
   useStartSessionMutation,
-} from '../../generated/graphql';
-import { runningQuery, getSessionsQuery } from './graphql';
-
-export function useGetSessions() {
-  const { data, loading, error } = useSessionsQueryQuery();
-  return {
-    data,
-    isLoading: loading,
-    error,
-  };
-}
+} from 'generated/graphql';
 
 export type UseRunningSession =
   | {
@@ -21,7 +11,9 @@ export type UseRunningSession =
     }
   | undefined;
 
-export function useRunningSession({ onCompleted }: UseRunningSession = {}) {
+export default function useRunningSession({
+  onCompleted,
+}: UseRunningSession = {}) {
   const { data, loading } = useRunningSessionQuery();
   const [mutate, startResult] = useStartSessionMutation({ onCompleted });
   const [createSession, creationResult] = useCreateSessionMutation();
@@ -68,16 +60,4 @@ export function useRunningSession({ onCompleted }: UseRunningSession = {}) {
       });
     },
   };
-}
-
-export function useSwitchSession() {
-  const { startSession, stop, runningSession, isLoading } = useRunningSession();
-  const switchSession = (name: string) => {
-    if (isLoading) {
-      throw new Error('Do not try to switch while running session is loading');
-    }
-    if (!runningSession) return startSession(name);
-    return stop().then(() => startSession(name));
-  };
-  return switchSession;
 }
