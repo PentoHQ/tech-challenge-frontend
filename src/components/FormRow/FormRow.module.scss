@@ -77,6 +77,13 @@ $padding1: $padding8;
   }
 }
 
+.doNotStretchFirstChild {
+  .formItem:first-child {
+    flex: 0;
+    width: auto;
+  }
+}
+
 %skipFirstPadding {
   &:first-child {
     padding: 0;
