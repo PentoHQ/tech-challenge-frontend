@@ -1,4 +1,4 @@
-import { getSessionsQuery, runningQuery } from 'features/SessionsList/graphql';
+import { getSessionsQuery, runningQuery } from 'services';
 import {
   useCreateSessionMutation,
   useRunningSessionQuery,

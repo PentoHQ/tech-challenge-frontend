@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config();
 
 module.exports = {
   hooks: {
@@ -18,7 +18,11 @@ module.exports = {
   overwrite: true,
   generates: {
     './src/generated/graphql.tsx': {
-      plugins: ['typescript', 'typescript-operations', 'typescript-react-apollo'],
+      plugins: [
+        'typescript',
+        'typescript-operations',
+        'typescript-react-apollo',
+      ],
       config: {
         skipTypename: false,
         skipTypeNameForRoot: true,
@@ -32,4 +36,4 @@ module.exports = {
       plugins: ['introspection'],
     },
   },
-}
+};
