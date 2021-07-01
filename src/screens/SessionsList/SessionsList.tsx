@@ -5,8 +5,8 @@ import Spacer from '../../components/Spacer';
 import PlayButton from '../../components/PlayButton';
 import { PageBody } from '../../components/Page';
 import { RawCard } from '../../components/Card';
-import { msToHuman } from '../../util/formatters/formatDateDiff';
-import { diffDateStrings } from '../../util/diffDateStrings';
+import { msToHuman } from '../../utils/formatters/formatDateDiff';
+import { diffDateStrings } from '../../utils/diffDateStrings';
 import useSwitchSession from 'hooks/useSwitchSession';
 import { useGetSessions } from 'hooks';
 

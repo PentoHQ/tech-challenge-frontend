@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './styles/index.scss';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Auth0Provider } from '@auth0/auth0-react';
-import auth0 from './auth0';
+
+import App from './App';
+import auth0 from './utils/auth0';
 import AuthWrapper from './configs/Auth';
+import reportWebVitals from './reportWebVitals';
 import { ApolloWrapper } from './configs/Apollo';
+
+import './styles/index.scss';
 
 ReactDOM.render(
   <React.StrictMode>

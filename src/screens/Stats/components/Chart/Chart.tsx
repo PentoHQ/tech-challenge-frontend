@@ -12,7 +12,7 @@ import {
 } from 'recharts';
 import PropTypes from 'prop-types';
 import Text from '../../../../components/Text';
-import { stringToColour } from '../../../../util/stringToColour';
+import { stringToColour } from '../../../../utils/stringToColour';
 
 function Title({ children }: { children: ReactChild }) {
   return <Text variant="title">{children}</Text>;

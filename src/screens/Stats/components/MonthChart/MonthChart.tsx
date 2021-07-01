@@ -1,4 +1,4 @@
-import { msToHoursMinutes } from '../../../../util/formatters/minsToHoursMinutes';
+import { msToHoursMinutes } from '../../../../utils/formatters/minsToHoursMinutes';
 import Chart from '../Chart';
 import { useMonthChartData } from '../../../../hooks';
 

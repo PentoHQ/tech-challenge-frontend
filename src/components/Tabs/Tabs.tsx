@@ -1,6 +1,6 @@
 import { AnimateSharedLayout, motion } from 'framer-motion';
 import React, { Children } from 'react';
-import capitalize from '../../util/capitaize';
+import capitalize from '../../utils/capitaize';
 import styles from './Tabs.module.scss';
 
 export interface TabsProps {

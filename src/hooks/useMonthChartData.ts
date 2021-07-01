@@ -1,6 +1,6 @@
 import { format } from 'date-fns/fp';
 import { useSessionsQueryQuery } from 'generated/graphql';
-import { diffDateStrings } from 'util/diffDateStrings';
+import { diffDateStrings } from 'utils/diffDateStrings';
 import { Session } from '../types';
 
 const formatWeek = format('Io');

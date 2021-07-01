@@ -1,4 +1,4 @@
-import capitalize from '../../util/capitaize';
+import capitalize from '../../utils/capitaize';
 import styles from './InputText.module.scss';
 
 export interface InputProps {
