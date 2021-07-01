@@ -21,7 +21,7 @@ export default function SessionsListPage(props: any) {
       <Spacer pb={4}>
         <SessionControls />
       </Spacer>
-      <RawCard>
+      <RawCard scrollEnabled>
         {isLoading ? (
           'Loading'
         ) : error ? (

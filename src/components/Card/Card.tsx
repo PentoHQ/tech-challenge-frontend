@@ -66,12 +66,15 @@ type RawProps = {
   className?: string
   children: ReactNode
   bgColor: BackgroundColor
+  scrollEnabled?: boolean
 }
-export function RawCard({ className, bgColor, children }: RawProps) {
+
+export function RawCard({ className, bgColor, children, scrollEnabled = false }: RawProps) {
   const classes = [
     styles.wrapper,
     styles.rawCard,
     bgColor === 'grey' ? styles.greyBg : '',
+    scrollEnabled ? styles.scrollEnabled : '',
 
     className,
   ].join(' ')

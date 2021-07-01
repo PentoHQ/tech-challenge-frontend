@@ -48,3 +48,9 @@ $card-border: 1px solid $grey-card-border;
     }
   }
 }
+
+// Styles added if scroll enabled is true
+.scrollEnabled {
+  overflow-y: scroll;
+  flex: 1;
+}
