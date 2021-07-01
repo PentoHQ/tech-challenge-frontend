@@ -1,6 +1,7 @@
 import { Children, ReactChild } from 'react'
 import styles from './FormRow.module.scss'
 import Button from '../Button'
+import Loader from '../Loader'
 
 type AlignY = 'center' | 'bottom' | 'top' | 'baseline'
 
@@ -38,7 +39,7 @@ interface Props {
    * This has precedence over stretchChildren
    */
   sizeEvenly?: boolean
-  children: ReactChild[]
+  children: ReactChild[] | ReactChild
   /**
    * If you need to space each item in a compact way (8px vs 24px)
    */
@@ -92,8 +93,8 @@ function FormRow({
           child && (
             <div
               className={`${styles.formItem} ${child.type === Button ? styles.button : ''} ${
-                child.props?.className
-              }`}
+                child.type === Loader ? styles.loader : ''
+              } ${child.props?.className}`}
             >
               {child}
             </div>

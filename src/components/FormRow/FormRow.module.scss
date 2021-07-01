@@ -93,3 +93,7 @@ $padding1: $padding8;
   padding-left: $paddingBtn;
   @extend %skipFirstPadding;
 }
+
+.loader {
+  display: flex;
+}

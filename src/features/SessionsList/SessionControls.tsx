@@ -5,6 +5,7 @@ import PlayButton from '../../components/PlayButton'
 import StopButton from '../../components/StopButton'
 import { useRunningSession } from './hooks'
 import Timer from '../../components/Timer'
+import Loader from '../../components/Loader'
 
 interface RunningProps {
   name: string
@@ -27,7 +28,7 @@ export default function SessionControls() {
   if (isLoading)
     return (
       <FormRow>
-        <span>Loading</span> ...
+        <Loader />
       </FormRow>
     )
   return runningSession ? (
