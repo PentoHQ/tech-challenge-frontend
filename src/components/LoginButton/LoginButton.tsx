@@ -1,6 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import styles from './LoginButton.module.scss';
-import logo from '../../logo.svg';
+import logo from '../../assets/images/logo.svg';
 
 function LoginButton() {
   const { loginWithRedirect } = useAuth0();
