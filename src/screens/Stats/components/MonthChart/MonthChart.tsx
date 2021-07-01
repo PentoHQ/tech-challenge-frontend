@@ -1,6 +1,6 @@
-import { useMonthChartData } from 'hooks/useMonthChartData';
-import { msToHoursMinutes } from 'util/formatters/minsToHoursMinutes';
+import { msToHoursMinutes } from '../../../../util/formatters/minsToHoursMinutes';
 import Chart from '../Chart';
+import { useMonthChartData } from '../../../../hooks';
 
 /**
  * @typedef {import('rootReducer').RootState} State

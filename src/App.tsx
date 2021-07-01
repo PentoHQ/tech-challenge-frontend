@@ -4,7 +4,7 @@ import SessionsList from './screens/SessionsList';
 import { Link, Route, useLocation } from 'react-router-dom';
 import Tabs, { Tab } from './components/Tabs';
 import Page from './components/Page';
-import StatsPage from './features/Stats';
+import StatsPage from './screens/Stats';
 
 function App() {
   const location = useLocation();

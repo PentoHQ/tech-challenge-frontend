@@ -37,7 +37,7 @@ function groupSessionsByWeek(sessions: Session[]) {
   return { names: Array.from(names), sessions: Object.values(sessionsByWeek) };
 }
 
-export function useMonthChartData() {
+export default function useMonthChartData() {
   const { data, loading, error } = useSessionsQueryQuery();
   // We need to type this data or TS will infer it as names: string[] | never[]
   const defaultData: { names: string[]; sessions: WeekData[] } = {

@@ -1,4 +1,4 @@
-import { ReactChild } from 'react';
+import React, { ReactChild } from 'react';
 import {
   XAxis,
   YAxis,
@@ -11,9 +11,8 @@ import {
   Legend,
 } from 'recharts';
 import PropTypes from 'prop-types';
-import Text from 'components/Text';
-import { stringToColour } from 'util/stringToColour';
-import React from 'react';
+import Text from '../../../../components/Text';
+import { stringToColour } from '../../../../util/stringToColour';
 
 function Title({ children }: { children: ReactChild }) {
   return <Text variant="title">{children}</Text>;
