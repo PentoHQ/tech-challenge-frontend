@@ -6,8 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Auth0Provider } from '@auth0/auth0-react';
 import auth0 from './auth0';
-import AuthWrapper from './features/Auth/AuthWrapper';
-import ApolloWrapper from './features/Apollo/ApolloWrapper';
+import AuthWrapper from './configs/Auth';
+import { ApolloWrapper } from './configs/Apollo';
 
 ReactDOM.render(
   <React.StrictMode>

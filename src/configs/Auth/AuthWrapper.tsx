@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import LoginButton from './LoginButton';
+import LoginButton from '../../components/LoginButton';
 
 function AuthWrapper({ children }: { children: React.ReactNode }) {
   const { isLoading, error, isAuthenticated } = useAuth0();
