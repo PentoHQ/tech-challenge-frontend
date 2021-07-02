@@ -1,11 +1,46 @@
-import { SyntheticEvent, useState } from 'react';
-import { intervalToDuration } from 'date-fns';
+import { SyntheticEvent, useEffect, useState } from 'react';
+import { intervalToDuration, addMilliseconds } from 'date-fns';
 
 import FormRow from '../../../../components/FormRow';
 import StopButton from '../../../../components/StopButton';
 import InputText from '../../../../components/InputText';
 import PlayButton from '../../../../components/PlayButton';
 import { useRunningSession } from 'hooks';
+
+interface TimerProps {
+  startDate: Date;
+}
+
+function Timer({ startDate }: TimerProps) {
+  const [time, setTime] = useState<number>(0);
+  const { runningSession } = useRunningSession();
+
+  const { hours, minutes, seconds } = intervalToDuration({
+    start: startDate,
+    /** timezoneDiff = new Date(time).getTimezoneOffset()
+     * dateWithoutTimezoneDiff = addSeconds(new Date(), new Date(time).getTimezoneOffset())
+     */
+    end: addMilliseconds(new Date(), new Date(time).getTimezoneOffset()),
+  });
+
+  useEffect(() => {
+    let interval: any = null;
+    if (runningSession) {
+      interval = setInterval(() => {
+        setTime((prevTime) => prevTime + 1);
+      }, 1000);
+    } else {
+      clearInterval(interval);
+    }
+    return () => clearInterval(interval);
+  }, [runningSession]);
+
+  return (
+    <div>
+      {hours}:{minutes}:{seconds}
+    </div>
+  );
+}
 
 interface RunningProps {
   name: string;
@@ -14,16 +49,11 @@ interface RunningProps {
 
 function RunningSession({ name, startDate }: RunningProps) {
   const { stop, isLoading } = useRunningSession();
-  const { hours, minutes, seconds } = intervalToDuration({
-    start: startDate,
-    end: new Date(),
-  });
+
   return (
     <FormRow alignY="center" stretchLastChild={false}>
       {name}
-      <div>
-        {hours}:{minutes}:{seconds}
-      </div>
+      <Timer startDate={startDate} />
       <StopButton onClick={stop} disabled={isLoading}></StopButton>
     </FormRow>
   );
@@ -39,6 +69,7 @@ function SessionInput() {
     }
     startSession(sessionName);
   };
+
   return (
     <form onSubmit={submit}>
       <FormRow alignY="center" stretchLastChild={false}>
