@@ -21,6 +21,7 @@ export interface ListProps {
    */
   onClick?: () => void;
   disablePadding?: boolean;
+  scrollable?: boolean;
 }
 
 /**
@@ -30,12 +31,14 @@ export const List = ({
   size = 'medium',
   className = '',
   disablePadding = false,
+  scrollable = false,
   children,
   ...props
 }: ListProps) => {
   const classes = [
     styles.wrapper,
     disablePadding ? '' : styles.padding,
+    scrollable ? styles.scroll : '',
     className,
   ]
     .join(' ')

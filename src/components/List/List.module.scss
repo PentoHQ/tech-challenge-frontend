@@ -12,3 +12,8 @@
   padding-top: $padding8;
   padding-bottom: $padding8;
 }
+/* Styles applied to the root element if `scrollbale={true}`. */
+.scroll {
+  height: 60vh;
+  overflow-y: auto;
+}

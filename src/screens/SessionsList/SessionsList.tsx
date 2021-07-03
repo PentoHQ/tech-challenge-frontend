@@ -33,7 +33,7 @@ export default function SessionsList() {
         {error ? (
           <div className={styles.wrapper}>{error.message}</div>
         ) : (
-          <List>
+          <List scrollable>
             {data?.sessions.map(({ id, name, startDate, endDate }) => (
               <ListItem
                 key={id}
