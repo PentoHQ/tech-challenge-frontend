@@ -3,6 +3,14 @@
 
 .wrapper {
   display: flex;
+  flex-direction: column;
+  border: 1px solid $grey30;
+  margin-bottom: 12px;
+  border-radius: 5px;
+}
+
+.bodyWrapper {
+  display: flex;
   justify-content: 'flex-start';
   align-items: center;
   position: relative;
@@ -12,6 +20,7 @@
   text-align: left;
   padding-top: $padding8;
   padding-bottom: $padding8;
+
   &.focusVisible {
     background-color: $grey-tint;
   }
@@ -52,4 +61,18 @@
 .divider {
   border-bottom: 1px solid $grey-border;
   background-clip: padding-box;
+}
+
+.header {
+  background-color: $grey-tint;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  font: $text14Regular;
+  color: $grey50;
+}
+
+.details {
+  font: $text14Regular;
+  color: $grey50;
+  flex: 0.3;
 }

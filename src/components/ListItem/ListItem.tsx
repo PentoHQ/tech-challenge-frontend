@@ -35,6 +35,16 @@ export interface ListItemProps {
    * An additional action per row
    */
   action?: ReactChild;
+
+  /**
+   * If you need to provide header per row
+   */
+  header?: ReactChild;
+
+  /**
+   * If you need to provide some additional description per row
+   */
+  details?: ReactChild;
 }
 
 /**
@@ -50,10 +60,12 @@ export const ListItem = ({
   disableGutters,
   subtitle,
   action,
+  header,
+  details,
   ...props
 }: ListItemProps) => {
   const classes = [
-    styles.wrapper,
+    styles.bodyWrapper,
     dense ? styles.dense : '',
     disabled ? styles.disabled : '',
     disableGutters ? '' : styles.gutters,
@@ -62,12 +74,24 @@ export const ListItem = ({
     .join(' ')
     .trim();
   return (
-    <li className={classes} {...props}>
-      <div className={styles.text}>
-        <div className={styles.title}>{title}</div>
-        <div className={styles.subtitle}>{subtitle}</div>
+    <li className={styles.wrapper} {...props}>
+      {header && (
+        <div
+          className={[styles.header, disableGutters ? '' : styles.gutters]
+            .join(' ')
+            .trim()}
+        >
+          {header}
+        </div>
+      )}
+      <div className={classes}>
+        <div className={styles.text}>
+          <div className={styles.title}>{title}</div>
+          <div className={styles.subtitle}>{subtitle}</div>
+        </div>
+        {details && <div className={styles.details}>{details}</div>}
+        {action && <div className={styles.action}>{action}</div>}
       </div>
-      {action && <div className={styles.action}>{action}</div>}
     </li>
   );
 };
