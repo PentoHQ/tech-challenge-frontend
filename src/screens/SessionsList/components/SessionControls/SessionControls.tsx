@@ -1,10 +1,10 @@
 import { SyntheticEvent, useEffect, useState } from 'react';
 import { intervalToDuration, addMilliseconds } from 'date-fns';
 
-import FormRow from '../../../../components/FormRow';
-import StopButton from '../../../../components/StopButton';
-import InputText from '../../../../components/InputText';
-import PlayButton from '../../../../components/PlayButton';
+import FormRow from 'components/FormRow';
+import StopButton from 'components/StopButton';
+import InputText from 'components/InputText';
+import PlayButton from 'components/PlayButton';
 import { useRunningSession } from 'hooks';
 
 interface TimerProps {
@@ -81,13 +81,7 @@ function SessionInput() {
 }
 
 export default function SessionControls() {
-  const { isLoading, runningSession } = useRunningSession();
-  if (isLoading)
-    return (
-      <FormRow>
-        <span>Loading</span> ...
-      </FormRow>
-    );
+  const { runningSession } = useRunningSession();
   return runningSession ? (
     <RunningSession
       name={runningSession.name}

@@ -1,14 +1,17 @@
-import List from '../../components/List';
-import ListItem from '../../components/ListItem';
-import SessionControls from './components/SessionControls';
-import Spacer from '../../components/Spacer';
-import PlayButton from '../../components/PlayButton';
-import { PageBody } from '../../components/Page';
-import { RawCard } from '../../components/Card';
-import { msToHuman } from '../../utils/formatters/formatDateDiff';
-import { diffDateStrings } from '../../utils/diffDateStrings';
+import List from 'components/List';
+import ListItem from 'components/ListItem';
+import Spacer from 'components/Spacer';
+import PlayButton from 'components/PlayButton';
+import Loading from 'components/Loading';
+import { PageBody } from 'components/Page';
+import { RawCard } from 'components/Card';
+import { msToHuman } from 'utils/formatters/formatDateDiff';
+import { diffDateStrings } from 'utils/diffDateStrings';
 import useSwitchSession from 'hooks/useSwitchSession';
-import { useGetSessions } from 'hooks';
+import { useGetSessions, useRunningSession } from 'hooks';
+import SessionControls from './components/SessionControls';
+
+import styles from './SessionsList.module.scss';
 
 function RowAction({ name }: { name: string }) {
   const switchSession = useSwitchSession();
@@ -18,17 +21,17 @@ function RowAction({ name }: { name: string }) {
 }
 
 export default function SessionsList() {
-  const { data, isLoading, error } = useGetSessions();
-  return (
+  const { data, isLoading: isListLoading, error } = useGetSessions();
+  const { isLoading } = useRunningSession();
+
+  return !isListLoading && !isLoading ? (
     <PageBody>
       <Spacer pb={4}>
         <SessionControls />
       </Spacer>
       <RawCard>
-        {isLoading ? (
-          'Loading'
-        ) : error ? (
-          error.message
+        {error ? (
+          <div className={styles.wrapper}>{error.message}</div>
         ) : (
           <List>
             {data?.sessions.map(({ id, name, startDate, endDate }) => (
@@ -43,5 +46,9 @@ export default function SessionsList() {
         )}
       </RawCard>
     </PageBody>
+  ) : (
+    <div className={styles.wrapper}>
+      <Loading />
+    </div>
   );
 }

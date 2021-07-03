@@ -1,6 +1,9 @@
-import { msToHoursMinutes } from '../../../../utils/formatters/minsToHoursMinutes';
+import Loading from 'components/Loading';
+import { msToHoursMinutes } from 'utils/formatters/minsToHoursMinutes';
+import { useMonthChartData } from 'hooks';
 import Chart from '../Chart';
-import { useMonthChartData } from '../../../../hooks';
+
+import styles from './MonthChart.module.scss';
 
 /**
  * @typedef {import('rootReducer').RootState} State
@@ -8,8 +11,13 @@ import { useMonthChartData } from '../../../../hooks';
 
 export default function MonthChart() {
   const { names, sessions, error, loading } = useMonthChartData();
-  if (loading) return <div>Loading</div>;
-  if (error) return <div>{error.toString()}</div>;
+  if (loading)
+    return (
+      <div className={styles.wrapper}>
+        <Loading />
+      </div>
+    );
+  if (error) return <div className={styles.wrapper}>{error.toString()}</div>;
   return (
     <Chart
       formatter={msToHoursMinutes}
