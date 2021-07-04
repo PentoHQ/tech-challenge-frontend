@@ -42,3 +42,16 @@ body,
 ::-webkit-scrollbar-thumb {
   background-color: $grey50;
 }
+
+a {
+  text-decoration: none;
+  &:visited,
+  &:active {
+    color: unset;
+  }
+}
+
+ul,
+li {
+  list-style: none;
+}
