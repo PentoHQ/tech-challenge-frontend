@@ -11,8 +11,8 @@ import {
   Legend,
 } from 'recharts';
 import PropTypes from 'prop-types';
-import Text from '../../../../components/Text';
-import { stringToColour } from '../../../../utils/stringToColour';
+import Text from 'components/Text';
+import { stringToColour } from 'utils/stringToColour';
 
 function Title({ children }: { children: ReactChild }) {
   return <Text variant="title">{children}</Text>;

@@ -1,4 +1,5 @@
 import { format } from 'date-fns/fp';
+
 import { useSessionsQueryQuery } from 'generated/graphql';
 import { diffDateStrings } from 'utils/diffDateStrings';
 import { Session } from '../types';

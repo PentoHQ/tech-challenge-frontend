@@ -1,0 +1,16 @@
+@import 'common.scss';
+@import 'colors.scss';
+
+.stats {
+  border: 1px solid $grey30;
+  border-radius: 5px;
+  padding: $padding8;
+  background-color: $grey-tint;
+  width: fit-content;
+
+  .navItem {
+    margin-right: $margin8;
+    margin-left: $margin8;
+    font-size: $regularFontSize;
+  }
+}
