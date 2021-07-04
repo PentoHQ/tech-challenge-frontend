@@ -1,0 +1,18 @@
+@import 'common.scss';
+@import 'colors.scss';
+
+.wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  ul {
+    margin: 0 !important;
+    display: flex;
+    padding: 0;
+  }
+
+  .title {
+    margin-right: $padding40;
+  }
+}

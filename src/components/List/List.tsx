@@ -21,6 +21,10 @@ export interface ListProps {
    */
   onClick?: () => void;
   disablePadding?: boolean;
+
+  /**
+   * If you want a scrollable list instead of scrolling the entire screen
+   */
   scrollable?: boolean;
 }
 
