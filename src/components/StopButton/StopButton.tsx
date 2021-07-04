@@ -4,7 +4,7 @@ import IconButton, { IconButtonProps } from '../IconButton';
 /**
  * Primary UI component for user interaction
  */
-export const PlayButton = ({
+export const StopButton = ({
   className = '',
   ...props
 }: Partial<IconButtonProps>) => {
@@ -15,4 +15,4 @@ export const PlayButton = ({
   );
 };
 
-export default PlayButton;
+export default StopButton;
