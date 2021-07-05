@@ -1,0 +1,22 @@
+@import 'common.scss';
+@import 'colors.scss';
+
+.wrapper {
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  // align-items: center;
+  padding: 20px 40px;
+  border: 1px solid black;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+// row container
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+}

@@ -1,8 +1,12 @@
 import {
+  Maybe,
+  Sessions_Pk_Columns_Input,
+  Sessions_Set_Input,
   useCreateSessionMutation,
   useRunningSessionQuery,
   useSessionsQueryQuery,
   useStartSessionMutation,
+  useUpdateSessionMutation,
 } from '../../generated/graphql'
 import { runningQuery, getSessionsQuery } from './graphql'
 
@@ -80,4 +84,26 @@ export function useSwitchSession() {
     return stop().then(() => startSession(name))
   }
   return switchSession
+}
+
+export function useEditSession() {
+  const [mutate, updateResult] = useUpdateSessionMutation()
+
+  return {
+    isLoading: updateResult.loading,
+    error: updateResult.error,
+    updateSession: (_set: Sessions_Set_Input, pk_columns: Sessions_Pk_Columns_Input) =>
+      mutate({
+        variables: {
+          _set,
+          pk_columns,
+        },
+        awaitRefetchQueries: true,
+        refetchQueries: [
+          {
+            query: getSessionsQuery,
+          },
+        ],
+      }),
+  }
 }

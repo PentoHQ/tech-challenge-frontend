@@ -6,6 +6,7 @@ $card-border: 1px solid $grey-card-border;
 .wrapper {
   display: flex;
   flex: 1;
+  flex-basis: 0;
   border: $card-border;
   border-radius: $rounded;
   flex-direction: column;
@@ -52,5 +53,5 @@ $card-border: 1px solid $grey-card-border;
 // Styles added if scroll enabled is true
 .scrollEnabled {
   overflow-y: scroll;
-  flex: 1;
+  // flex: 1;
 }

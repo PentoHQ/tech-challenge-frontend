@@ -22,13 +22,11 @@ When completing these tasks feel free to make as many modifications as you think
 Just remember to write down your reasons for it on [ Notes.md ](./Notes.md), in case you do very disruptive changes.
 
 - [x] Center and style the global app `Loading` indicator;
-<!-- TODO: Create global state for app loading -->
 - [x] Create a Timer component, make it tick and put it in place of the static string that shows the elapsed time of the active session;
 - [x] Add proper loading indicators;
 - [ ] Add week and daily summaries. You can do it however you want, don't feel forced to do it as charts, and put them whenever you want;
-- [ ] Add a way to edit an existing session. Again, feel free to do it in any way you prefer: a modal, an edit route, etc. The only requirement is that it should be possible to trigger it by clicking anywhere on the task row;
+- [x] Add a way to edit an existing session. Again, feel free to do it in any way you prefer: a modal, an edit route, etc. The only requirement is that it should be possible to trigger it by clicking anywhere on the task row;
 - [x] Make the list of sessions at the main route scrollable without the page body having to scroll as well;
-<!-- TODO: Fix Card padding that is making page still scroll -->
 - [ ] Fix the bug that prevents the `RunningSessionControls` to properly update on changes (switchSession, stopSession, etc.);
 - [ ] Improve the application in any way want 😄.
 

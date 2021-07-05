@@ -26,6 +26,17 @@ export const createSession = gql`
   }
 `
 
+export const updateSession = gql`
+  mutation updateSession($_set: sessions_set_input, $pk_columns: sessions_pk_columns_input!) {
+    update_sessions_by_pk(_set: $_set, pk_columns: $pk_columns) {
+      id
+      name
+      startDate
+      endDate
+    }
+  }
+`
+
 export const runningQuery = gql`
   query RunningSession {
     running_sessions {
