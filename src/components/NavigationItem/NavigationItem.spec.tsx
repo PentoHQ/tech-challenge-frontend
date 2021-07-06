@@ -18,7 +18,7 @@ describe('<NavigationItem/>', () => {
     const wrapper = getWrapper({
       children: 'Hello!',
       className: 'test-class',
-      url: '?hello',
+      url: '?type=hello',
     });
 
     expect(wrapper.hasClass('test-class')).toBeTruthy();
@@ -27,9 +27,9 @@ describe('<NavigationItem/>', () => {
   it('includes link to Mission scene', () => {
     const wrapper = shallow(
       <MemoryRouter>
-        <NavigationItem url="?test">Test</NavigationItem>
+        <NavigationItem url="?type=test">Test</NavigationItem>
       </MemoryRouter>
     );
-    expect(wrapper.find(Link).props().to).toBe('/stats?test');
+    expect(wrapper.find(Link).props().to).toBe('/stats?type=test');
   });
 });

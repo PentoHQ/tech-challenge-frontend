@@ -6,9 +6,9 @@ import styles from './StatsControl.module.scss';
 type NavItems = { id: number; name: string; queryParam: string };
 
 const statsNavItems: NavItems[] = [
-  { id: 0, name: 'Summary', queryParam: '?summary' },
-  { id: 1, name: 'Daily', queryParam: '?daily' },
-  { id: 2, name: 'Weekly', queryParam: '?weekly' },
+  { id: 0, name: 'Summary', queryParam: '?type=summary' },
+  { id: 1, name: 'Daily', queryParam: '?type=daily' },
+  { id: 2, name: 'Weekly', queryParam: '?type=weekly' },
 ];
 
 function StatsControl() {
