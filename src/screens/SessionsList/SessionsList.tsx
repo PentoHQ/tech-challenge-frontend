@@ -1,3 +1,5 @@
+import { format } from 'date-fns';
+
 import List from 'components/List';
 import ListItem from 'components/ListItem';
 import Spacer from 'components/Spacer';
@@ -11,9 +13,6 @@ import { msToHourMinSec } from 'utils/formatters/msToHourMinSec';
 import { useGetSessions, useRunningSession } from 'hooks';
 import useSwitchSession from 'hooks/useSwitchSession';
 import SessionControls from './components/SessionControls';
-
-import styles from './SessionsList.module.scss';
-import { format } from 'date-fns';
 
 function RowAction({ name }: { name: string }) {
   const switchSession = useSwitchSession();
@@ -33,7 +32,7 @@ export default function SessionsList() {
       </Spacer>
       <RawCard>
         {error ? (
-          <div className={styles.wrapper}>{error.message}</div>
+          <>{error.message}</>
         ) : (
           <List scrollable>
             {data?.sessions.map(({ id, name, startDate, endDate }) => (
@@ -62,8 +61,6 @@ export default function SessionsList() {
       </RawCard>
     </PageBody>
   ) : (
-    <div className={styles.wrapper}>
-      <Loading />
-    </div>
+    <Loading />
   );
 }

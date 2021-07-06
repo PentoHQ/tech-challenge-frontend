@@ -5,8 +5,6 @@ import { ApolloProvider } from '@apollo/client';
 import Loading from 'components/Loading';
 import createApolloClient from './createApolloClient';
 
-import styles from './ApolloWrapper.module.scss';
-
 function AuthWrapper({ children }: { children: React.ReactNode }) {
   const { getAccessTokenSilently } = useAuth0();
   const [token, setToken] = useState('null');
@@ -18,12 +16,7 @@ function AuthWrapper({ children }: { children: React.ReactNode }) {
       .finally(() => setIsLoading(false));
   }, [getAccessTokenSilently]);
 
-  if (isLoading)
-    return (
-      <div className={styles.wrapper}>
-        <Loading />
-      </div>
-    );
+  if (isLoading) return <Loading />;
   const client = createApolloClient(token);
   return <ApolloProvider client={client}>{children}</ApolloProvider>;
 }

@@ -7,21 +7,12 @@ import styles from './Loading.module.scss';
  * possible to have more loading types in the future
  */
 type Props = {
-  loadingType?: 'circle' | 'linear';
+  loadingType?: 'spin' | 'linear';
 };
 
-function Loading({ loadingType = 'circle' }: Props) {
-  if (loadingType === 'linear') {
-    return (
-      <div className={styles.linearWrapper}>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    );
-  }
+function SpinnerLoading() {
   return (
-    <div className={styles.circleWrapper}>
+    <div className={styles.spinnerWrapper}>
       <div></div>
       <div></div>
       <div></div>
@@ -34,6 +25,24 @@ function Loading({ loadingType = 'circle' }: Props) {
       <div></div>
       <div></div>
       <div></div>
+    </div>
+  );
+}
+
+function LinearLoading() {
+  return (
+    <div className={styles.linearWrapper}>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  );
+}
+
+function Loading({ loadingType = 'spin' }: Props) {
+  return (
+    <div className={styles.wrapper}>
+      {loadingType === 'linear' ? <LinearLoading /> : <SpinnerLoading />}
     </div>
   );
 }
