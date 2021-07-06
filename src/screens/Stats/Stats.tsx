@@ -5,6 +5,7 @@ import Spacer from 'components/Spacer';
 import { PageBody } from 'components/Page';
 import MonthChart from './components/MonthChart';
 import StatsControl from './components/StatsControl';
+import DailySummary from './components/DailySummary';
 
 export default function StatsPage() {
   const location = useLocation();
@@ -16,7 +17,7 @@ export default function StatsPage() {
         <StatsControl />
       </Spacer>
       {type === 'daily' ? (
-        <span>Daily</span>
+        <DailySummary />
       ) : type === 'weekly' ? (
         <span>Weekly</span>
       ) : (
