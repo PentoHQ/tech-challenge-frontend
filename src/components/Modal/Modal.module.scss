@@ -1,0 +1,45 @@
+@import 'common.scss';
+@import 'colors.scss';
+
+.modalWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  @extend %flexCentered;
+  background-color: rgba($grey90, 0.7);
+}
+
+.modalContent {
+  background-color: $white;
+  width: 500px;
+  border-radius: $rounded;
+}
+.modalHeader {
+  border-bottom: $border solid $grey30;
+  padding: $padding16;
+}
+
+.modalFooter {
+  padding: 0 $padding16 $padding16;
+}
+
+.modalBody {
+  padding: $padding16;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.modalBtn {
+  width: 70px;
+  margin-right: $margin4;
+
+  &:last-of-type {
+    margin: 0;
+  }
+}
