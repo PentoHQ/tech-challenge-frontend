@@ -8,14 +8,13 @@ import {
   Bar,
   CartesianGrid,
   Tooltip,
-  Legend,
 } from 'recharts';
 import PropTypes from 'prop-types';
 import Text from 'components/Text';
 import { stringToColour } from 'utils/stringToColour';
 
 function Title({ children }: { children: ReactChild }) {
-  return <Text variant="title">{children}</Text>;
+  return <Text variant="text14Medium">{children}</Text>;
 }
 
 interface ChartProps<T> {
@@ -47,19 +46,19 @@ export default function Chart<T>({
             left: 10,
           }}
         >
-          <XAxis dataKey="startDate" />
-          <YAxis tickFormatter={formatter}>
+          <XAxis dataKey="startDate" fontSize="12" />
+          <YAxis tickFormatter={formatter} fontSize="12">
             <Label
               position="left"
               style={{ textAnchor: 'middle' }}
               offset={0}
               angle={-90}
+              fontSize="12"
             >
               Duration
             </Label>
           </YAxis>
           <CartesianGrid strokeDasharray="3 3" />
-          <Legend />
           <Tooltip formatter={formatter} />
           {Bars}
         </BarChart>

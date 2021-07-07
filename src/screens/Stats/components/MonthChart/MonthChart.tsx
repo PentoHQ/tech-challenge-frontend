@@ -1,4 +1,5 @@
 import Loading from 'components/Loading';
+import Error from 'components/Error';
 import { msToHoursMinutes } from 'utils/formatters/minsToHoursMinutes';
 import { useMonthChartData } from 'hooks';
 import Chart from '../Chart';
@@ -11,7 +12,7 @@ export default function MonthChart() {
   const { names, sessions, error, loading } = useMonthChartData();
 
   if (loading) return <Loading />;
-  if (error) return <>{error.toString()}</>;
+  if (error) return <Error message={error.toString()} />;
   return (
     <Chart
       formatter={msToHoursMinutes}

@@ -5,6 +5,7 @@ import ListItem from 'components/ListItem';
 import Spacer from 'components/Spacer';
 import PlayButton from 'components/PlayButton';
 import Loading from 'components/Loading';
+import Error from 'components/Error';
 import { PageBody } from 'components/Page';
 import { RawCard } from 'components/Card';
 import { diffDateStrings } from 'utils/diffDateStrings';
@@ -32,7 +33,7 @@ export default function SessionsList() {
       </Spacer>
       <RawCard>
         {error ? (
-          <>{error.message}</>
+          <Error message={error.message} />
         ) : (
           <List scrollable>
             {data?.sessions.map(({ id, name, startDate, endDate }) => (
