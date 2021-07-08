@@ -36,3 +36,8 @@
 .danger {
   @include buttonColors($danger90, $danger10);
 }
+
+.disabled {
+  background-color: rgba($grey40, 0.5);
+  cursor: unset !important;
+}

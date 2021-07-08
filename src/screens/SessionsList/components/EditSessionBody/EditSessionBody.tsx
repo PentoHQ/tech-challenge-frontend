@@ -37,7 +37,7 @@ function EditSessionBody({
   className,
   ...props
 }: EditSessionBodyProps) {
-  const { values, errors, touched } = useFormikContext() as any;
+  const { values, errors, touched, isSubmitting } = useFormikContext() as any;
 
   function validateStartDate() {
     const { startDate, startTime, endDate, endTime } = values;
@@ -112,7 +112,7 @@ function EditSessionBody({
         />
       )}
       <FormRow alignY="center" align="right" stretchChildren={false}>
-        <Button color="success" type="submit">
+        <Button color="success" type="submit" disabled={isSubmitting}>
           Submit
         </Button>
       </FormRow>
