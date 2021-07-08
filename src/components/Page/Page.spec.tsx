@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Page from './Page';
 
-function getWrapper(props) {
+function getWrapper(props: any) {
   return shallow(<Page {...props} />);
 }
 

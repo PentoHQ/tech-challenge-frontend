@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Error from './Error';
 
-function getWrapper(props) {
+function getWrapper(props: any) {
   return shallow(<Error {...props} />);
 }
 

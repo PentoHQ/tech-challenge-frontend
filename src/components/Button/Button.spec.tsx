@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Button from './Button';
 
-function getWrapper(props) {
+function getWrapper(props: any) {
   return shallow(<Button {...props} />);
 }
 

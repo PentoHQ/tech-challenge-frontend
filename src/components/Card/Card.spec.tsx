@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import Card, { CardContent, RawCard } from './Card';
 
-function getMount(props) {
+function getMount(props: any) {
   return mount(<Card {...props} />);
 }
 

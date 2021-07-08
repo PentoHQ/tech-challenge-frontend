@@ -2,13 +2,13 @@ import React from 'react';
 import { mount } from 'enzyme';
 import PlayButton from './PlayButton';
 
-function getWrapper(props) {
+function getWrapper(props: any) {
   return mount(<PlayButton {...props} />);
 }
 
 describe('<PlayButton/>', () => {
   it('renders', () => {
-    const wrapper = getWrapper();
+    const wrapper = getWrapper({ children: 'Hello!' });
 
     expect(wrapper.html()).toBeTruthy();
   });

@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import ListItem from './ListItem';
 
-function getWrapper(props) {
+function getWrapper(props: any) {
   return shallow(<ListItem {...props} />);
 }
 

@@ -7,19 +7,11 @@
   border: 1px solid $grey30;
   margin-bottom: 12px;
   border-radius: 5px;
-}
-
-.bodyWrapper {
-  display: flex;
-  justify-content: 'flex-start';
-  align-items: center;
   position: relative;
   text-decoration: none;
   width: 100%;
   box-sizing: 'border-box';
   text-align: left;
-  padding-top: $padding8;
-  padding-bottom: $padding8;
 
   &.focusVisible {
     background-color: $grey-tint;
@@ -42,6 +34,15 @@
     color: $grey50;
   }
 }
+
+.bodyWrapper {
+  display: flex;
+  justify-content: 'flex-start';
+  align-items: center;
+  padding-top: $padding8;
+  padding-bottom: $padding8;
+}
+
 /* Styles applied to the inner `component` element if `disableGutters={false}`. */
 .gutters {
   padding-left: $padding16;

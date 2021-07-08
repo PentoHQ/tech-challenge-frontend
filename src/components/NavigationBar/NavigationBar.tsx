@@ -32,9 +32,11 @@ function NavigationBar({
   const classes = [styles.wrapper, className].join(' ').trim();
   return (
     <div className={classes} {...props}>
-      <Text variant="text14Regular" className={styles.title} color="primary">
-        {title}
-      </Text>
+      {title && (
+        <Text variant="text14Regular" className={styles.title} color="primary">
+          {title}
+        </Text>
+      )}
       <nav>
         <ul>{children}</ul>
       </nav>

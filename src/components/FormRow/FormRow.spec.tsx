@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import FormRow from './FormRow';
 
-function getWrapper(props) {
+function getWrapper(props: any) {
   return shallow(<FormRow {...props} />);
 }
 

@@ -2,13 +2,13 @@ import React from 'react';
 import { mount } from 'enzyme';
 import IconButton from './IconButton';
 
-function getWrapper(props) {
+function getWrapper(props: any) {
   return mount(<IconButton {...props} />);
 }
 
 describe('<IconIconButton', () => {
   it('renders', () => {
-    const wrapper = getWrapper();
+    const wrapper = getWrapper({ children: 'Hello!' });
 
     expect(wrapper.html()).toBeTruthy();
   });

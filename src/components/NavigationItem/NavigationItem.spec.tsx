@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link, MemoryRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { shallow } from 'enzyme';
 import NavigationItem from './NavigationItem';
 
-function getWrapper(props) {
+function getWrapper(props: any) {
   return shallow(<NavigationItem {...props} />);
 }
 
@@ -26,10 +26,8 @@ describe('<NavigationItem/>', () => {
 
   it('includes link to Mission scene', () => {
     const wrapper = shallow(
-      <MemoryRouter>
-        <NavigationItem url="?type=test">Test</NavigationItem>
-      </MemoryRouter>
+      <NavigationItem url="?type=summary">Summary</NavigationItem>
     );
-    expect(wrapper.find(Link).props().to).toBe('/stats?type=test');
+    expect(wrapper.find(Link).props().to).toBe('?type=summary');
   });
 });

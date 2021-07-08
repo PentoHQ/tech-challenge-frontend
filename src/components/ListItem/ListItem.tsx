@@ -64,27 +64,23 @@ export const ListItem = ({
   details,
   ...props
 }: ListItemProps) => {
-  const classes = [
+  const classes = [styles.wrapper, disabled ? styles.disabled : '', className]
+    .join(' ')
+    .trim();
+  const bodyClasses = [
     styles.bodyWrapper,
-    dense ? styles.dense : '',
-    disabled ? styles.disabled : '',
     disableGutters ? '' : styles.gutters,
-    className,
+    dense ? styles.dense : '',
   ]
     .join(' ')
     .trim();
+  const headerClasses = [styles.header, disableGutters ? '' : styles.gutters]
+    .join(' ')
+    .trim();
   return (
-    <li className={styles.wrapper} {...props}>
-      {header && (
-        <div
-          className={[styles.header, disableGutters ? '' : styles.gutters]
-            .join(' ')
-            .trim()}
-        >
-          {header}
-        </div>
-      )}
-      <div className={classes}>
+    <li className={classes} {...props}>
+      {header && <div className={headerClasses}>{header}</div>}
+      <div className={bodyClasses}>
         <div className={styles.text}>
           <div className={styles.title}>{title}</div>
           <div className={styles.subtitle}>{subtitle}</div>

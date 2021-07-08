@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Text from './Text';
 
-function getWrapper(props) {
+function getWrapper(props: any) {
   return shallow(<Text {...props} />);
 }
 
