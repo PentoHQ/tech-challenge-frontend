@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { ReactChild } from 'react';
+import { XIcon } from '@heroicons/react/outline';
+
 import Button from 'components/Button';
 import Text from 'components/Text';
+import IconButton from 'components/IconButton';
 
 import styles from './Modal.module.scss';
 
@@ -22,6 +25,10 @@ export interface ModalProps {
    */
   setVisible: (data: boolean) => void;
   /**
+   * You can provide a custom footer for the modal
+   */
+  footer?: ReactChild | ReactChild[];
+  /**
    * Handle the action you want to do when Ok button is pressed
    */
   onOk?: () => void;
@@ -36,30 +43,36 @@ function Modal({
   title,
   visible,
   setVisible,
-  onOk = () => console.log('Ok button pressed!'),
-  onCancel = () => console.log('Close button pressed!'),
+  footer,
+  onOk,
+  onCancel,
 }: ModalProps) {
   if (!visible) return null;
 
   const handleClose = () => {
-    onCancel();
     setVisible(false);
   };
 
   const handleOk = () => {
-    onOk();
     setVisible(false);
   };
 
   return (
-    <div className={styles.modalWrapper}>
-      <div className={styles.modalContent}>
+    <div className={styles.modalWrapper} onClick={handleClose}>
+      <div
+        className={styles.modalContent}
+        onClick={(e: any) => e?.stopPropagation()}
+      >
         <div className={styles.modalHeader}>
           <Text variant="h3">{title}</Text>
+          <IconButton color="secondary" size="small" onClick={handleClose}>
+            <XIcon></XIcon>
+          </IconButton>
         </div>
         <div className={styles.modalBody}>{children}</div>
         <div className={styles.modalFooter}>
-          <div className={styles.modalActions}>
+          {footer}
+          {!!onOk && (
             <Button
               color="success"
               className={styles.modalBtn}
@@ -67,6 +80,8 @@ function Modal({
             >
               Ok
             </Button>
+          )}
+          {!!onCancel && (
             <Button
               color="danger"
               className={styles.modalBtn}
@@ -74,7 +89,7 @@ function Modal({
             >
               Cancel
             </Button>
-          </div>
+          )}
         </div>
       </div>
     </div>

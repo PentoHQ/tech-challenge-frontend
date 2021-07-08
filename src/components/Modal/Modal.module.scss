@@ -13,30 +13,32 @@
 
 .modalContent {
   background-color: $white;
-  width: 500px;
+  min-width: 500px;
   border-radius: $rounded;
 }
 .modalHeader {
   border-bottom: $border solid $grey30;
   padding: $padding16;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .modalFooter {
   padding: 0 $padding16 $padding16;
-}
-
-.modalBody {
-  padding: $padding16;
-}
-
-.modalActions {
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
 
+.modalBody {
+  padding: $padding16;
+  display: flex;
+  flex-direction: column;
+}
+
 .modalBtn {
-  width: 70px;
+  min-width: 70px;
   margin-right: $margin4;
 
   &:last-of-type {
