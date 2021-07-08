@@ -1,46 +1,11 @@
-import { SyntheticEvent, useEffect, useState } from 'react';
-import { intervalToDuration, addMilliseconds } from 'date-fns';
+import { SyntheticEvent, useState } from 'react';
 
 import FormRow from 'components/FormRow';
 import StopButton from 'components/StopButton';
 import InputText from 'components/InputText';
 import PlayButton from 'components/PlayButton';
+import Timer from 'components/Timer';
 import { useRunningSession } from 'hooks';
-
-interface TimerProps {
-  startDate: Date;
-}
-
-function Timer({ startDate }: TimerProps) {
-  const [time, setTime] = useState<number>(0);
-  const { runningSession } = useRunningSession();
-
-  const { hours, minutes, seconds } = intervalToDuration({
-    start: startDate,
-    /** timezoneDiff = new Date(time).getTimezoneOffset()
-     * dateWithoutTimezoneDiff = addSeconds(new Date(), new Date(time).getTimezoneOffset())
-     */
-    end: addMilliseconds(new Date(), new Date(time).getTimezoneOffset()),
-  });
-
-  useEffect(() => {
-    let interval: any = null;
-    if (runningSession) {
-      interval = setInterval(() => {
-        setTime((prevTime) => prevTime + 1);
-      }, 1000);
-    } else {
-      clearInterval(interval);
-    }
-    return () => clearInterval(interval);
-  }, [runningSession]);
-
-  return (
-    <div>
-      {hours}:{minutes}:{seconds}
-    </div>
-  );
-}
 
 interface RunningProps {
   name: string;
@@ -53,7 +18,7 @@ function RunningSession({ name, startDate }: RunningProps) {
   return (
     <FormRow alignY="center" stretchLastChild={false}>
       {name}
-      <Timer startDate={startDate} />
+      <Timer startDate={startDate} size="h3" />
       <StopButton onClick={stop} disabled={isLoading}></StopButton>
     </FormRow>
   );
