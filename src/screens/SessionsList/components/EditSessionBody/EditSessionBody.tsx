@@ -1,12 +1,11 @@
-import { Form, Field, useFormikContext } from 'formik';
+import { Form, useFormikContext } from 'formik';
+import { isBefore } from 'date-fns';
 
 import { Sessions } from 'generated/graphql';
 import FormRow from 'components/FormRow';
 import Button from 'components/Button';
 import Error from 'components/Error';
-
-import styles from './EditSessionBody.module.scss';
-import { isBefore } from 'date-fns';
+import FormField from 'components/FormField';
 import { strToISO } from 'utils/strToISO';
 
 export interface EditSessionBodyProps {
@@ -56,48 +55,48 @@ function EditSessionBody({
   return (
     <Form {...props}>
       <FormRow alignY="center">
-        <Field
+        <FormField
           id="name"
           name="name"
           placeholder="Name"
+          label="Name:"
           value={values?.name}
-          className={styles.formField}
         />
       </FormRow>
       <FormRow alignY="center">
-        <Field
+        <FormField
           id="startDate"
           name="startDate"
           placeholder="Start Date"
+          label="Start Date:"
           value={values?.startDate}
-          className={styles.formField}
           validate={validateStartDate}
         />
-        <Field
+        <FormField
           id="startTime"
           name="startTime"
           placeholder="Start Time"
+          label="Start Time:"
           value={values?.startTime}
-          className={styles.formField}
           validate={validateStartDate}
         />
       </FormRow>
 
       <FormRow alignY="center">
-        <Field
+        <FormField
           id="endDate"
           name="endDate"
           placeholder="End Date"
+          label="End Date:"
           value={values?.endDate}
-          className={styles.formField}
           validate={validateStartDate}
         />
-        <Field
+        <FormField
           id="endTime"
           name="endTime"
           placeholder="End Time"
+          label="End Time:"
           value={values?.endTime}
-          className={styles.formField}
           validate={validateStartDate}
         />
       </FormRow>
@@ -112,7 +111,11 @@ function EditSessionBody({
         />
       )}
       <FormRow alignY="center" align="right" stretchChildren={false}>
-        <Button color="success" type="submit" disabled={isSubmitting}>
+        <Button
+          color="success"
+          type="submit"
+          disabled={isSubmitting || errors?.startDate || errors?.endDate}
+        >
           Submit
         </Button>
       </FormRow>
