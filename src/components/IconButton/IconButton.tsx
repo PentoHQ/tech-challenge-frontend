@@ -12,7 +12,7 @@ export interface IconButtonProps extends Partial<ButtonProps> {
   /**
    * Optional click handler
    */
-  onClick?: () => void;
+  onClick?: (e?: any) => void;
   children: ReactChild;
 }
 

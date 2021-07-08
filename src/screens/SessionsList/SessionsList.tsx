@@ -32,8 +32,15 @@ export interface UpdatingFormData {
 
 function RowAction({ name }: { name: string }) {
   const switchSession = useSwitchSession();
+  const handlePlayButton = (e: any) => {
+    e.stopPropagation();
+    switchSession(name);
+  };
   return (
-    <PlayButton size="small" onClick={() => switchSession(name)}></PlayButton>
+    <PlayButton
+      size="small"
+      onClick={(e: any) => handlePlayButton(e)}
+    ></PlayButton>
   );
 }
 
