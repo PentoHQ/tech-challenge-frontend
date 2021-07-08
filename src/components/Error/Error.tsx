@@ -1,3 +1,4 @@
+import Text, { TextVariant } from 'components/Text';
 import styles from './Error.module.scss';
 
 export interface ErrorProps {
@@ -7,6 +8,10 @@ export interface ErrorProps {
    * the error
    */
   message?: string;
+  /**
+   * How large should the text in the Error component should be?
+   */
+  size?: TextVariant;
   /**
    * Error contents
    */
@@ -24,6 +29,10 @@ export interface ErrorProps {
    * If you need to disable left-right padding
    */
   disablePadding?: boolean;
+  /**
+   * If the error message should be left or right aligned
+   */
+  align?: 'left' | 'right' | 'center' | 'sides';
 }
 
 /**
@@ -36,25 +45,36 @@ function Error({
   message,
   color = 'danger',
   disablePadding,
+  size = 'text16Regular',
+  align,
 }: ErrorProps) {
   const classes = [
     styles.wrapper,
     disablePadding ? '' : styles.padding,
+    align === 'left'
+      ? styles.leftAlign
+      : align === 'right'
+      ? styles.rightAlign
+      : align === 'sides'
+      ? styles.sides
+      : '',
     className,
   ]
     .join(' ')
     .trim();
-  const msgClasses = [styles.message, styles[color]].join(' ').trim();
+
   return (
     <div className={classes}>
       {children ? (
         <>{children}</>
       ) : message ? (
-        <span className={msgClasses}>{message}</span>
+        <Text variant={size} className={styles[color]}>
+          {message}
+        </Text>
       ) : (
-        <span className={msgClasses}>
+        <Text variant={size} className={styles[color]}>
           Oops... something unexpected has occured!
-        </span>
+        </Text>
       )}
     </div>
   );

@@ -8,12 +8,15 @@
 .wrapper {
   @extend %flexCentered;
   height: 100%;
-}
-
-.message {
-  font-family: $primaryFont;
-  font-size: $text16Regular;
-  font-weight: $mediumFontWeight;
+  &.leftAlign {
+    justify-content: flex-start;
+  }
+  &.rightAlign {
+    justify-content: flex-end;
+  }
+  &.sides {
+    justify-content: space-between;
+  }
 }
 
 .primary {
