@@ -21,7 +21,6 @@ import useSwitchSession from 'hooks/useSwitchSession';
 
 import SessionControls from './components/SessionControls';
 import EditSessionBody from './components/EditSessionBody';
-import { isBefore } from 'date-fns';
 
 export interface UpdatingFormData {
   name: string;
