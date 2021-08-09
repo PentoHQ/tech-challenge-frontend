@@ -1,3 +1,4 @@
+import Spinner from 'components/Spinner'
 import { RawCard } from '../../components/Card'
 import List from '../../components/List'
 import ListItem from '../../components/ListItem'
@@ -21,13 +22,13 @@ export default function SessionsListPage(props: any) {
       <Spacer pb={4}>
         <SessionControls />
       </Spacer>
-      <RawCard>
+      <RawCard bgColor="grey">
         {isLoading ? (
-          'Loading'
+          <Spinner />
         ) : error ? (
           error.message
         ) : (
-          <List>
+          <List disablePadding>
             {data?.sessions.map(({ id, name, startDate, endDate }) => (
               <ListItem
                 key={id}

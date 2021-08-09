@@ -1,0 +1,8 @@
+@use 'common' as C;
+@use 'colors' as *;
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

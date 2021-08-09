@@ -6,12 +6,18 @@ $card-border: 1px solid $grey-card-border;
 .wrapper {
   display: flex;
   flex: 1;
-  border: $card-border;
-  border-radius: $rounded;
   flex-direction: column;
   background-color: $white;
+  max-height: 400px;
+  justify-content: center;
+  align-items: center;
   &.greyBg {
     background-color: $grey-tint;
+  }
+  > ul {
+    width: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
   }
 }
 
