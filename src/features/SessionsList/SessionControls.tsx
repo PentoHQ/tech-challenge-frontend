@@ -15,13 +15,14 @@ function RunningSession({ name, startDate }: RunningProps) {
   const { stop, isLoading } = useRunningSession()
 
   return (
-    <FormRow alignY="center" stretchLastChild={false}>
-      {name}
-      <div>
+    <>
+      Active Session
+      <FormRow alignY="center" stretchLastChild={false}>
+        {name}
         <Timer startDate={startDate} />
-      </div>
-      <StopButton onClick={stop} disabled={isLoading} title="Stop Session"></StopButton>
-    </FormRow>
+        <StopButton onClick={stop} disabled={isLoading} title="Stop Session"></StopButton>
+      </FormRow>
+    </>
   )
 }
 
@@ -30,7 +31,7 @@ export default function SessionControls() {
   if (isLoading)
     return (
       <FormRow>
-        <span>Loading</span> ...
+        <span>Loading active session</span>...
       </FormRow>
     )
   return runningSession ? (
