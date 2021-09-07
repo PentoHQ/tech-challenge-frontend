@@ -1,6 +1,8 @@
 import React, { ReactChild } from 'react'
 import styles from './ListItem.module.scss'
 
+import ItemLabel from 'components/ItemLabel'
+
 export interface ListItemProps {
   /**
    * Is this the principal call to action on the page?
@@ -64,8 +66,14 @@ export const ListItem = ({
   return (
     <li className={classes} {...props}>
       <div className={styles.text}>
-        <div className={styles.title}>{title}</div>
-        <div className={styles.subtitle}>{subtitle}</div>
+        <div className={styles.title}>
+          {title}
+          <ItemLabel>Session Name</ItemLabel>
+        </div>
+        <div className={styles.subtitle}>
+          {subtitle}
+          <ItemLabel>Duration</ItemLabel>
+        </div>
       </div>
       {action && <div className={styles.action}>{action}</div>}
     </li>
