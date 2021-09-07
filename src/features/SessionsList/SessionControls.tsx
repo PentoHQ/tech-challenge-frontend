@@ -53,7 +53,11 @@ function SessionInput() {
   return (
     <form onSubmit={submit}>
       <FormRow alignY="center" stretchLastChild={false}>
-        <InputText onChange={setSessionName} value={sessionName}></InputText>
+        <InputText
+          onChange={setSessionName}
+          value={sessionName}
+          placeholder="Enter session name..."
+        ></InputText>
         <PlayButton onClick={submit} disabled={isLoading} />
       </FormRow>
     </form>
