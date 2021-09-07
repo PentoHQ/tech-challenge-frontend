@@ -4,6 +4,7 @@ import InputText from '../../components/InputText'
 import PlayButton from '../../components/PlayButton'
 import StopButton from '../../components/StopButton'
 import Timer from 'components/Timer'
+import ItemLabel from 'components/ItemLabel'
 import { useRunningSession } from './hooks'
 
 interface RunningProps {
@@ -16,10 +17,15 @@ function RunningSession({ name, startDate }: RunningProps) {
 
   return (
     <>
-      Active Session
       <FormRow alignY="center" stretchLastChild={false}>
-        {name}
-        <Timer startDate={startDate} />
+        <>
+          {name}
+          <ItemLabel>Active Session Name</ItemLabel>
+        </>
+        <>
+          <Timer startDate={startDate} />
+          <ItemLabel>Duration</ItemLabel>
+        </>
         <StopButton onClick={stop} disabled={isLoading} title="Stop Session"></StopButton>
       </FormRow>
     </>
