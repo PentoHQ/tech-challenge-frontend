@@ -1,14 +1,15 @@
 import React from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 import LoginButton from './LoginButton'
+import CenteredText from 'components/CenteredText'
 
 function AuthWrapper({ children }: { children: React.ReactNode }) {
   const { isLoading, error, isAuthenticated } = useAuth0()
   if (isLoading) {
-    return <div>Loading...</div>
+    return <CenteredText>Validating user...</CenteredText>
   }
   if (error) {
-    return <div>Oops... {error.message}</div>
+    return <CenteredText>Oops... {error.message}</CenteredText>
   }
   if (!isAuthenticated) return <LoginButton />
   return <>{children}</>
