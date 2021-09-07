@@ -1,4 +1,5 @@
 @import 'common.scss';
+@import 'colors.scss';
 
 $paddingBtn: $padding16;
 $padding: $padding24;
@@ -8,8 +9,14 @@ $padding1: $padding8;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  padding-top: $padding;
   align-items: center;
+  padding: $padding1 $paddingBtn;
+  align-items: center;
+  background: $grey1;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+
   &.leftAlign {
     justify-content: flex-start;
   }
@@ -34,6 +41,8 @@ $padding1: $padding8;
   }
   &.fill > .formItem {
     flex: 1;
+    display: flex;
+    flex-direction: column;
   }
 
   &.spacing1 {

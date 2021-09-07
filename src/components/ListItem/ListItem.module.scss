@@ -10,8 +10,9 @@
   width: 100%;
   box-sizing: 'border-box';
   text-align: left;
-  padding-top: $padding16;
-  padding-bottom: $padding16;
+  padding-top: $padding12;
+  padding-bottom: $padding12;
+  border-bottom: 1px solid $grey10;
   &.focusVisible {
     background-color: $grey-tint;
   }
@@ -30,11 +31,15 @@
   .title {
     font: $text14SemiBold;
     flex: 1;
+    flex-direction: column;
+    display: flex;
   }
   .subtitle {
     font: $text14Regular;
     color: $grey50;
     flex: 1;
+    flex-direction: column;
+    display: flex;
   }
 }
 /* Styles applied to the inner `component` element if `disableGutters={false}`. */
