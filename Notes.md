@@ -20,7 +20,7 @@ Planning to add following extra features:
 
 `Overall`
 
-- Add titles to the button or actions everywhere
+- Add titles to the button or actions everywhere [Done]
 
 `Main Page`
 

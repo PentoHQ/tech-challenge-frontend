@@ -8,7 +8,7 @@
   font: $text14Regular;
   display: flex;
   padding-bottom: 16px;
-  font-size: 14px;
+  font-size: $text14SemiBold;
   color: $primary90;
 }
 
@@ -23,4 +23,12 @@
 }
 .danger {
   color: $danger90;
+}
+
+.mainLabel {
+  flex: 1;
+}
+
+.subLabel {
+  font-size: $text14SemiBold;
 }

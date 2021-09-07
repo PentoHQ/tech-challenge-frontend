@@ -15,6 +15,10 @@ export interface SectionHeaderProps {
    */
   size?: 'small' | 'medium' | 'large'
   /**
+   * What background color to use
+   */
+  totalHours?: string
+  /**
    * SectionHeader contents
    */
   children: React.ReactNode
@@ -38,12 +42,16 @@ export const SectionHeader = ({
   className = '',
   backgroundColor,
   children,
+  totalHours,
   ...props
 }: SectionHeaderProps) => {
   const classes = [styles.wrapper, styles[color], className].join(' ').trim()
   return (
     <div className={classes} style={{ backgroundColor }} {...props}>
-      {children}
+      <span className={styles.mainLabel}>{children}</span>
+      {totalHours ? (
+        <span className={styles.subLabel}>{`Total time spent [ ${totalHours} ]`}</span>
+      ) : null}
     </div>
   )
 }

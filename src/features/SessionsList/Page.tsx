@@ -13,11 +13,27 @@ import SessionControls from './SessionControls'
 
 function RowAction({ name }: { name: string }) {
   const switchSession = useSwitchSession()
-  return <PlayButton size="small" onClick={() => switchSession(name)}></PlayButton>
+  return (
+    <PlayButton
+      size="small"
+      onClick={() => switchSession(name)}
+      title="Switch Session"
+    ></PlayButton>
+  )
 }
 
 export default function SessionsListPage(props: any) {
   const { data, isLoading, error } = useGetSessions()
+
+  /* 
+    - Calculate total hours spent for all the sessions
+    This will help user with the complete overview and better management 
+  */
+  const totalHours = data?.sessions.reduce(
+    (acm, item) => acm + diffDateStrings(item.startDate, item.endDate),
+    0,
+  )
+
   const showTextInCenter = (text: string) => {
     return <CenteredText>{text}</CenteredText>
   }
@@ -34,7 +50,9 @@ export default function SessionsListPage(props: any) {
           <SessionControls />
         </>
       </Spacer>
-      <SectionHeader>{getAllSessionsHeaderLabel()}</SectionHeader>
+      <SectionHeader totalHours={msToHuman(totalHours || 0)}>
+        {getAllSessionsHeaderLabel()}
+      </SectionHeader>
       <RawCard>
         {isLoading ? (
           showTextInCenter('Loading sessions...')
