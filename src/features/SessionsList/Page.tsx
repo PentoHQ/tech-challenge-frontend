@@ -6,19 +6,30 @@ import PlayButton from '../../components/PlayButton'
 import Spacer from '../../components/Spacer'
 import CenteredText from 'components/CenteredText'
 import SectionHeader from 'components/SectionHeader'
+import DeleteButton from 'components/DeleteButton'
 import { diffDateStrings } from '../../util/diffDateStrings'
 import { msToHuman } from '../../util/formatters/formatDateDiff'
-import { useGetSessions, useSwitchSession } from './hooks'
+import { useGetSessions, useSwitchSession, useDeleteSession } from './hooks'
 import SessionControls from './SessionControls'
 
-function RowAction({ name }: { name: string }) {
+function RowAction({ name, id }: { name: string; id: string }) {
   const switchSession = useSwitchSession()
+  const deleteSession = useDeleteSession()
+
   return (
-    <PlayButton
-      size="small"
-      onClick={() => switchSession(name)}
-      title="Switch Session"
-    ></PlayButton>
+    <>
+      <DeleteButton
+        size="small"
+        onClick={() => deleteSession(id)}
+        title="Delete Session"
+      ></DeleteButton>
+      &nbsp;
+      <PlayButton
+        size="small"
+        onClick={() => switchSession(name)}
+        title="Switch Session"
+      ></PlayButton>
+    </>
   )
 }
 
@@ -26,7 +37,7 @@ export default function SessionsListPage(props: any) {
   const { data, isLoading, error } = useGetSessions()
 
   /* 
-    - Calculate total hours spent for all the sessions
+    Calculate total hours spent for all the sessions
     This will help user with the complete overview and better management 
   */
   const totalHours = data?.sessions.reduce(
@@ -66,7 +77,7 @@ export default function SessionsListPage(props: any) {
                   key={id}
                   title={name}
                   subtitle={msToHuman(diffDateStrings(startDate, endDate))}
-                  action={<RowAction name={name} />}
+                  action={<RowAction name={name} id={id} />}
                 />
               ))}
             </List>

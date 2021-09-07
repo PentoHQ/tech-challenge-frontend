@@ -3,6 +3,7 @@ import {
   useRunningSessionQuery,
   useSessionsQueryQuery,
   useStartSessionMutation,
+  useDeleteSessionMutation,
 } from '../../generated/graphql'
 import { runningQuery, getSessionsQuery } from './graphql'
 
@@ -80,4 +81,20 @@ export function useSwitchSession() {
     return stop().then(() => startSession(name))
   }
   return switchSession
+}
+
+export function useDeleteSession() {
+  const [deleteSession] = useDeleteSessionMutation()
+  return (sessionId: string) =>
+    deleteSession({
+      variables: {
+        input: sessionId,
+      },
+      awaitRefetchQueries: true,
+      refetchQueries: [
+        {
+          query: getSessionsQuery,
+        },
+      ],
+    })
 }

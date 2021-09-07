@@ -43,3 +43,12 @@ export const startSession = gql`
     }
   }
 `
+export const deleteSession = gql`
+  mutation deleteSession($input: uuid!) {
+    delete_sessions_by_pk(id: $input) {
+      id
+      name
+      startDate
+    }
+  }
+`

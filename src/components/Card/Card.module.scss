@@ -11,6 +11,7 @@ $card-border: 1px solid $grey-card-border;
   flex-direction: column;
   background-color: $white;
   overflow-y: scroll;
+  margin-bottom: $padding12;
   &.greyBg {
     background-color: $grey-tint;
   }
