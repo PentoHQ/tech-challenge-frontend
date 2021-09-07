@@ -68,7 +68,7 @@ export const Timer = ({
 
   return (
     <div className={classes} style={{ backgroundColor }} {...props}>
-      {hours} Hr :{minutes} Min: {seconds} Sec
+      {hours} Hr : {minutes} Min : {seconds} Sec
     </div>
   )
 }

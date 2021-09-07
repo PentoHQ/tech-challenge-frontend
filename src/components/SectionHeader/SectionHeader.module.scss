@@ -8,8 +8,9 @@
   font: $text14Regular;
   display: flex;
   padding-bottom: 16px;
-  font-size: $text14SemiBold;
+  font: $text14Medium;
   color: $primary90;
+  align-items: center;
 }
 
 .primary {
@@ -30,5 +31,5 @@
 }
 
 .subLabel {
-  font-size: $text14SemiBold;
+  font: $text12Medium;
 }

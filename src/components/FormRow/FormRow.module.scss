@@ -16,6 +16,8 @@ $padding1: $padding12;
   border-radius: 5px;
   justify-content: center;
   align-items: center;
+  color: $success70;
+  font: $text14SemiBold;
 
   &.leftAlign {
     justify-content: flex-start;
