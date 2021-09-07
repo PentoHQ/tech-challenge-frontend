@@ -20,7 +20,7 @@ function RunningSession({ name, startDate }: RunningProps) {
       <div>
         {hours}:{minutes}:{seconds}
       </div>
-      <StopButton onClick={stop} disabled={isLoading}></StopButton>
+      <StopButton onClick={stop} disabled={isLoading} title="Stop Session"></StopButton>
     </FormRow>
   )
 }
@@ -58,7 +58,7 @@ function SessionInput() {
           value={sessionName}
           placeholder="Enter session name..."
         ></InputText>
-        <PlayButton onClick={submit} disabled={isLoading} />
+        <PlayButton onClick={submit} disabled={isLoading} title="Start Session" />
       </FormRow>
     </form>
   )

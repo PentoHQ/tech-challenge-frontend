@@ -12,6 +12,10 @@ export interface ButtonProps {
    */
   size?: 'small' | 'medium' | 'large'
   /**
+   * Show title to let user know the kind of action they are performing
+   */
+  title?: string
+  /**
    * Button contents
    */
   children: React.ReactNode
