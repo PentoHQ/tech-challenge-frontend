@@ -5,6 +5,7 @@ import { PageBody } from '../../components/Page'
 import PlayButton from '../../components/PlayButton'
 import Spacer from '../../components/Spacer'
 import CenteredText from 'components/CenteredText'
+import SectionHeader from 'components/SectionHeader'
 import { diffDateStrings } from '../../util/diffDateStrings'
 import { msToHuman } from '../../util/formatters/formatDateDiff'
 import { useGetSessions, useSwitchSession } from './hooks'
@@ -20,11 +21,20 @@ export default function SessionsListPage(props: any) {
   const showTextInCenter = (text: string) => {
     return <CenteredText>{text}</CenteredText>
   }
+
+  const getAllSessionsHeaderLabel = () => {
+    return `All Sessions (${data?.sessions.length || 0})`
+  }
+
   return (
     <PageBody>
-      <Spacer pb={4}>
-        <SessionControls />
+      <Spacer pb={3}>
+        <>
+          <SectionHeader>Active Session</SectionHeader>
+          <SessionControls />
+        </>
       </Spacer>
+      <SectionHeader>{getAllSessionsHeaderLabel()}</SectionHeader>
       <RawCard>
         {isLoading ? (
           showTextInCenter('Loading sessions...')
@@ -42,7 +52,7 @@ export default function SessionsListPage(props: any) {
                 />
               ))}
             </List>
-            {data && data?.sessions.length === 0 ? showTextInCenter('No Sessions') : null}
+            {data && data?.sessions.length === 0 ? showTextInCenter('No Data') : null}
           </>
         )}
       </RawCard>

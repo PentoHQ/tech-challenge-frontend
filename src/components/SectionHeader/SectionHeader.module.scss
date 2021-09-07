@@ -1,0 +1,26 @@
+@import 'common.scss';
+@import 'colors.scss';
+
+.wrapper {
+  display: flex;
+  font-family: $primaryFont;
+  font-weight: $mediumFontWeight;
+  font: $text14Regular;
+  display: flex;
+  padding-bottom: 16px;
+  font-size: 14px;
+  color: $primary90;
+}
+
+.primary {
+  color: $primary90;
+}
+.secondary {
+  color: $grey70;
+}
+.success {
+  color: $success70;
+}
+.danger {
+  color: $danger90;
+}
