@@ -35,6 +35,11 @@ function groupSessionsByWeek(sessions: Session[]) {
   return { names: Array.from(names), sessions: Object.values(sessionsByWeek) }
 }
 
+/*
+  groupTodays and group weeks have almost similar implementations, 
+  we could merge them but currently separated them for better readability.
+*/
+
 function groupTodaysSessions(sessions: Session[]) {
   const todaysData: { [K: string]: any } = {}
   const todaysSession = sessions.filter((session) => {
@@ -57,6 +62,28 @@ function groupTodaysSessions(sessions: Session[]) {
   return { sessions: [todaysData], totalSessions: todaysSession }
 }
 
+function groupWeeksSessions(sessions: Session[]) {
+  const weeksData: { [K: string]: any } = {}
+  const weekssSession = sessions.filter((session) => {
+    /* 
+      Weeks's sessions are the ones whose startDate resides in current week
+      We can change the logic depending on the ask
+    */
+    const isThisWeeksSession = isThisWeek(new Date(session.startDate))
+    const name = session.name
+    if (isThisWeeksSession) {
+      const duration = diffDateStrings(session.startDate, session.endDate)
+      if (name in weeksData) {
+        weeksData[name] = duration + weeksData[name]
+      } else {
+        weeksData[name] = duration
+      }
+    }
+    return isToday(new Date(session.startDate))
+  })
+  return { sessions: [weeksData], totalSessions: weekssSession }
+}
+
 export function useMonthChartData() {
   const { data, loading, error } = useSessionsQueryQuery()
   // We need to type this data or TS will infer it as names: string[] | never[]
@@ -71,4 +98,12 @@ export function useTodaysChartData() {
   const defaultData: { names: string[]; sessions: WeekData[] } = { names: [], sessions: [] }
   if (!data || loading) return { ...defaultData, error, loading }
   return { ...groupTodaysSessions(data.sessions), error, loading }
+}
+
+export function useWeeksChartData() {
+  const { data, loading, error } = useSessionsQueryQuery()
+  // We need to type this data or TS will infer it as names: string[] | never[]
+  const defaultData: { names: string[]; sessions: WeekData[] } = { names: [], sessions: [] }
+  if (!data || loading) return { ...defaultData, error, loading }
+  return { ...groupWeeksSessions(data.sessions), error, loading }
 }

@@ -1,6 +1,6 @@
 import { msToHoursMinutes } from '../../util/formatters/minsToHoursMinutes'
 import Chart from './Chart'
-import { useMonthChartData, useTodaysChartData } from './useChartData'
+import { useMonthChartData, useTodaysChartData, useWeeksChartData } from './useChartData'
 import CenteredText from 'components/CenteredText'
 
 /**
@@ -21,7 +21,7 @@ interface ChartContainerProps {
 export default function ChartContainer({ title }: ChartContainerProps) {
   const { names, sessions, error, loading } = useMonthChartData()
   const { sessions: todaysSessions } = useTodaysChartData()
-  console.log('useTodaysChartData', useTodaysChartData())
+  const { sessions: weeksSessions } = useWeeksChartData()
   if (loading) return <CenteredText>Loading chart...</CenteredText>
   if (error) return <div>{error.toString()}</div>
 
@@ -30,9 +30,20 @@ export default function ChartContainer({ title }: ChartContainerProps) {
       case ChartType.Month:
         return sessions
       case ChartType.Week:
-        return []
+        return weeksSessions
       default:
         return todaysSessions
+    }
+  }
+
+  const getSessionNamesByType = (type: ChartType | string) => {
+    switch (type) {
+      case ChartType.Month:
+        return names
+      case ChartType.Week:
+        return Object.keys(weeksSessions[0] || [])
+      default:
+        return Object.keys(todaysSessions[0] || [])
     }
   }
 
@@ -40,7 +51,7 @@ export default function ChartContainer({ title }: ChartContainerProps) {
     <Chart
       formatter={msToHoursMinutes}
       sessions={getSessionsByType(title) as any}
-      names={names}
+      names={getSessionNamesByType(title)}
       title={title}
     />
   )
