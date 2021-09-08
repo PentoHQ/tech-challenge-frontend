@@ -6,6 +6,7 @@ import CenteredText from 'components/CenteredText'
 /**
  * @typedef {import('rootReducer').RootState} State
  */
+
 // Declaring ChartType enum here (not in common util), as we are not using this anywhere else as of now
 enum ChartType {
   Month = 'Month',

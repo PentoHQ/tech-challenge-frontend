@@ -23,6 +23,15 @@ Added `TOKEN` property with bearer value to .env
 
 - ListItem : added itemlabel and editable input component
 - FormRow : updated styling
+- MonthChart : renamed this component with ChartContainer and using it as a generic one to show sessions data for month,today and week
+
+`Flow changes`
+- I have not done any changes related to workflow.
+
+`UX changes`
+- Have done many changes related to syling
+- Sessions list page: I have created 2 sections for better user experience [active session, all sessions]
+- ListItem: Here I have added delete session and edit session button. Apart from that used editableInput when we try to edit session
 
 Planning to add following extra features:
 
@@ -55,6 +64,5 @@ Planning to add following extra features:
 - We can add loader while editing, deleting and creating session
 - Right now I have used inline save and cancel button for editable input, we can create new component for them
   for reusability purpose (just like edit, delete, play button)
-- Search session by name
-
-
+- Search sessions by name
+- Once the app gets bigger we can have different util functions and move all the related functions in there
