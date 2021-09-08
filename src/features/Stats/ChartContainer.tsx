@@ -61,13 +61,11 @@ export default function ChartContainer({ title }: ChartContainerProps) {
 
   return (
     <>
-      <SectionHeader subHeader={`Total Time Spent [ around ${msToHuman(timeSpent)} ]`}>
+      <SectionHeader subHeader={`Total time spent [ around ${msToHuman(timeSpent)} ]`}>
         {/*  here checking for title === ChartType.Month, 
         because startDate is getting passed with all sessions for months data */}
         Total Sessions {`(${sessionsDurations?.length - (title === ChartType.Month ? 1 : 0)})`}
       </SectionHeader>
-      <Spacer pb={2} />
-
       <SectionHeader>Graphical representation of Sessions</SectionHeader>
       <Chart
         formatter={msToHoursMinutes}

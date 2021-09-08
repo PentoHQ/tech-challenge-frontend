@@ -14,7 +14,7 @@ export default function StatsPage(props: any) {
         label="Session Data By:"
         onChange={(value: string) => setSelectedType(value)}
       />
-      <Spacer pb={3} />
+      <Spacer pb={2} />
       <ChartContainer title={selectedType} />
     </PageBody>
   )
