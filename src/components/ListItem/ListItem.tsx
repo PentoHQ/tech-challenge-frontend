@@ -1,6 +1,7 @@
 import React, { ReactChild } from 'react'
 import styles from './ListItem.module.scss'
 
+import EditableInput from 'components/EditableInput'
 import ItemLabel from 'components/ItemLabel'
 
 export interface ListItemProps {
@@ -37,6 +38,7 @@ export interface ListItemProps {
    * An additional action per row
    */
   action?: ReactChild
+  isEditing?: boolean
 }
 
 /**
@@ -52,6 +54,7 @@ export const ListItem = ({
   disableGutters,
   subtitle,
   action,
+  isEditing = false,
   ...props
 }: ListItemProps) => {
   const classes = [
@@ -67,7 +70,17 @@ export const ListItem = ({
     <li className={classes} {...props}>
       <div className={styles.text}>
         <div className={styles.title}>
-          {title}
+          {isEditing ? (
+            <EditableInput
+              onChange={() => null}
+              value={title}
+              onCancel={() => null}
+              onSave={() => null}
+            />
+          ) : (
+            title
+          )}
+
           <ItemLabel>Session Name</ItemLabel>
         </div>
         <div className={styles.subtitle}>

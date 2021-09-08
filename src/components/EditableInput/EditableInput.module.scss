@@ -1,0 +1,38 @@
+@import 'common.scss';
+@import 'colors.scss';
+
+.wrapper {
+  display: flex;
+  background: $grey10;
+  margin-right: $margin24;
+  padding: $padding8;
+  border-radius: $padding4;
+  input {
+    flex: 1;
+    border: 0px;
+    background: none;
+    outline: none;
+    font-family: $primaryFont;
+    font: $text12Medium;
+    font-family: $primaryFont;
+    font-weight: $mediumFontWeight;
+  }
+}
+
+.primary {
+  color: $primary90;
+}
+.secondary {
+  color: $grey70;
+}
+.success {
+  color: $success70;
+}
+.danger {
+  color: $danger90;
+}
+
+.input_actions {
+  display: flex;
+  flex-direction: row;
+}
