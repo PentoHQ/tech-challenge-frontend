@@ -12,7 +12,7 @@ Added `TOKEN` property with bearer value to .env
 `Newly added components`:
 
 - CenteredText : created generic component to place the text in center of the container, used at different places
-- Timer : to show the actions sessions time
+- Timer : to show the actions sessions time (Updated unit tests/specs as per the changes in duration)
 - ItemLabel: created generic component to show the session name and duration as a label for all sessions
 - SectionHeader: to add header title for both sections(active session and sessions list)
 - EditButton : to use under actions section on list page
@@ -21,7 +21,7 @@ Added `TOKEN` property with bearer value to .env
 
 `Modified components`
 
-- ListItem : added itemlabel and editable input component
+- ListItem : added itemlabel and editable input component (Updated unit tests/specs as well)
 - FormRow : updated styling
 - MonthChart : renamed this component with ChartContainer and using it as a generic one to show sessions data for month,today and week
 
