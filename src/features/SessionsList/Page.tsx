@@ -1,3 +1,5 @@
+import React, { useState } from 'react'
+
 import { RawCard } from '../../components/Card'
 import List from '../../components/List'
 import ListItem from '../../components/ListItem'
@@ -9,7 +11,7 @@ import SectionHeader from 'components/SectionHeader'
 import DeleteButton from 'components/DeleteButton'
 import { diffDateStrings } from '../../util/diffDateStrings'
 import { msToHuman } from '../../util/formatters/formatDateDiff'
-import { useGetSessions, useSwitchSession, useDeleteSession } from './hooks'
+import { useGetSessions, useSwitchSession, useDeleteSession, useUpdateSession } from './hooks'
 import SessionControls from './SessionControls'
 
 function RowAction({ name, id }: { name: string; id: string }) {
@@ -34,8 +36,9 @@ function RowAction({ name, id }: { name: string; id: string }) {
 }
 
 export default function SessionsListPage(props: any) {
+  const [selectedSessionId, setSelectedSessionId] = useState('')
   const { data, isLoading, error } = useGetSessions()
-
+  const updateSession = useUpdateSession()
   /* 
     Calculate total hours spent for all the sessions
     This will help user with the complete overview and better management 
@@ -51,6 +54,11 @@ export default function SessionsListPage(props: any) {
 
   const getAllSessionsHeaderLabel = () => {
     return `All Sessions (${data?.sessions.length || 0})`
+  }
+
+  const handleUpdateSession = async (newName: string) => {
+    await updateSession(selectedSessionId, newName)
+    setSelectedSessionId('')
   }
 
   return (
@@ -76,7 +84,10 @@ export default function SessionsListPage(props: any) {
                 <ListItem
                   key={id}
                   title={name}
+                  isEditing={selectedSessionId === id}
                   subtitle={msToHuman(diffDateStrings(startDate, endDate))}
+                  onSave={(name: string) => handleUpdateSession(name)}
+                  onCancel={() => setSelectedSessionId('')}
                   action={<RowAction name={name} id={id} />}
                 />
               ))}

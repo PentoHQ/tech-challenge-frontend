@@ -1,4 +1,4 @@
-import React, { ReactChild } from 'react'
+import React, { ReactChild, useState } from 'react'
 import styles from './ListItem.module.scss'
 
 import EditableInput from 'components/EditableInput'
@@ -39,6 +39,8 @@ export interface ListItemProps {
    */
   action?: ReactChild
   isEditing?: boolean
+  onCancel?: () => void
+  onSave?: (name: string) => void
 }
 
 /**
@@ -55,8 +57,11 @@ export const ListItem = ({
   subtitle,
   action,
   isEditing = false,
+  onSave,
+  onCancel,
   ...props
 }: ListItemProps) => {
+  const [editValue, setEditValue] = useState('')
   const classes = [
     styles.wrapper,
     dense ? styles.dense : '',
@@ -72,10 +77,10 @@ export const ListItem = ({
         <div className={styles.title}>
           {isEditing ? (
             <EditableInput
-              onChange={() => null}
+              onChange={() => setEditValue(editValue)}
               value={title}
-              onCancel={() => null}
-              onSave={() => null}
+              onCancel={() => onCancel && onCancel()}
+              onSave={() => onSave && onSave(editValue)}
             />
           ) : (
             title

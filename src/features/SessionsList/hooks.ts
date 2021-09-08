@@ -102,11 +102,11 @@ export function useDeleteSession() {
 
 export function useUpdateSession() {
   const [updateSession] = useUpdateSessionMutation()
-  return (sessionId: string) =>
+  return (sessionId: string, newName: string) =>
     updateSession({
       variables: {
         input: { id: sessionId },
-        data: { name: 'Test...1' },
+        data: { name: newName },
       },
       awaitRefetchQueries: true,
       refetchQueries: [
