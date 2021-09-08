@@ -15,7 +15,7 @@ import Text from '../../components/Text'
 import { stringToColour } from '../../util/stringToColour'
 
 function Title({ children }: { children: ReactChild }) {
-  return <Text variant="title">{children}</Text>
+  return <Text variant="h2">{children}</Text>
 }
 
 interface ChartProps<T> {
@@ -32,7 +32,7 @@ export default function Chart<T>({ sessions, title, names, formatter }: ChartPro
 
   return (
     <React.Fragment>
-      <Title>{title}</Title>
+      {/* <Title>{title}</Title> */}
       <ResponsiveContainer height="100%">
         <BarChart
           data={sessions}

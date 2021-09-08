@@ -1,12 +1,17 @@
+import { useState } from 'react'
 import { PageBody } from '../../components/Page'
-import Spacer from '../../components/Spacer'
 import ChartContainer from './ChartContainer'
+import SelectDropDown from 'components/SelectDropDown'
 
 export default function StatsPage(props: any) {
+  const [selectedType, setSelectedType] = useState('Today')
   return (
     <PageBody>
-      <Spacer mb={4}></Spacer>
-      <ChartContainer title="Today" />
+      <SelectDropDown
+        label="Session Data By:"
+        onChange={(value: string) => setSelectedType(value)}
+      />
+      <ChartContainer title={selectedType} />
     </PageBody>
   )
 }
