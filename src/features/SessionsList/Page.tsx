@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
-import { PencilIcon } from '@heroicons/react/outline'
 
 import { RawCard } from '../../components/Card'
 import List from '../../components/List'
 import ListItem from '../../components/ListItem'
 import { PageBody } from '../../components/Page'
-import IconButton from 'components/IconButton'
+import EditButton from 'components/EditButton'
 import PlayButton from '../../components/PlayButton'
 import Spacer from '../../components/Spacer'
 import CenteredText from 'components/CenteredText'
@@ -30,21 +29,11 @@ function RowAction({
 
   return (
     <>
-      <IconButton size="small" title="Edit Session" onClick={() => onEditClicked(id)}>
-        <PencilIcon></PencilIcon>
-      </IconButton>
+      <EditButton size="small" onClick={() => onEditClicked(id)} title="Edit Session" />
       &nbsp;
-      <DeleteButton
-        size="small"
-        onClick={() => deleteSession(id)}
-        title="Delete Session"
-      ></DeleteButton>
+      <DeleteButton size="small" onClick={() => deleteSession(id)} title="Delete Session" />
       &nbsp;
-      <PlayButton
-        size="small"
-        onClick={() => switchSession(name)}
-        title="Switch Session"
-      ></PlayButton>
+      <PlayButton size="small" onClick={() => switchSession(name)} title="Switch Session" />
     </>
   )
 }
