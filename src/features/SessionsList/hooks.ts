@@ -4,6 +4,7 @@ import {
   useSessionsQueryQuery,
   useStartSessionMutation,
   useDeleteSessionMutation,
+  useUpdateSessionMutation,
 } from '../../generated/graphql'
 import { runningQuery, getSessionsQuery } from './graphql'
 
@@ -89,6 +90,23 @@ export function useDeleteSession() {
     deleteSession({
       variables: {
         input: sessionId,
+      },
+      awaitRefetchQueries: true,
+      refetchQueries: [
+        {
+          query: getSessionsQuery,
+        },
+      ],
+    })
+}
+
+export function useUpdateSession() {
+  const [updateSession] = useUpdateSessionMutation()
+  return (sessionId: string) =>
+    updateSession({
+      variables: {
+        input: { id: sessionId },
+        data: { name: 'Test...1' },
       },
       awaitRefetchQueries: true,
       refetchQueries: [

@@ -52,3 +52,12 @@ export const deleteSession = gql`
     }
   }
 `
+export const updateSession = gql`
+  mutation updateSession($input: sessions_pk_columns_input!, $data: sessions_set_input!) {
+    update_sessions_by_pk(_set: $data, pk_columns: $input) {
+      id
+      name
+      startDate
+    }
+  }
+`

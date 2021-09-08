@@ -9,12 +9,19 @@ But don't forget to commit it with the rest of your code 😄
 
 Added `TOKEN` property with bearer value to .env
 
-Newly added components:
+`Newly added components`:
 
 - CenteredText : created generic component to place the text in center of the container, used at different places
 - Timer : to show the actions sessions time
 - ItemLabel: created generic component to show the session name and duration as a label for all sessions
 - SectionHeader: to add header title for both sections(active session and sessions list)
+
+
+`Modified components`
+- ListItem : added itemlabel and editable input component 
+- FormRow : updated styling
+
+
 
 Planning to add following extra features:
 
@@ -39,5 +46,10 @@ Planning to add following extra features:
 
 `Stats page`
 
-- Different color for different session
-- Drop down to filter in between day , week and month summaries
+- Day and week summaries with session count and hours
+
+
+`Features that can be added to make this app production ready?`
+- Use memo to improvise the performance
+- Filters to the sessions list page to help user find the sessions seasily
+- 
