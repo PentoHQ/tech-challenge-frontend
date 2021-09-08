@@ -7,8 +7,7 @@ But don't forget to commit it with the rest of your code 😄
 
 # Note
 
-- I have never used GraphQL before, but tried to learn basics and implemented update and delete session queries/mutations. So, please consider the weak implementations for GraphQL related code if any. 
-
+- I have never used GraphQL before, but tried to learn basics and implemented update and delete session queries/mutations. So, please consider the weak implementations for GraphQL related code if any.
 
 # Changes
 
@@ -31,12 +30,15 @@ Added `TOKEN` property with bearer value to .env
 - MonthChart : renamed this component with ChartContainer and using it as a generic one to show sessions data for month,today and week
 
 `Flow changes`
+
 - I have not done any changes related to workflow.
 
 `Unit Tests / Specs`
+
 - I have tried to verify and update the failing basic unit tests.
 
 `UX changes`
+
 - Have done many changes related to syling. Tried to make the UI simple, elegant and more readable for the user
 - Sessions list page: I have created 2 sections for better user experience [active session, all sessions]
 - ListItem: Here I have added delete session and edit session button. Apart from that used editableInput when we try to edit session
