@@ -29,7 +29,7 @@ Added `TOKEN` property with bearer value to .env
 - I have not done any changes related to workflow.
 
 `UX changes`
-- Have done many changes related to syling
+- Have done many changes related to syling. Tried to make the UI simple, elegant and more readable for the user
 - Sessions list page: I have created 2 sections for better user experience [active session, all sessions]
 - ListItem: Here I have added delete session and edit session button. Apart from that used editableInput when we try to edit session
 
@@ -48,7 +48,6 @@ Planning to add following extra features:
 - Add title and update styling to the active session row in header [Done]
 - Delete session [Done]
 - Total sessions/hours count [Done]
-- Filter for todays sessions only
 - Add section(active session and all session list) headers [Done]
 - No sessions data label scenario [Done]
 
@@ -56,7 +55,7 @@ Planning to add following extra features:
 
 - Day and week summaries with session count and hours
 
-`Features that can be added to make this app production ready`
+`Features that can be added in future(or if I had more time) to make this app production ready`
 
 - Use memo to improvise the performance
 - We can let user modify the startData and endDate for the session alongside name
