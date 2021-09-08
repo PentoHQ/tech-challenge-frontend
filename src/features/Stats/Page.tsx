@@ -1,12 +1,12 @@
 import { PageBody } from '../../components/Page'
 import Spacer from '../../components/Spacer'
-import MonthChart from './MonthChart'
+import ChartContainer from './ChartContainer'
 
 export default function StatsPage(props: any) {
   return (
     <PageBody>
       <Spacer mb={4}></Spacer>
-      <MonthChart />
+      <ChartContainer title="Today" />
     </PageBody>
   )
 }
