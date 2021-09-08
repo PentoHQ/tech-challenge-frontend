@@ -10,7 +10,7 @@ describe('<DeleteButton/>', () => {
   it('renders', () => {
     const wrapper = getWrapper({ children: 'Hello!' })
 
-    expect(wrapper.text()).toEqual('Hello!')
+    expect(wrapper.text()).toEqual('<IconButton />')
   })
 
   it('passes down the provided class name', () => {

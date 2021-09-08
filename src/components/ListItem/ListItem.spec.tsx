@@ -10,7 +10,7 @@ describe('<ListItem/>', () => {
   it('renders', () => {
     const wrapper = getWrapper({ title: 'Hello!' })
 
-    expect(wrapper.text()).toEqual('Hello!')
+    expect(wrapper.text()).toEqual('Hello!<ItemLabel /><ItemLabel />')
   })
 
   it('passes down the provided class name', () => {
