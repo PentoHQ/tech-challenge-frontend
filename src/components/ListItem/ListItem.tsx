@@ -61,7 +61,7 @@ export const ListItem = ({
   onCancel,
   ...props
 }: ListItemProps) => {
-  const [editValue, setEditValue] = useState('')
+  const [editValue, setEditValue] = useState(title)
   const classes = [
     styles.wrapper,
     dense ? styles.dense : '',
@@ -77,8 +77,8 @@ export const ListItem = ({
         <div className={styles.title}>
           {isEditing ? (
             <EditableInput
-              onChange={() => setEditValue(editValue)}
-              value={title}
+              onChange={(value) => setEditValue(value)}
+              value={editValue}
               onCancel={() => onCancel && onCancel()}
               onSave={() => onSave && onSave(editValue)}
             />

@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
+import { PencilIcon } from '@heroicons/react/outline'
 
 import { RawCard } from '../../components/Card'
 import List from '../../components/List'
 import ListItem from '../../components/ListItem'
 import { PageBody } from '../../components/Page'
+import IconButton from 'components/IconButton'
 import PlayButton from '../../components/PlayButton'
 import Spacer from '../../components/Spacer'
 import CenteredText from 'components/CenteredText'
@@ -14,12 +16,24 @@ import { msToHuman } from '../../util/formatters/formatDateDiff'
 import { useGetSessions, useSwitchSession, useDeleteSession, useUpdateSession } from './hooks'
 import SessionControls from './SessionControls'
 
-function RowAction({ name, id }: { name: string; id: string }) {
+function RowAction({
+  name,
+  id,
+  onEditClicked,
+}: {
+  name: string
+  id: string
+  onEditClicked: (id: string) => void
+}) {
   const switchSession = useSwitchSession()
   const deleteSession = useDeleteSession()
 
   return (
     <>
+      <IconButton size="small" title="Edit Session" onClick={() => onEditClicked(id)}>
+        <PencilIcon></PencilIcon>
+      </IconButton>
+      &nbsp;
       <DeleteButton
         size="small"
         onClick={() => deleteSession(id)}
@@ -88,7 +102,13 @@ export default function SessionsListPage(props: any) {
                   subtitle={msToHuman(diffDateStrings(startDate, endDate))}
                   onSave={(name: string) => handleUpdateSession(name)}
                   onCancel={() => setSelectedSessionId('')}
-                  action={<RowAction name={name} id={id} />}
+                  action={
+                    <RowAction
+                      name={name}
+                      id={id}
+                      onEditClicked={(id: string) => setSelectedSessionId(id)}
+                    />
+                  }
                 />
               ))}
             </List>

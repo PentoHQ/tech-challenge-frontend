@@ -51,5 +51,8 @@ Planning to add following extra features:
 
 `Features that can be added to make this app production ready?`
 - Use memo to improvise the performance
+- We can let user modify the startData and endDate for the session alongside name
 - Filters to the sessions list page to help user find the sessions seasily
-- 
+- We can add loader while editing, deleting and creating session
+- Right now I have used inline save and cancel button for editable input, we can create new component for them
+  for reusability purpose (just like edit, delete, play button)
