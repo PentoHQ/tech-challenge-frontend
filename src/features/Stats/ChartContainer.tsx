@@ -4,7 +4,6 @@ import Chart from './Chart'
 import { useMonthChartData, useTodaysChartData, useWeeksChartData } from './useChartData'
 import CenteredText from 'components/CenteredText'
 import SectionHeader from 'components/SectionHeader'
-import Spacer from 'components/Spacer'
 
 /**
  * @typedef {import('rootReducer').RootState} State
