@@ -37,7 +37,8 @@ export default function SessionControls() {
   if (isLoading)
     return (
       <FormRow>
-        <span>Loading active session</span>...
+        <span>Loading active session...</span>
+        <></>
       </FormRow>
     )
   return runningSession ? (

@@ -15,13 +15,14 @@ Added `TOKEN` property with bearer value to .env
 - Timer : to show the actions sessions time
 - ItemLabel: created generic component to show the session name and duration as a label for all sessions
 - SectionHeader: to add header title for both sections(active session and sessions list)
-
+- EditButton : to use under actions section on list page
+- DeleteButton : to use under actions section on list page
+- EditableInput : to enable inline edit feature for values with cancel and save button inside
 
 `Modified components`
-- ListItem : added itemlabel and editable input component 
+
+- ListItem : added itemlabel and editable input component
 - FormRow : updated styling
-
-
 
 Planning to add following extra features:
 
@@ -36,10 +37,8 @@ Planning to add following extra features:
 - Add `Active Session` label [Done]
 - Add titles to the session name and session elapsed time [Done]
 - Add title and update styling to the active session row in header [Done]
-- Delete session
+- Delete session [Done]
 - Total sessions/hours count [Done]
-- Search session by name
-- Sort by older, newer
 - Filter for todays sessions only
 - Add section(active session and all session list) headers [Done]
 - No sessions data label scenario [Done]
@@ -48,11 +47,14 @@ Planning to add following extra features:
 
 - Day and week summaries with session count and hours
 
+`Features that can be added to make this app production ready`
 
-`Features that can be added to make this app production ready?`
 - Use memo to improvise the performance
 - We can let user modify the startData and endDate for the session alongside name
 - Filters to the sessions list page to help user find the sessions seasily
 - We can add loader while editing, deleting and creating session
 - Right now I have used inline save and cancel button for editable input, we can create new component for them
   for reusability purpose (just like edit, delete, play button)
+- Search session by name
+
+

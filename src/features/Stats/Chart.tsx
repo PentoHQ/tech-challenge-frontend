@@ -29,6 +29,7 @@ export default function Chart<T>({ sessions, title, names, formatter }: ChartPro
   const Bars = names.map((x: string) => (
     <Bar key={x} dataKey={x} name={x} stackId="a" fill={stringToColour(x)} />
   ))
+
   return (
     <React.Fragment>
       <Title>{title}</Title>
@@ -45,7 +46,7 @@ export default function Chart<T>({ sessions, title, names, formatter }: ChartPro
           <XAxis dataKey="startDate" />
           <YAxis tickFormatter={formatter}>
             <Label position="left" style={{ textAnchor: 'middle' }} offset={0} angle={-90}>
-              Duration
+              Duration in hours
             </Label>
           </YAxis>
           <CartesianGrid strokeDasharray="3 3" />

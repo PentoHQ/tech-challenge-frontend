@@ -1,4 +1,5 @@
 import { format } from 'date-fns/fp'
+import { isToday, isThisWeek } from 'date-fns'
 import { useSessionsQueryQuery } from '../../generated/graphql'
 import { Session } from '../../types'
 import { diffDateStrings } from '../../util/diffDateStrings'
@@ -34,10 +35,40 @@ function groupSessionsByWeek(sessions: Session[]) {
   return { names: Array.from(names), sessions: Object.values(sessionsByWeek) }
 }
 
+function groupTodaysSessions(sessions: Session[]) {
+  const todaysData: { [K: string]: any } = {}
+  const todaysSession = sessions.filter((session) => {
+    /* 
+      Today's sessions are the ones whose startDate is today
+      We can change the logic depending on the ask
+    */
+    const isTodaysSession = isToday(new Date(session.startDate))
+    const name = session.name
+    if (isTodaysSession) {
+      const duration = diffDateStrings(session.startDate, session.endDate)
+      if (name in todaysData) {
+        todaysData[name] = duration + todaysData[name]
+      } else {
+        todaysData[name] = duration
+      }
+    }
+    return isToday(new Date(session.startDate))
+  })
+  return { sessions: [todaysData], totalSessions: todaysSession }
+}
+
 export function useMonthChartData() {
   const { data, loading, error } = useSessionsQueryQuery()
   // We need to type this data or TS will infer it as names: string[] | never[]
   const defaultData: { names: string[]; sessions: WeekData[] } = { names: [], sessions: [] }
   if (!data || loading) return { ...defaultData, error, loading }
   return { ...groupSessionsByWeek(data.sessions), error, loading }
+}
+
+export function useTodaysChartData() {
+  const { data, loading, error } = useSessionsQueryQuery()
+  // We need to type this data or TS will infer it as names: string[] | never[]
+  const defaultData: { names: string[]; sessions: WeekData[] } = { names: [], sessions: [] }
+  if (!data || loading) return { ...defaultData, error, loading }
+  return { ...groupTodaysSessions(data.sessions), error, loading }
 }
