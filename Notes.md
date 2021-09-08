@@ -5,6 +5,11 @@ Write down development notes, explanations of why you made certain decisions, pr
 Feel free to structure it anyway you want, with as many sections as you wish, make it yours!
 But don't forget to commit it with the rest of your code 😄
 
+# Note
+
+- I have never used GraphQL before, but tried to learn basics and implemented update and delete session queries/mutations. So, please consider the weak implementations for GraphQL related code if any. 
+
+
 # Changes
 
 Added `TOKEN` property with bearer value to .env
@@ -27,6 +32,9 @@ Added `TOKEN` property with bearer value to .env
 
 `Flow changes`
 - I have not done any changes related to workflow.
+
+`Unit Tests / Specs`
+- I have tried to verify and update the failing basic unit tests.
 
 `UX changes`
 - Have done many changes related to syling. Tried to make the UI simple, elegant and more readable for the user
@@ -63,5 +71,6 @@ Planning to add following extra features:
 - We can add loader while editing, deleting and creating session
 - Right now I have used inline save and cancel button for editable input, we can create new component for them
   for reusability purpose (just like edit, delete, play button)
-- Search sessions by name
+- Search sessions by name on sessions list page
 - Once the app gets bigger we can have different util functions and move all the related functions in there
+- All string label and other static values should be moved to constants and use them.

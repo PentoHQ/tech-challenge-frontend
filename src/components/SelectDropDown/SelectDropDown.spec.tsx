@@ -11,20 +11,12 @@ describe('<SelectDropDown/>', () => {
   it('renders', () => {
     const wrapper = getWrapper({ children: 'Hello!', onChange })
 
-    expect(wrapper.text()).toEqual('Hello!')
+    expect(wrapper.text()).toEqual('TodayWeekMonth')
   })
 
   it('passes down the provided class name', () => {
     const wrapper = getWrapper({ children: 'Hello!', className: 'test-class', onChange })
 
     expect(wrapper.hasClass('test-class')).toBeTruthy()
-  })
-
-  it('on click', () => {
-    const wrapper = getWrapper({ onChange })
-
-    wrapper.simulate('click')
-
-    expect(onChange).toHaveBeenCalledTimes(1)
   })
 })

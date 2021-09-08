@@ -28,6 +28,7 @@ export interface SelectDropDownProps {
    */
   onChange: (value: string) => void
   label: string
+  isHeader: boolean
 }
 
 /**
@@ -36,14 +37,17 @@ export interface SelectDropDownProps {
 export const SelectDropDown = ({
   color = 'primary',
   size = 'medium',
-  className = '',
+  className,
   backgroundColor,
   children,
   label,
+  isHeader,
   onChange,
   ...props
 }: SelectDropDownProps) => {
-  const classes = [styles.wrapper, styles[color], className].join(' ').trim()
+  const classes = [styles.wrapper, styles[color], className, isHeader ? styles.is_header : '']
+    .join(' ')
+    .trim()
   return (
     <div className={classes} style={{ backgroundColor }} {...props}>
       <label>{label}</label>

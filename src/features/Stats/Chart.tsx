@@ -1,4 +1,4 @@
-import React, { ReactChild } from 'react'
+import React from 'react'
 import {
   XAxis,
   YAxis,
@@ -11,12 +11,7 @@ import {
   Legend,
 } from 'recharts'
 import PropTypes from 'prop-types'
-import Text from '../../components/Text'
 import { stringToColour } from '../../util/stringToColour'
-
-function Title({ children }: { children: ReactChild }) {
-  return <Text variant="h2">{children}</Text>
-}
 
 interface ChartProps<T> {
   sessions: T[]
@@ -32,7 +27,6 @@ export default function Chart<T>({ sessions, title, names, formatter }: ChartPro
 
   return (
     <React.Fragment>
-      {/* <Title>{title}</Title> */}
       <ResponsiveContainer height="100%">
         <BarChart
           data={sessions}

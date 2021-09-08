@@ -5,10 +5,9 @@
   display: flex;
   font-family: $primaryFont;
   font-weight: $mediumFontWeight;
-  font: $text14Regular;
+  font: $text14SemiBold;
   justify-content: flex-end;
-  padding: 20px 0px;
-  padding-top: 0px;
+  padding: $padding12;
 
   select {
     margin-left: $padding16;
@@ -29,4 +28,9 @@
 }
 .danger {
   color: $danger90;
+}
+
+.is_header {
+  background: $grey1;
+  border-radius: $padding4;
 }

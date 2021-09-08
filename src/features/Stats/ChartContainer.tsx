@@ -1,7 +1,10 @@
 import { msToHoursMinutes } from '../../util/formatters/minsToHoursMinutes'
+import { msToHuman } from '../../util/formatters/formatDateDiff'
 import Chart from './Chart'
 import { useMonthChartData, useTodaysChartData, useWeeksChartData } from './useChartData'
 import CenteredText from 'components/CenteredText'
+import SectionHeader from 'components/SectionHeader'
+import Spacer from 'components/Spacer'
 
 /**
  * @typedef {import('rootReducer').RootState} State
@@ -47,12 +50,31 @@ export default function ChartContainer({ title }: ChartContainerProps) {
     }
   }
 
+  const sessionsToShow = getSessionsByType(title || '')
+  const sessionsDurations = Object.values(sessionsToShow[0] || {})
+
+  // here checking for typeof, because startDate is getting passed with all sessions for months data
+  const timeSpent = sessionsDurations.reduce(
+    (total, value) => total + (typeof value === 'number' ? value : 0),
+    0,
+  )
+
   return (
-    <Chart
-      formatter={msToHoursMinutes}
-      sessions={getSessionsByType(title) as any}
-      names={getSessionNamesByType(title)}
-      title={title}
-    />
+    <>
+      <SectionHeader subHeader={`Total Time Spent [ around ${msToHuman(timeSpent)} ]`}>
+        {/*  here checking for title === ChartType.Month, 
+        because startDate is getting passed with all sessions for months data */}
+        Total Sessions {`(${sessionsDurations?.length - (title === ChartType.Month ? 1 : 0)})`}
+      </SectionHeader>
+      <Spacer pb={2} />
+
+      <SectionHeader>Graphical representation of Sessions</SectionHeader>
+      <Chart
+        formatter={msToHoursMinutes}
+        sessions={sessionsToShow as any}
+        names={getSessionNamesByType(title)}
+        title={title}
+      />
+    </>
   )
 }

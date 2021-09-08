@@ -72,7 +72,7 @@ export default function SessionsListPage(props: any) {
           <SessionControls />
         </>
       </Spacer>
-      <SectionHeader totalHours={msToHuman(totalHours || 0)}>
+      <SectionHeader subHeader={`Total time spent [ ${msToHuman(totalHours || 0)} ]`}>
         {getAllSessionsHeaderLabel()}
       </SectionHeader>
       <RawCard>
