@@ -29,7 +29,7 @@ export interface TimerProps {
    */
   onClick?: () => void
   /**
-   * startDate
+   * Provides the start for the duration calculation
    */
   startDate: Date
 }
