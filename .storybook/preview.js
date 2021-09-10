@@ -1,3 +1,7 @@
+import { muiTheme } from 'storybook-addon-material-ui'
+
+export const decorators = [muiTheme()]
+
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   // Storybook a11y addon configuration
