@@ -1,6 +1,5 @@
 import Timer from 'components/Timer'
-import { intervalToDuration } from 'date-fns'
-import { SyntheticEvent, useState, useEffect } from 'react'
+import { SyntheticEvent, useState } from 'react'
 import FormRow from '../../components/FormRow'
 import InputText from '../../components/InputText'
 import PlayButton from '../../components/PlayButton'
