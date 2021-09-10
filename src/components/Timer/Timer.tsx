@@ -1,5 +1,6 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
 import styles from './Timer.module.scss'
+import { intervalToDuration } from 'date-fns'
 
 export interface TimerProps {
   /**
@@ -27,6 +28,10 @@ export interface TimerProps {
    * Optional click handler
    */
   onClick?: () => void
+  /**
+   * startDate
+   */
+  startDate: Date
 }
 
 /**
@@ -38,11 +43,25 @@ export const Timer = ({
   className = '',
   backgroundColor,
   children,
+  startDate,
   ...props
 }: TimerProps) => {
   const classes = [styles.wrapper, styles[color], className].join(' ').trim()
+  const [{ hours, minutes, seconds }, setElapsedTime] = useState(
+    intervalToDuration({ start: startDate, end: Date.now() }),
+  )
+
+  useEffect(() => {
+    let timer = setInterval(() => {
+      setElapsedTime(intervalToDuration({ start: startDate, end: Date.now() }))
+    }, 1000)
+    return () => clearInterval(timer)
+  }, [startDate])
+
   return (
     <div className={classes} style={{ backgroundColor }} {...props}>
+      {hours?.toString().padStart(2, '0')}:{minutes?.toString().padStart(2, '0')}:
+      {seconds?.toString().padStart(2, '0')}
       {children}
     </div>
   )
