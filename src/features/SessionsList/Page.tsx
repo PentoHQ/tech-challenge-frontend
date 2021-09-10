@@ -8,6 +8,7 @@ import { diffDateStrings } from '../../util/diffDateStrings'
 import { msToHuman } from '../../util/formatters/formatDateDiff'
 import { useGetSessions, useSwitchSession } from './hooks'
 import SessionControls from './SessionControls'
+import styles from './SessionsList.module.scss'
 
 function RowAction({ name }: { name: string }) {
   const switchSession = useSwitchSession()
@@ -17,11 +18,11 @@ function RowAction({ name }: { name: string }) {
 export default function SessionsListPage(props: any) {
   const { data, isLoading, error } = useGetSessions()
   return (
-    <PageBody>
+    <PageBody className={styles['scroll-page']}>
       <Spacer pb={4}>
         <SessionControls />
       </Spacer>
-      <RawCard>
+      <RawCard className={styles['scroll-list']}>
         {isLoading ? (
           'Loading'
         ) : error ? (
