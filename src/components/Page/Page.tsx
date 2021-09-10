@@ -27,6 +27,7 @@ export const Page = ({ className = '', children, ...props }: PageProps) => {
 
 export default Page
 
-export function PageBody({ children }: PageProps) {
-  return <div className={styles.pageBody}>{children}</div>
+export function PageBody({ className = '', children }: PageProps) {
+  const classes = [styles.pageBody, className].join(' ')
+  return <div className={classes}>{children}</div>
 }
