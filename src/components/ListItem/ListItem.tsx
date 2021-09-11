@@ -153,7 +153,7 @@ export const ListItem = ({
         onMouseOver={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
-        <div className={styles.text}>
+        <div className={styles.text} onClick={() => setEditMode(true)}>
           <div className={styles.title}>{name}</div>
           <div className={styles.subtitle}>{subtitle}</div>
         </div>
