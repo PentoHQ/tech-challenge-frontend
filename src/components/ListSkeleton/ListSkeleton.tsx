@@ -44,8 +44,8 @@ export const ListSkeleton = ({
   return (
     <li className={classes} style={{ backgroundColor }} {...props}>
       <div>
-        <Skeleton animation="wave" height={25} width={40 + Math.random() * 90} />
-        <Skeleton animation="wave" height={17} width={80 + Math.random() * 90} />
+        <Skeleton animation="wave" height={25} width={60 + Math.random() * 120} />
+        <Skeleton animation="wave" height={17} width={120 + Math.random() * 120} />
       </div>
       <div>
         <Skeleton animation="wave" variant="circle" width={30} height={30} />
