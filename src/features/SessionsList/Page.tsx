@@ -51,6 +51,7 @@ export default function SessionsListPage(props: any) {
           <List>
             {data?.sessions.map(({ id, name, startDate, endDate }) => (
               <ListItem
+                sessionData={{ id, name, startDate, endDate }}
                 key={id}
                 title={name}
                 subtitle={msToHuman(diffDateStrings(startDate, endDate))}
