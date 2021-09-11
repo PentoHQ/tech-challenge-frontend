@@ -52,7 +52,11 @@ function SessionInput() {
   return (
     <form onSubmit={submit}>
       <FormRow alignY="center" stretchLastChild={false}>
-        <InputText onChange={setSessionName} value={sessionName}></InputText>
+        <InputText
+          placeholder="What task are you working on?"
+          onChange={setSessionName}
+          value={sessionName}
+        ></InputText>
         <PlayButton onClick={submit} disabled={isLoading} />
       </FormRow>
     </form>
