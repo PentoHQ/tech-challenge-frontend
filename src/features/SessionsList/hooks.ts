@@ -1,13 +1,15 @@
 import {
+  useAllRunningSessionsQuery,
+  useAllSessionsQuery,
   useCreateSessionMutation,
-  useRunningSessionQuery,
-  useSessionsQueryQuery,
-  useStartSessionMutation,
+  useCreateRunningSessionMutation,
+  useDeleteAllRunningSessionsMutation,
+  useDeleteSessionMutation,
 } from '../../generated/graphql'
-import { runningQuery, getSessionsQuery } from './graphql'
+import { getAllRunningSessionsQuery, getAllSessionsQuery } from './graphql'
 
 export function useGetSessions() {
-  const { data, loading, error } = useSessionsQueryQuery()
+  const { data, loading, error } = useAllSessionsQuery()
   return {
     data,
     isLoading: loading,
@@ -22,32 +24,56 @@ export type UseRunningSession =
   | undefined
 
 export function useRunningSession({ onCompleted }: UseRunningSession = {}) {
-  const { data, loading } = useRunningSessionQuery()
-  const [mutate, startResult] = useStartSessionMutation({ onCompleted })
-  const [createSession, creationResult] = useCreateSessionMutation()
+  const { data, loading } = useAllRunningSessionsQuery()
+
+  const [createSession, createSessionResult] = useCreateSessionMutation()
+  const [createRunningSession] = useCreateRunningSessionMutation()
+  const [deleteAllRunningSessions] = useDeleteAllRunningSessionsMutation()
+  const [deleteSession] = useDeleteSessionMutation()
   const runningSession = data?.running_sessions[0]
 
   return {
     runningSession,
-    isLoading: startResult.loading || loading || creationResult.loading,
-    startSession: (name: string) =>
-      mutate({
+    isLoading: createSessionResult.loading || loading || createSessionResult.loading,
+    startSession: (name: string, id: string = '', startDate: string = '', endDate: string = '') => {
+      if (!!id) {
+        deleteSession({
+          variables: { input: id },
+          awaitRefetchQueries: true,
+          refetchQueries: [
+            {
+              query: getAllSessionsQuery,
+            },
+          ],
+        })
+      }
+
+      let newStartDate
+      if (startDate && endDate) {
+        newStartDate = new Date(
+          new Date(startDate).getTime() + Date.now() - new Date(endDate).getTime(),
+        )
+      }
+
+      return createRunningSession({
         variables: {
-          input: { name, startDate: new Date().toISOString() },
+          input: { name, startDate: newStartDate || new Date().toISOString() },
         },
         awaitRefetchQueries: true,
         // https://github.com/apollographql/apollo-client/issues/4922
         refetchQueries: [
           {
-            query: runningQuery,
+            query: getAllRunningSessionsQuery,
           },
         ],
-      }),
+      })
+    },
     stop: () => {
       if (!runningSession) {
         throw new Error('Do not mutate before data has finished loading')
       }
 
+      deleteAllRunningSessions()
       return createSession({
         variables: {
           input: {
@@ -59,10 +85,10 @@ export function useRunningSession({ onCompleted }: UseRunningSession = {}) {
         awaitRefetchQueries: true,
         refetchQueries: [
           {
-            query: getSessionsQuery,
+            query: getAllSessionsQuery,
           },
           {
-            query: runningQuery,
+            query: getAllRunningSessionsQuery,
           },
         ],
       })
@@ -72,12 +98,14 @@ export function useRunningSession({ onCompleted }: UseRunningSession = {}) {
 
 export function useSwitchSession() {
   const { startSession, stop, runningSession, isLoading } = useRunningSession()
-  const switchSession = (name: string) => {
+
+  const switchSession = (name: string, id: string, startDate: string, endDate: string) => {
     if (isLoading) {
       throw new Error('Do not try to switch while running session is loading')
     }
-    if (!runningSession) return startSession(name)
-    return stop().then(() => startSession(name))
+
+    if (!runningSession) return startSession(name, id, startDate, endDate)
+    return stop().then(() => startSession(name, id, startDate, endDate))
   }
   return switchSession
 }

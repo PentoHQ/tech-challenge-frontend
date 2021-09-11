@@ -10,9 +10,24 @@ import { useGetSessions, useSwitchSession } from './hooks'
 import SessionControls from './SessionControls'
 import styles from './SessionsList.module.scss'
 
-function RowAction({ name }: { name: string }) {
+function RowAction({
+  name,
+  id,
+  startDate,
+  endDate,
+}: {
+  name: string
+  id: string
+  startDate: string
+  endDate: string
+}) {
   const switchSession = useSwitchSession()
-  return <PlayButton size="small" onClick={() => switchSession(name)}></PlayButton>
+  return (
+    <PlayButton
+      size="small"
+      onClick={() => switchSession(name, id, startDate, endDate)}
+    ></PlayButton>
+  )
 }
 
 export default function SessionsListPage(props: any) {
@@ -34,7 +49,7 @@ export default function SessionsListPage(props: any) {
                 key={id}
                 title={name}
                 subtitle={msToHuman(diffDateStrings(startDate, endDate))}
-                action={<RowAction name={name} />}
+                action={<RowAction name={name} id={id} startDate={startDate} endDate={endDate} />}
               />
             ))}
           </List>
