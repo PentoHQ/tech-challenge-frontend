@@ -1,3 +1,4 @@
+import ListSkeleton from 'components/ListSkeleton'
 import { RawCard } from '../../components/Card'
 import List from '../../components/List'
 import ListItem from '../../components/ListItem'
@@ -39,7 +40,11 @@ export default function SessionsListPage(props: any) {
       </Spacer>
       <RawCard className={styles['scroll-list']}>
         {isLoading ? (
-          'Loading'
+          <List>
+            {Array.from(new Array(3)).map((e, i) => {
+              return <ListSkeleton key={i} />
+            })}
+          </List>
         ) : error ? (
           error.message
         ) : (
