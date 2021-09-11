@@ -8,6 +8,8 @@ import { Auth0Provider } from '@auth0/auth0-react'
 import auth0 from './auth0'
 import AuthWrapper from './features/Auth/AuthWrapper'
 import ApolloWrapper from './features/Apollo/ApolloWrapper'
+import { MuiPickersUtilsProvider } from '@material-ui/pickers'
+import DateFnsUtils from '@date-io/date-fns'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -21,7 +23,9 @@ ReactDOM.render(
       <AuthWrapper>
         <ApolloWrapper>
           <Router>
-            <App />
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <App />
+            </MuiPickersUtilsProvider>
           </Router>
         </ApolloWrapper>
       </AuthWrapper>
