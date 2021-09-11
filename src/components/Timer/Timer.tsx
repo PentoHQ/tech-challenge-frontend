@@ -47,7 +47,7 @@ export const Timer = ({
   ...props
 }: TimerProps) => {
   const classes = [styles.wrapper, styles[color], className].join(' ').trim()
-  const [{ hours, minutes, seconds }, setElapsedTime] = useState(
+  const [{ days, hours, minutes, seconds }, setElapsedTime] = useState(
     intervalToDuration({ start: startDate, end: Date.now() }),
   )
 
@@ -60,6 +60,7 @@ export const Timer = ({
 
   return (
     <div className={classes} style={{ backgroundColor }} {...props}>
+      {!!days && `${days} day${days === 1 ? ', ' : 's, '}`}
       {hours?.toString().padStart(2, '0')}:{minutes?.toString().padStart(2, '0')}:
       {seconds?.toString().padStart(2, '0')}
       {children}
