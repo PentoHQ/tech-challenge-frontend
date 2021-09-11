@@ -5,6 +5,7 @@ import {
   useCreateRunningSessionMutation,
   useDeleteAllRunningSessionsMutation,
   useDeleteSessionMutation,
+  useUpdateSessionMutation,
 } from '../../generated/graphql'
 import { getAllRunningSessionsQuery, getAllSessionsQuery } from './graphql'
 
@@ -14,6 +15,35 @@ export function useGetSessions() {
     data,
     isLoading: loading,
     error,
+  }
+}
+
+export function useUpdateSession() {
+  const [updateSession] = useUpdateSessionMutation()
+  return {
+    updateSession: async (
+      id: string,
+      name: string = '',
+      startDate: string = '',
+      endDate: string = '',
+    ) => {
+      await updateSession({
+        variables: {
+          set: {
+            ...(!!name && { name }),
+            ...(!!startDate && { startDate }),
+            ...(!!endDate && { endDate }),
+          },
+          id,
+        },
+        awaitRefetchQueries: true,
+        refetchQueries: [
+          {
+            query: getAllSessionsQuery,
+          },
+        ],
+      })
+    },
   }
 }
 
