@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './ListSkeleton.module.scss'
+import Skeleton from '@material-ui/lab/Skeleton'
 
 export interface ListSkeletonProps {
   /**
@@ -17,7 +18,7 @@ export interface ListSkeletonProps {
   /**
    * ListSkeleton contents
    */
-  children: React.ReactNode
+  children?: React.ReactNode
   /**
    * Provide your custom styles by passing a class name that will
    * be applied to the root of the component (edit to match reality)
@@ -37,14 +38,19 @@ export const ListSkeleton = ({
   size = 'medium',
   className = '',
   backgroundColor,
-  children,
   ...props
 }: ListSkeletonProps) => {
   const classes = [styles.wrapper, styles[color], className].join(' ').trim()
   return (
-    <div className={classes} style={{ backgroundColor }} {...props}>
-      {children}
-    </div>
+    <li className={classes} style={{ backgroundColor }} {...props}>
+      <div>
+        <Skeleton animation="wave" height={25} width={40 + Math.random() * 90} />
+        <Skeleton animation="wave" height={17} width={80 + Math.random() * 90} />
+      </div>
+      <div>
+        <Skeleton animation="wave" variant="circle" width={30} height={30} />
+      </div>
+    </li>
   )
 }
 

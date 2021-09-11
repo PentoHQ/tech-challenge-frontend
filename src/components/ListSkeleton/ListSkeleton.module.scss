@@ -6,6 +6,11 @@
   font-family: $primaryFont;
   font-weight: $mediumFontWeight;
   font: $text14Regular;
+  width: 100% !important;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 16px;
+  padding-bottom: 0;
 }
 
 .primary {
