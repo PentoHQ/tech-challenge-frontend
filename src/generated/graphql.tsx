@@ -49,6 +49,88 @@ export type String_Comparison_Exp = {
   _similar?: Maybe<Scalars['String']>
 }
 
+/** mutation root */
+export type Mutation_Root = {
+  __typename?: 'mutation_root'
+  /** delete data from the table: "running_sessions" */
+  delete_running_sessions?: Maybe<Running_Sessions_Mutation_Response>
+  /** delete data from the table: "sessions" */
+  delete_sessions?: Maybe<Sessions_Mutation_Response>
+  /** delete single row from the table: "sessions" */
+  delete_sessions_by_pk?: Maybe<Sessions>
+  /** insert data into the table: "running_sessions" */
+  insert_running_sessions?: Maybe<Running_Sessions_Mutation_Response>
+  /** insert a single row into the table: "running_sessions" */
+  insert_running_sessions_one?: Maybe<Running_Sessions>
+  /** insert data into the table: "sessions" */
+  insert_sessions?: Maybe<Sessions_Mutation_Response>
+  /** insert a single row into the table: "sessions" */
+  insert_sessions_one?: Maybe<Sessions>
+  /** update data of the table: "running_sessions" */
+  update_running_sessions?: Maybe<Running_Sessions_Mutation_Response>
+  /** update data of the table: "sessions" */
+  update_sessions?: Maybe<Sessions_Mutation_Response>
+  /** update single row of the table: "sessions" */
+  update_sessions_by_pk?: Maybe<Sessions>
+}
+
+/** mutation root */
+export type Mutation_RootDelete_Running_SessionsArgs = {
+  where: Running_Sessions_Bool_Exp
+}
+
+/** mutation root */
+export type Mutation_RootDelete_SessionsArgs = {
+  where: Sessions_Bool_Exp
+}
+
+/** mutation root */
+export type Mutation_RootDelete_Sessions_By_PkArgs = {
+  id: Scalars['uuid']
+}
+
+/** mutation root */
+export type Mutation_RootInsert_Running_SessionsArgs = {
+  objects: Array<Running_Sessions_Insert_Input>
+  on_conflict?: Maybe<Running_Sessions_On_Conflict>
+}
+
+/** mutation root */
+export type Mutation_RootInsert_Running_Sessions_OneArgs = {
+  object: Running_Sessions_Insert_Input
+  on_conflict?: Maybe<Running_Sessions_On_Conflict>
+}
+
+/** mutation root */
+export type Mutation_RootInsert_SessionsArgs = {
+  objects: Array<Sessions_Insert_Input>
+  on_conflict?: Maybe<Sessions_On_Conflict>
+}
+
+/** mutation root */
+export type Mutation_RootInsert_Sessions_OneArgs = {
+  object: Sessions_Insert_Input
+  on_conflict?: Maybe<Sessions_On_Conflict>
+}
+
+/** mutation root */
+export type Mutation_RootUpdate_Running_SessionsArgs = {
+  _set?: Maybe<Running_Sessions_Set_Input>
+  where: Running_Sessions_Bool_Exp
+}
+
+/** mutation root */
+export type Mutation_RootUpdate_SessionsArgs = {
+  _set?: Maybe<Sessions_Set_Input>
+  where: Sessions_Bool_Exp
+}
+
+/** mutation root */
+export type Mutation_RootUpdate_Sessions_By_PkArgs = {
+  _set?: Maybe<Sessions_Set_Input>
+  pk_columns: Sessions_Pk_Columns_Input
+}
+
 /** column ordering options */
 export enum Order_By {
   /** in ascending order, nulls last */
@@ -162,7 +244,7 @@ export type Running_Sessions_Mutation_Response = {
 /** on conflict condition type for table "running_sessions" */
 export type Running_Sessions_On_Conflict = {
   constraint: Running_Sessions_Constraint
-  update_columns: Array<Running_Sessions_Update_Column>
+  update_columns?: Array<Running_Sessions_Update_Column>
   where?: Maybe<Running_Sessions_Bool_Exp>
 }
 
@@ -223,86 +305,11 @@ export enum Sessions_Constraint {
   SessionsPkey = 'sessions_pkey',
 }
 
-/** mutation root */
-export type Mutation_Root = {
-  __typename?: 'mutation_root'
-  /** delete data from the table: "running_sessions" */
-  delete_running_sessions?: Maybe<Running_Sessions_Mutation_Response>
-  /** delete data from the table: "sessions" */
-  delete_sessions?: Maybe<Sessions_Mutation_Response>
-  /** delete single row from the table: "sessions" */
-  delete_sessions_by_pk?: Maybe<Sessions>
-  /** insert data into the table: "running_sessions" */
-  insert_running_sessions?: Maybe<Running_Sessions_Mutation_Response>
-  /** insert a single row into the table: "running_sessions" */
-  insert_running_sessions_one?: Maybe<Running_Sessions>
-  /** insert data into the table: "sessions" */
-  insert_sessions?: Maybe<Sessions_Mutation_Response>
-  /** insert a single row into the table: "sessions" */
-  insert_sessions_one?: Maybe<Sessions>
-  /** update data of the table: "running_sessions" */
-  update_running_sessions?: Maybe<Running_Sessions_Mutation_Response>
-  /** update data of the table: "sessions" */
-  update_sessions?: Maybe<Sessions_Mutation_Response>
-  /** update single row of the table: "sessions" */
-  update_sessions_by_pk?: Maybe<Sessions>
-}
-
-/** mutation root */
-export type Mutation_RootDelete_Running_SessionsArgs = {
-  where: Running_Sessions_Bool_Exp
-}
-
-/** mutation root */
-export type Mutation_RootDelete_SessionsArgs = {
-  where: Sessions_Bool_Exp
-}
-
-/** mutation root */
-export type Mutation_RootDelete_Sessions_By_PkArgs = {
-  id: Scalars['uuid']
-}
-
-/** mutation root */
-export type Mutation_RootInsert_Running_SessionsArgs = {
-  objects: Array<Running_Sessions_Insert_Input>
-  on_conflict?: Maybe<Running_Sessions_On_Conflict>
-}
-
-/** mutation root */
-export type Mutation_RootInsert_Running_Sessions_OneArgs = {
-  object: Running_Sessions_Insert_Input
-  on_conflict?: Maybe<Running_Sessions_On_Conflict>
-}
-
-/** mutation root */
-export type Mutation_RootInsert_SessionsArgs = {
-  objects: Array<Sessions_Insert_Input>
-  on_conflict?: Maybe<Sessions_On_Conflict>
-}
-
-/** mutation root */
-export type Mutation_RootInsert_Sessions_OneArgs = {
-  object: Sessions_Insert_Input
-  on_conflict?: Maybe<Sessions_On_Conflict>
-}
-
-/** mutation root */
-export type Mutation_RootUpdate_Running_SessionsArgs = {
-  _set?: Maybe<Running_Sessions_Set_Input>
-  where: Running_Sessions_Bool_Exp
-}
-
-/** mutation root */
-export type Mutation_RootUpdate_SessionsArgs = {
-  _set?: Maybe<Sessions_Set_Input>
-  where: Sessions_Bool_Exp
-}
-
-/** mutation root */
-export type Mutation_RootUpdate_Sessions_By_PkArgs = {
-  _set?: Maybe<Sessions_Set_Input>
-  pk_columns: Sessions_Pk_Columns_Input
+/** input type for inserting data into table "sessions" */
+export type Sessions_Insert_Input = {
+  endDate?: Maybe<Scalars['timestamptz']>
+  name?: Maybe<Scalars['String']>
+  startDate?: Maybe<Scalars['timestamptz']>
 }
 
 /** response of any mutation on the table "sessions" */
@@ -317,7 +324,7 @@ export type Sessions_Mutation_Response = {
 /** on conflict condition type for table "sessions" */
 export type Sessions_On_Conflict = {
   constraint: Sessions_Constraint
-  update_columns: Array<Sessions_Update_Column>
+  update_columns?: Array<Sessions_Update_Column>
   where?: Maybe<Sessions_Bool_Exp>
 }
 
@@ -466,18 +473,19 @@ export type Uuid_Comparison_Exp = {
   _nin?: Maybe<Array<Scalars['uuid']>>
 }
 
-/** input type for inserting data into table "sessions" */
-export type Sessions_Insert_Input = {
-  endDate?: Maybe<Scalars['timestamptz']>
-  name?: Maybe<Scalars['String']>
-  startDate?: Maybe<Scalars['timestamptz']>
-}
+export type AllSessionsQueryVariables = Exact<{ [key: string]: never }>
 
-export type SessionsQueryQueryVariables = Exact<{ [key: string]: never }>
-
-export type SessionsQueryQuery = {
+export type AllSessionsQuery = {
   sessions: Array<
     { __typename?: 'sessions' } & Pick<Sessions, 'id' | 'name' | 'startDate' | 'endDate'>
+  >
+}
+
+export type AllRunningSessionsQueryVariables = Exact<{ [key: string]: never }>
+
+export type AllRunningSessionsQuery = {
+  running_sessions: Array<
+    { __typename?: 'running_sessions' } & Pick<Running_Sessions, 'id' | 'name' | 'startDate'>
   >
 }
 
@@ -489,6 +497,21 @@ export type CreateSessionMutation = {
   insert_sessions_one?: Maybe<
     { __typename?: 'sessions' } & Pick<Sessions, 'id' | 'name' | 'startDate' | 'endDate'>
   >
+}
+
+export type CreateRunningSessionMutationVariables = Exact<{
+  input: Running_Sessions_Insert_Input
+}>
+
+export type CreateRunningSessionMutation = {
+  insert_running_sessions_one?: Maybe<
+    { __typename?: 'running_sessions' } & Pick<Running_Sessions, 'id' | 'name' | 'startDate'>
+  >
+}
+
+export type DeleteAllRunningSessionsMutationVariables = Exact<{ [key: string]: never }>
+
+export type DeleteAllRunningSessionsMutation = {
   delete_running_sessions?: Maybe<
     { __typename?: 'running_sessions_mutation_response' } & Pick<
       Running_Sessions_Mutation_Response,
@@ -497,24 +520,315 @@ export type CreateSessionMutation = {
   >
 }
 
-export type RunningSessionQueryVariables = Exact<{ [key: string]: never }>
-
-export type RunningSessionQuery = {
-  running_sessions: Array<
-    { __typename?: 'running_sessions' } & Pick<Running_Sessions, 'name' | 'startDate'>
-  >
-}
-
-export type StartSessionMutationVariables = Exact<{
-  input: Running_Sessions_Insert_Input
+export type DeleteSessionMutationVariables = Exact<{
+  input: Scalars['uuid']
 }>
 
-export type StartSessionMutation = {
-  insert_running_sessions_one?: Maybe<
-    { __typename?: 'running_sessions' } & Pick<Running_Sessions, 'id' | 'name' | 'startDate'>
+export type DeleteSessionMutation = {
+  delete_sessions_by_pk?: Maybe<
+    { __typename?: 'sessions' } & Pick<Sessions, 'id' | 'name' | 'startDate' | 'endDate'>
   >
 }
 
+export type SessionsQueryQueryVariables = Exact<{ [key: string]: never }>
+
+export type SessionsQueryQuery = {
+  sessions: Array<
+    { __typename?: 'sessions' } & Pick<Sessions, 'id' | 'name' | 'startDate' | 'endDate'>
+  >
+}
+
+export const AllSessionsDocument = gql`
+  query AllSessions {
+    sessions {
+      id
+      name
+      startDate
+      endDate
+    }
+  }
+`
+
+/**
+ * __useAllSessionsQuery__
+ *
+ * To run a query within a React component, call `useAllSessionsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAllSessionsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAllSessionsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useAllSessionsQuery(
+  baseOptions?: Apollo.QueryHookOptions<AllSessionsQuery, AllSessionsQueryVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<AllSessionsQuery, AllSessionsQueryVariables>(AllSessionsDocument, options)
+}
+export function useAllSessionsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<AllSessionsQuery, AllSessionsQueryVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<AllSessionsQuery, AllSessionsQueryVariables>(
+    AllSessionsDocument,
+    options,
+  )
+}
+export type AllSessionsQueryHookResult = ReturnType<typeof useAllSessionsQuery>
+export type AllSessionsLazyQueryHookResult = ReturnType<typeof useAllSessionsLazyQuery>
+export type AllSessionsQueryResult = Apollo.QueryResult<AllSessionsQuery, AllSessionsQueryVariables>
+export const AllRunningSessionsDocument = gql`
+  query AllRunningSessions {
+    running_sessions {
+      id
+      name
+      startDate
+    }
+  }
+`
+
+/**
+ * __useAllRunningSessionsQuery__
+ *
+ * To run a query within a React component, call `useAllRunningSessionsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAllRunningSessionsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAllRunningSessionsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useAllRunningSessionsQuery(
+  baseOptions?: Apollo.QueryHookOptions<AllRunningSessionsQuery, AllRunningSessionsQueryVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<AllRunningSessionsQuery, AllRunningSessionsQueryVariables>(
+    AllRunningSessionsDocument,
+    options,
+  )
+}
+export function useAllRunningSessionsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    AllRunningSessionsQuery,
+    AllRunningSessionsQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<AllRunningSessionsQuery, AllRunningSessionsQueryVariables>(
+    AllRunningSessionsDocument,
+    options,
+  )
+}
+export type AllRunningSessionsQueryHookResult = ReturnType<typeof useAllRunningSessionsQuery>
+export type AllRunningSessionsLazyQueryHookResult = ReturnType<
+  typeof useAllRunningSessionsLazyQuery
+>
+export type AllRunningSessionsQueryResult = Apollo.QueryResult<
+  AllRunningSessionsQuery,
+  AllRunningSessionsQueryVariables
+>
+export const CreateSessionDocument = gql`
+  mutation CreateSession($input: sessions_insert_input!) {
+    insert_sessions_one(object: $input) {
+      id
+      name
+      startDate
+      endDate
+    }
+  }
+`
+export type CreateSessionMutationFn = Apollo.MutationFunction<
+  CreateSessionMutation,
+  CreateSessionMutationVariables
+>
+
+/**
+ * __useCreateSessionMutation__
+ *
+ * To run a mutation, you first call `useCreateSessionMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateSessionMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createSessionMutation, { data, loading, error }] = useCreateSessionMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useCreateSessionMutation(
+  baseOptions?: Apollo.MutationHookOptions<CreateSessionMutation, CreateSessionMutationVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useMutation<CreateSessionMutation, CreateSessionMutationVariables>(
+    CreateSessionDocument,
+    options,
+  )
+}
+export type CreateSessionMutationHookResult = ReturnType<typeof useCreateSessionMutation>
+export type CreateSessionMutationResult = Apollo.MutationResult<CreateSessionMutation>
+export type CreateSessionMutationOptions = Apollo.BaseMutationOptions<
+  CreateSessionMutation,
+  CreateSessionMutationVariables
+>
+export const CreateRunningSessionDocument = gql`
+  mutation CreateRunningSession($input: running_sessions_insert_input!) {
+    insert_running_sessions_one(object: $input) {
+      id
+      name
+      startDate
+    }
+  }
+`
+export type CreateRunningSessionMutationFn = Apollo.MutationFunction<
+  CreateRunningSessionMutation,
+  CreateRunningSessionMutationVariables
+>
+
+/**
+ * __useCreateRunningSessionMutation__
+ *
+ * To run a mutation, you first call `useCreateRunningSessionMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateRunningSessionMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createRunningSessionMutation, { data, loading, error }] = useCreateRunningSessionMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useCreateRunningSessionMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    CreateRunningSessionMutation,
+    CreateRunningSessionMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useMutation<CreateRunningSessionMutation, CreateRunningSessionMutationVariables>(
+    CreateRunningSessionDocument,
+    options,
+  )
+}
+export type CreateRunningSessionMutationHookResult = ReturnType<
+  typeof useCreateRunningSessionMutation
+>
+export type CreateRunningSessionMutationResult = Apollo.MutationResult<CreateRunningSessionMutation>
+export type CreateRunningSessionMutationOptions = Apollo.BaseMutationOptions<
+  CreateRunningSessionMutation,
+  CreateRunningSessionMutationVariables
+>
+export const DeleteAllRunningSessionsDocument = gql`
+  mutation DeleteAllRunningSessions {
+    delete_running_sessions(where: {}) {
+      affected_rows
+    }
+  }
+`
+export type DeleteAllRunningSessionsMutationFn = Apollo.MutationFunction<
+  DeleteAllRunningSessionsMutation,
+  DeleteAllRunningSessionsMutationVariables
+>
+
+/**
+ * __useDeleteAllRunningSessionsMutation__
+ *
+ * To run a mutation, you first call `useDeleteAllRunningSessionsMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteAllRunningSessionsMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteAllRunningSessionsMutation, { data, loading, error }] = useDeleteAllRunningSessionsMutation({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useDeleteAllRunningSessionsMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    DeleteAllRunningSessionsMutation,
+    DeleteAllRunningSessionsMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useMutation<
+    DeleteAllRunningSessionsMutation,
+    DeleteAllRunningSessionsMutationVariables
+  >(DeleteAllRunningSessionsDocument, options)
+}
+export type DeleteAllRunningSessionsMutationHookResult = ReturnType<
+  typeof useDeleteAllRunningSessionsMutation
+>
+export type DeleteAllRunningSessionsMutationResult = Apollo.MutationResult<DeleteAllRunningSessionsMutation>
+export type DeleteAllRunningSessionsMutationOptions = Apollo.BaseMutationOptions<
+  DeleteAllRunningSessionsMutation,
+  DeleteAllRunningSessionsMutationVariables
+>
+export const DeleteSessionDocument = gql`
+  mutation DeleteSession($input: uuid!) {
+    delete_sessions_by_pk(id: $input) {
+      id
+      name
+      startDate
+      endDate
+    }
+  }
+`
+export type DeleteSessionMutationFn = Apollo.MutationFunction<
+  DeleteSessionMutation,
+  DeleteSessionMutationVariables
+>
+
+/**
+ * __useDeleteSessionMutation__
+ *
+ * To run a mutation, you first call `useDeleteSessionMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteSessionMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteSessionMutation, { data, loading, error }] = useDeleteSessionMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useDeleteSessionMutation(
+  baseOptions?: Apollo.MutationHookOptions<DeleteSessionMutation, DeleteSessionMutationVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useMutation<DeleteSessionMutation, DeleteSessionMutationVariables>(
+    DeleteSessionDocument,
+    options,
+  )
+}
+export type DeleteSessionMutationHookResult = ReturnType<typeof useDeleteSessionMutation>
+export type DeleteSessionMutationResult = Apollo.MutationResult<DeleteSessionMutation>
+export type DeleteSessionMutationOptions = Apollo.BaseMutationOptions<
+  DeleteSessionMutation,
+  DeleteSessionMutationVariables
+>
 export const SessionsQueryDocument = gql`
   query SessionsQuery {
     sessions {
@@ -564,148 +878,4 @@ export type SessionsQueryLazyQueryHookResult = ReturnType<typeof useSessionsQuer
 export type SessionsQueryQueryResult = Apollo.QueryResult<
   SessionsQueryQuery,
   SessionsQueryQueryVariables
->
-export const CreateSessionDocument = gql`
-  mutation createSession($input: sessions_insert_input!) {
-    insert_sessions_one(object: $input) {
-      id
-      name
-      startDate
-      endDate
-    }
-    delete_running_sessions(where: {}) {
-      affected_rows
-    }
-  }
-`
-export type CreateSessionMutationFn = Apollo.MutationFunction<
-  CreateSessionMutation,
-  CreateSessionMutationVariables
->
-
-/**
- * __useCreateSessionMutation__
- *
- * To run a mutation, you first call `useCreateSessionMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateSessionMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createSessionMutation, { data, loading, error }] = useCreateSessionMutation({
- *   variables: {
- *      input: // value for 'input'
- *   },
- * });
- */
-export function useCreateSessionMutation(
-  baseOptions?: Apollo.MutationHookOptions<CreateSessionMutation, CreateSessionMutationVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useMutation<CreateSessionMutation, CreateSessionMutationVariables>(
-    CreateSessionDocument,
-    options,
-  )
-}
-export type CreateSessionMutationHookResult = ReturnType<typeof useCreateSessionMutation>
-export type CreateSessionMutationResult = Apollo.MutationResult<CreateSessionMutation>
-export type CreateSessionMutationOptions = Apollo.BaseMutationOptions<
-  CreateSessionMutation,
-  CreateSessionMutationVariables
->
-export const RunningSessionDocument = gql`
-  query RunningSession {
-    running_sessions {
-      name
-      startDate
-    }
-  }
-`
-
-/**
- * __useRunningSessionQuery__
- *
- * To run a query within a React component, call `useRunningSessionQuery` and pass it any options that fit your needs.
- * When your component renders, `useRunningSessionQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useRunningSessionQuery({
- *   variables: {
- *   },
- * });
- */
-export function useRunningSessionQuery(
-  baseOptions?: Apollo.QueryHookOptions<RunningSessionQuery, RunningSessionQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useQuery<RunningSessionQuery, RunningSessionQueryVariables>(
-    RunningSessionDocument,
-    options,
-  )
-}
-export function useRunningSessionLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<RunningSessionQuery, RunningSessionQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useLazyQuery<RunningSessionQuery, RunningSessionQueryVariables>(
-    RunningSessionDocument,
-    options,
-  )
-}
-export type RunningSessionQueryHookResult = ReturnType<typeof useRunningSessionQuery>
-export type RunningSessionLazyQueryHookResult = ReturnType<typeof useRunningSessionLazyQuery>
-export type RunningSessionQueryResult = Apollo.QueryResult<
-  RunningSessionQuery,
-  RunningSessionQueryVariables
->
-export const StartSessionDocument = gql`
-  mutation startSession($input: running_sessions_insert_input!) {
-    insert_running_sessions_one(object: $input) {
-      id
-      name
-      startDate
-    }
-  }
-`
-export type StartSessionMutationFn = Apollo.MutationFunction<
-  StartSessionMutation,
-  StartSessionMutationVariables
->
-
-/**
- * __useStartSessionMutation__
- *
- * To run a mutation, you first call `useStartSessionMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useStartSessionMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [startSessionMutation, { data, loading, error }] = useStartSessionMutation({
- *   variables: {
- *      input: // value for 'input'
- *   },
- * });
- */
-export function useStartSessionMutation(
-  baseOptions?: Apollo.MutationHookOptions<StartSessionMutation, StartSessionMutationVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useMutation<StartSessionMutation, StartSessionMutationVariables>(
-    StartSessionDocument,
-    options,
-  )
-}
-export type StartSessionMutationHookResult = ReturnType<typeof useStartSessionMutation>
-export type StartSessionMutationResult = Apollo.MutationResult<StartSessionMutation>
-export type StartSessionMutationOptions = Apollo.BaseMutationOptions<
-  StartSessionMutation,
-  StartSessionMutationVariables
 >
