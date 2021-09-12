@@ -1,74 +1,122 @@
-import React, { ReactChild } from 'react'
-import {
-  XAxis,
-  YAxis,
-  Label,
-  ResponsiveContainer,
-  BarChart,
-  Bar,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-} from 'recharts'
-import PropTypes from 'prop-types'
-import Text from '../../components/Text'
+import React, { useEffect, useState } from 'react'
+import { XAxis, YAxis, ResponsiveContainer, BarChart, Bar, CartesianGrid, Tooltip } from 'recharts'
 import { stringToColour } from '../../util/stringToColour'
+import { startOfDay, endOfDay, addDays } from 'date-fns'
+import { DateRange } from 'react-date-range'
+import 'react-date-range/dist/styles.css'
+import 'react-date-range/dist/theme/default.css'
+import styles from './Chart.module.scss'
+import { GroupingFormat, useGenerateChartData } from './useGenerateChartData'
+import { Spinner } from 'components/Spinner/Spinner'
+import Select from '@material-ui/core/Select'
+import MenuItem from '@material-ui/core/MenuItem'
+import InputLabel from '@material-ui/core/InputLabel'
+import FormControl from '@material-ui/core/FormControl'
 
-function Title({ children }: { children: ReactChild }) {
-  return <Text variant="title">{children}</Text>
+const generateBars = (groupedData: any) => {
+  let bars: any = []
+  groupedData.map((task: any) => {
+    Object.keys(task).map((key) => {
+      if (key !== 'name') {
+        bars.push(<Bar key={key} dataKey={key} name={key} stackId="a" fill={stringToColour(key)} />)
+      }
+      return undefined
+    })
+    return undefined
+  })
+  return bars
 }
 
-interface ChartProps<T> {
-  sessions: T[]
-  title: string
-  names: string[]
-  formatter?: (value: T, index: number) => string
-}
-
-export default function Chart<T>({ sessions, title, names, formatter }: ChartProps<T>) {
-  const Bars = names.map((x: string) => (
-    <Bar key={x} dataKey={x} name={x} stackId="a" fill={stringToColour(x)} />
-  ))
+export default function Chart() {
+  const { dataForRange, groupRange, isLoading } = useGenerateChartData()
+  const [selection, setSelection] = useState({
+    startDate: startOfDay(new Date()),
+    endDate: endOfDay(new Date()),
+    key: 'selection',
+  })
+  const [groupingFormat, setGroupingFormat] = useState(GroupingFormat.DAY)
+  const [groupedData, setGroupedData] = useState(
+    groupRange(
+      dataForRange(startOfDay(selection.startDate), endOfDay(selection.endDate)),
+      groupingFormat,
+    ),
+  )
+  useEffect(() => {
+    if (!isLoading) {
+      setGroupedData(
+        groupRange(
+          dataForRange(startOfDay(selection.startDate), endOfDay(selection.endDate)),
+          groupingFormat,
+        ),
+      )
+    }
+  }, [isLoading])
+  if (isLoading) return <Spinner size={'10rem'} />
   return (
     <React.Fragment>
-      <Title>{title}</Title>
-      <ResponsiveContainer height="100%">
-        <BarChart
-          data={sessions}
-          margin={{
-            top: 16,
-            right: 16,
-            bottom: 0,
-            left: 10,
+      <FormControl>
+        <InputLabel id="select-grouping-label">Group By:</InputLabel>
+        <Select
+          labelId="select-grouping-label"
+          id="select-grouping"
+          value={groupingFormat}
+          onChange={(e: any) => {
+            setGroupingFormat(e.target.value)
+            setGroupedData(
+              groupRange(
+                dataForRange(startOfDay(selection.startDate), endOfDay(selection.endDate)),
+                e.target.value,
+              ),
+            )
           }}
         >
-          <XAxis dataKey="startDate" />
-          <YAxis tickFormatter={formatter}>
-            <Label position="left" style={{ textAnchor: 'middle' }} offset={0} angle={-90}>
-              Duration
-            </Label>
-          </YAxis>
-          <CartesianGrid strokeDasharray="3 3" />
-          <Legend />
-          <Tooltip formatter={formatter} />
-          {Bars}
-        </BarChart>
-      </ResponsiveContainer>
+          <MenuItem value={GroupingFormat.DAY}>Day</MenuItem>
+          <MenuItem value={GroupingFormat.WEEK}>Week</MenuItem>
+          <MenuItem value={GroupingFormat.MONTH}>Month</MenuItem>
+        </Select>
+      </FormControl>
+      <div className={styles.parent}>
+        <ResponsiveContainer className={styles.responsive}>
+          <BarChart
+            data={groupedData}
+            margin={{
+              top: 20,
+              right: 50,
+              left: 20,
+              bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            {generateBars(groupedData)}
+          </BarChart>
+        </ResponsiveContainer>
+        <DateRange
+          onChange={(item) => {
+            let dates = Object.assign({}, item.selection as any)
+            Object.assign(dates, {
+              startDate: startOfDay(dates.startDate),
+              endDate: endOfDay(dates.endDate),
+            })
+            setSelection(dates)
+            setGroupedData(
+              groupRange(
+                dataForRange(startOfDay(dates.startDate), endOfDay(dates.endDate)),
+                groupingFormat,
+              ),
+            )
+          }}
+          months={1}
+          direction="horizontal"
+          ranges={[selection]}
+          className={styles.dateRange}
+          rangeColors={['#5e5ce4']}
+          minDate={addDays(new Date(), -150)}
+          maxDate={addDays(new Date(), 150)}
+        />
+      </div>
     </React.Fragment>
   )
-}
-/**
- * The expected shape of the data is
- * sessions: {startDAte: String, task1: duration, task2: duration}
- * names: ['task1','task2']
- */
-Chart.propTypes = {
-  title: PropTypes.node,
-  names: PropTypes.arrayOf(PropTypes.string).isRequired,
-  formatter: PropTypes.func,
-  sessions: PropTypes.array,
-}
-Chart.defaultProps = {
-  sessions: [],
-  formatter: () => {},
 }
