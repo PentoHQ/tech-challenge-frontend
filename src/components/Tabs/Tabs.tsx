@@ -1,3 +1,6 @@
+import { useAuth0 } from '@auth0/auth0-react'
+import Button from '@material-ui/core/Button'
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import { AnimateSharedLayout, motion } from 'framer-motion'
 import React, { Children } from 'react'
 import capitalize from '../../util/capitaize'
@@ -42,6 +45,8 @@ function Tabs({
     noUnderline ? styles.noUnderline : '',
     className,
   ].join(' ')
+  const { logout } = useAuth0()
+
   return (
     <div className={classes}>
       <AnimateSharedLayout>
@@ -53,6 +58,16 @@ function Tabs({
           }),
         )}
       </AnimateSharedLayout>
+      <Button
+        variant="outlined"
+        color="primary"
+        size="medium"
+        startIcon={<ExitToAppIcon />}
+        onClick={() => logout()}
+        style={{ marginLeft: 'auto' }}
+      >
+        Log out
+      </Button>
     </div>
   )
 }
