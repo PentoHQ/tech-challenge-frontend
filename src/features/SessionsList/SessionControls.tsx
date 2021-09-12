@@ -5,7 +5,6 @@ import InputText from '../../components/InputText'
 import PlayButton from '../../components/PlayButton'
 import StopButton from '../../components/StopButton'
 import { useRunningSession } from './hooks'
-import CircularProgress from '@material-ui/core/CircularProgress'
 import Spinner from 'components/Spinner'
 
 interface RunningProps {

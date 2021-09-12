@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 import { ApolloProvider } from '@apollo/client'
 import createApolloClient from './createApolloClient'
-import CircularProgress from '@material-ui/core/CircularProgress'
 import Spinner from 'components/Spinner'
 
 function AuthWrapper({ children }: { children: React.ReactNode }) {
