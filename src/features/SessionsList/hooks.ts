@@ -18,6 +18,23 @@ export function useGetSessions() {
   }
 }
 
+export function useDeleteSession() {
+  const [deleteSession] = useDeleteSessionMutation()
+  return {
+    deleteSession: (id: string) => {
+      deleteSession({
+        variables: { input: id },
+        awaitRefetchQueries: true,
+        refetchQueries: [
+          {
+            query: getAllSessionsQuery,
+          },
+        ],
+      })
+    },
+  }
+}
+
 export function useUpdateSession() {
   const [updateSession] = useUpdateSessionMutation()
   return {
