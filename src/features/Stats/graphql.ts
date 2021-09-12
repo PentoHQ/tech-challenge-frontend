@@ -1,20 +1,10 @@
-import { useQuery, gql } from '@apollo/client'
-import { SessionsQueryQuery, SessionsQueryQueryVariables } from '../../generated/graphql'
-
-const sessionsQuery = gql`
-  query SessionsQuery {
-    sessions {
-      id
-      name
-      startDate
-      endDate
-    }
-  }
-`
+import { useQuery } from '@apollo/client'
+import { getAllSessionsQuery } from 'features/SessionsList/graphql'
+import { AllSessionsQuery, AllSessionsQueryVariables } from '../../generated/graphql'
 
 export function useGetSessions() {
-  const { data, loading, error } = useQuery<SessionsQueryQuery, SessionsQueryQueryVariables>(
-    sessionsQuery,
+  const { data, loading, error } = useQuery<AllSessionsQuery, AllSessionsQueryVariables>(
+    getAllSessionsQuery,
   )
   return { data, isLoading: loading, error }
 }

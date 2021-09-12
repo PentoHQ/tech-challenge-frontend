@@ -548,14 +548,6 @@ export type UpdateSessionMutation = {
   >
 }
 
-export type SessionsQueryQueryVariables = Exact<{ [key: string]: never }>
-
-export type SessionsQueryQuery = {
-  sessions: Array<
-    { __typename?: 'sessions' } & Pick<Sessions, 'id' | 'name' | 'startDate' | 'endDate'>
-  >
-}
-
 export const AllSessionsDocument = gql`
   query AllSessions {
     sessions {
@@ -897,54 +889,4 @@ export type UpdateSessionMutationResult = Apollo.MutationResult<UpdateSessionMut
 export type UpdateSessionMutationOptions = Apollo.BaseMutationOptions<
   UpdateSessionMutation,
   UpdateSessionMutationVariables
->
-export const SessionsQueryDocument = gql`
-  query SessionsQuery {
-    sessions {
-      id
-      name
-      startDate
-      endDate
-    }
-  }
-`
-
-/**
- * __useSessionsQueryQuery__
- *
- * To run a query within a React component, call `useSessionsQueryQuery` and pass it any options that fit your needs.
- * When your component renders, `useSessionsQueryQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useSessionsQueryQuery({
- *   variables: {
- *   },
- * });
- */
-export function useSessionsQueryQuery(
-  baseOptions?: Apollo.QueryHookOptions<SessionsQueryQuery, SessionsQueryQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useQuery<SessionsQueryQuery, SessionsQueryQueryVariables>(
-    SessionsQueryDocument,
-    options,
-  )
-}
-export function useSessionsQueryLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<SessionsQueryQuery, SessionsQueryQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useLazyQuery<SessionsQueryQuery, SessionsQueryQueryVariables>(
-    SessionsQueryDocument,
-    options,
-  )
-}
-export type SessionsQueryQueryHookResult = ReturnType<typeof useSessionsQueryQuery>
-export type SessionsQueryLazyQueryHookResult = ReturnType<typeof useSessionsQueryLazyQuery>
-export type SessionsQueryQueryResult = Apollo.QueryResult<
-  SessionsQueryQuery,
-  SessionsQueryQueryVariables
 >
