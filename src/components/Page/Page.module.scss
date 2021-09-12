@@ -6,8 +6,21 @@
   flex-direction: column;
   height: 100%;
   margin: 0 auto;
-  max-width: var(--page-width);
   padding: $padding24;
+  @include sm {
+    max-width: $max-width-sm;
+  }
+  @include md {
+    max-width: $max-width-md;
+  }
+
+  @include lg {
+    max-width: $max-width-lg;
+  }
+
+  @include xl {
+    max-width: $max-width-xl;
+  }
 }
 
 .pageBody {
