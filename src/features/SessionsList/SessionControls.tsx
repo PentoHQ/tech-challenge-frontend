@@ -6,6 +6,7 @@ import PlayButton from '../../components/PlayButton'
 import StopButton from '../../components/StopButton'
 import { useRunningSession } from './hooks'
 import CircularProgress from '@material-ui/core/CircularProgress'
+import Spinner from 'components/Spinner'
 
 interface RunningProps {
   name: string
@@ -26,12 +27,7 @@ function RunningSession({ name, startDate }: RunningProps) {
 
 export default function SessionControls() {
   const { isLoading, runningSession } = useRunningSession()
-  if (isLoading)
-    return (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <CircularProgress />
-      </div>
-    )
+  if (isLoading) return <Spinner />
   return runningSession ? (
     <RunningSession name={runningSession.name} startDate={new Date(runningSession.startDate)} />
   ) : (

@@ -3,6 +3,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { ApolloProvider } from '@apollo/client'
 import createApolloClient from './createApolloClient'
 import CircularProgress from '@material-ui/core/CircularProgress'
+import Spinner from 'components/Spinner'
 
 function AuthWrapper({ children }: { children: React.ReactNode }) {
   const { getAccessTokenSilently } = useAuth0()
@@ -15,7 +16,7 @@ function AuthWrapper({ children }: { children: React.ReactNode }) {
       .finally(() => setIsLoading(false))
   }, [getAccessTokenSilently])
 
-  if (isLoading) return <CircularProgress />
+  if (isLoading) return <Spinner />
   const client = createApolloClient(token)
   return <ApolloProvider client={client}>{children}</ApolloProvider>
 }
