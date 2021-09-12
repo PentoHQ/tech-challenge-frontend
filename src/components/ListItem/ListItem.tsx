@@ -4,8 +4,9 @@ import IconButton from '@material-ui/core/IconButton'
 import EditIcon from '@material-ui/icons/Edit'
 import ClearIcon from '@material-ui/icons/Clear'
 import CheckIcon from '@material-ui/icons/Check'
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever'
 import { DateTimePicker } from '@material-ui/pickers'
-import { useUpdateSession } from 'features/SessionsList/hooks'
+import { useDeleteSession, useUpdateSession } from 'features/SessionsList/hooks'
 
 export interface ListItemProps {
   /**
@@ -81,10 +82,21 @@ export const ListItem = ({
   const [endDate, setEndDate] = useState(new Date(sessionData?.endDate))
 
   const { updateSession } = useUpdateSession()
+  const { deleteSession } = useDeleteSession()
 
   if (editMode) {
     return (
       <li className={classes} {...props} style={{ columnGap: '1rem' }}>
+        <IconButton
+          color="primary"
+          aria-label="Delete session"
+          component="span"
+          onClick={() => {
+            deleteSession(sessionData.id)
+          }}
+        >
+          <DeleteForeverIcon />
+        </IconButton>
         <div className={styles.text}>
           <input className={styles.title} value={name} onChange={(e) => setName(e.target.value)} />
         </div>
