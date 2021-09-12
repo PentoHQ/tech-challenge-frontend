@@ -1,4 +1,5 @@
 @import './inter/inter.css';
+@import 'common.scss';
 @import-normalize;
 
 * {
@@ -23,6 +24,3 @@ body,
   width: 100%;
 }
 
-:root {
-  --page-width: 800px;
-}
