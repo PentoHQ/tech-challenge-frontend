@@ -1,9 +1,11 @@
 import { useAuth0 } from '@auth0/auth0-react'
+import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import { AnimateSharedLayout, motion } from 'framer-motion'
 import React, { Children } from 'react'
 import capitalize from '../../util/capitaize'
+import { useGetUserProfile } from './hooks'
 import styles from './Tabs.module.scss'
 
 export interface TabsProps {
@@ -46,6 +48,7 @@ function Tabs({
     className,
   ].join(' ')
   const { logout } = useAuth0()
+  const { avatarURL } = useGetUserProfile()
 
   return (
     <div className={classes}>
@@ -65,6 +68,13 @@ function Tabs({
         startIcon={<ExitToAppIcon />}
         onClick={() => logout()}
         style={{ marginLeft: 'auto' }}
+        endIcon={
+          <Avatar
+            alt="profile"
+            src={avatarURL || ''}
+            style={{ width: '2.5rem', height: '2.5rem' }}
+          />
+        }
       >
         Log out
       </Button>
