@@ -88,7 +88,7 @@ export default function Chart() {
           >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
-            <YAxis />
+            <YAxis label={{ value: 'Hours worked', position: 'insideLeft', angle: -90, dy: 50 }} />
             <Tooltip />
             {generateBars(groupedData)}
           </BarChart>
