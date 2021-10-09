@@ -2,6 +2,7 @@ import { Auth0Provider } from '@auth0/auth0-react'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from 'src/App'
+import { Toaster } from 'react-hot-toast'
 import auth0 from 'src/auth0'
 import reportWebVitals from 'src/reportWebVitals'
 import 'src/styles/index.scss'
@@ -16,6 +17,7 @@ ReactDOM.render(
       cacheLocation="localstorage"
     >
       <App />
+      <Toaster />
     </Auth0Provider>
   </React.StrictMode>,
   document.getElementById('root'),

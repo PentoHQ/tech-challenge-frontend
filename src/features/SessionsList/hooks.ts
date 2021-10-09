@@ -1,17 +1,24 @@
+import { handleError } from 'src/util/handleError'
 import {
   useCreateSessionMutation,
   useRunningSessionQuery,
   useSessionsQueryQuery,
   useStartSessionMutation,
-} from '../../generated/graphql'
+} from 'src/generated/graphql'
 import { runningQuery, getSessionsQuery } from './graphql'
 
-export function useGetSessions() {
-  const { data, loading, error } = useSessionsQueryQuery()
+export const useGetSessions = () => {
+  const { data, loading } = useSessionsQueryQuery({
+    onError: (error) => {
+      handleError({
+        error,
+      })
+    },
+  })
+
   return {
     data,
     isLoading: loading,
-    error,
   }
 }
 
