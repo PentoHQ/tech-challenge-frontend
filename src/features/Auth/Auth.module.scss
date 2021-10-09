@@ -11,15 +11,19 @@
   align-items: center;
   padding: C.$padding40;
   .logo {
-    margin: $padding40 0;
+    margin-bottom: $padding40;
     height: 200px;
+    object-fit: contain;
+  }
+  .title {
+    font-size: 2rem;
+    margin-bottom: $padding40;
   }
   button {
     @extend %button;
     color: $white;
-    border: 1px solid $primary20;
-    font-size: 4rem;
-    padding: C.$padding8;
-    background-color: $primary20;
+    font-size: 1rem;
+    padding: C.$padding12 C.$padding24;
+    background-color: $primary70;
   }
 }
