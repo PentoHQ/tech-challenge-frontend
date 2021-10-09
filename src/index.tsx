@@ -1,13 +1,10 @@
+import { Auth0Provider } from '@auth0/auth0-react'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './styles/index.scss'
-import App from './App'
-import reportWebVitals from './reportWebVitals'
-import { BrowserRouter as Router } from 'react-router-dom'
-import { Auth0Provider } from '@auth0/auth0-react'
-import auth0 from './auth0'
-import AuthWrapper from './features/Auth/AuthWrapper'
-import ApolloWrapper from './features/Apollo/ApolloWrapper'
+import App from 'src/App'
+import auth0 from 'src/auth0'
+import reportWebVitals from 'src/reportWebVitals'
+import 'src/styles/index.scss'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -18,13 +15,7 @@ ReactDOM.render(
       audience="pento-time-track"
       cacheLocation="localstorage"
     >
-      <AuthWrapper>
-        <ApolloWrapper>
-          <Router>
-            <App />
-          </Router>
-        </ApolloWrapper>
-      </AuthWrapper>
+      <App />
     </Auth0Provider>
   </React.StrictMode>,
   document.getElementById('root'),
