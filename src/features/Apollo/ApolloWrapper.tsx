@@ -1,12 +1,20 @@
-import React, { useEffect, useState } from 'react'
-import { useAuth0 } from '@auth0/auth0-react'
 import { ApolloProvider } from '@apollo/client'
+import { useAuth0 } from '@auth0/auth0-react'
+import type { ReactNode } from 'react'
+import { useEffect, useState } from 'react'
+import Loading from 'src/components/Loading'
 import createApolloClient from './createApolloClient'
 
-function AuthWrapper({ children }: { children: React.ReactNode }) {
+type Props = {
+  children: ReactNode
+}
+
+const ApolloWrapper = ({ children }: Props): JSX.Element => {
   const { getAccessTokenSilently } = useAuth0()
   const [token, setToken] = useState('null')
   const [isLoading, setIsLoading] = useState(true)
+
+  const client = createApolloClient(token)
 
   useEffect(() => {
     getAccessTokenSilently()
@@ -14,9 +22,9 @@ function AuthWrapper({ children }: { children: React.ReactNode }) {
       .finally(() => setIsLoading(false))
   }, [getAccessTokenSilently])
 
-  if (isLoading) return <div>Loading...</div>
-  const client = createApolloClient(token)
+  if (isLoading) return <Loading />
+
   return <ApolloProvider client={client}>{children}</ApolloProvider>
 }
 
-export default AuthWrapper
+export default ApolloWrapper

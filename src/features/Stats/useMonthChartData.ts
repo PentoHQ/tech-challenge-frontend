@@ -1,7 +1,8 @@
 import { format } from 'date-fns/fp'
-import { useSessionsQueryQuery } from '../../generated/graphql'
-import { Session } from '../../types'
-import { diffDateStrings } from '../../util/diffDateStrings'
+import { useSessionsQueryQuery } from 'src/generated/graphql'
+import type { Session } from 'src/types'
+import { diffDateStrings } from 'src/util/diffDateStrings'
+import { handleError } from 'src/util/handleError'
 
 const formatWeek = format('Io')
 
@@ -35,9 +36,14 @@ function groupSessionsByWeek(sessions: Session[]) {
 }
 
 export function useMonthChartData() {
-  const { data, loading, error } = useSessionsQueryQuery()
+  const { data, loading } = useSessionsQueryQuery({
+    onError: (error) => {
+      handleError({ error })
+    },
+  })
   // We need to type this data or TS will infer it as names: string[] | never[]
   const defaultData: { names: string[]; sessions: WeekData[] } = { names: [], sessions: [] }
-  if (!data || loading) return { ...defaultData, error, loading }
-  return { ...groupSessionsByWeek(data.sessions), error, loading }
+
+  if (!data || loading) return { ...defaultData, loading }
+  return { ...groupSessionsByWeek(data.sessions), loading }
 }
