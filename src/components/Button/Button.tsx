@@ -26,6 +26,7 @@ export interface ButtonProps {
   onClick?: () => void
   whileTap?: Target
   disabled?: boolean
+  type?: 'submit' | 'button' | 'reset'
 }
 
 /**
@@ -37,6 +38,7 @@ export const Button = ({
   className = '',
   children,
   disabled,
+  type = 'button',
   ...props
 }: ButtonProps) => {
   const classes = [
@@ -49,7 +51,7 @@ export const Button = ({
     .join(' ')
     .trim()
   return (
-    <motion.button type="button" className={classes} disabled={disabled} {...props}>
+    <motion.button type={type} className={classes} disabled={disabled} {...props}>
       {children}
     </motion.button>
   )
