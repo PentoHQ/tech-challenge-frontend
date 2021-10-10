@@ -1,6 +1,23 @@
-.App {
+@use 'common' as C;
+@use 'colors' as *;
+@import './components/Button/ButtonBase';
+
+.APP {
+  height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  padding: $padding80 $padding16;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  .logout {
+    @extend %button;
+    margin-left: auto;
+    color: $white;
+    font-size: 1rem;
+    padding: C.$padding12 C.$padding24;
+    background-color: $primary70;
+  }
 }
