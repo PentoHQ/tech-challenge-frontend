@@ -1,5 +1,4 @@
-import React, { ReactChild } from 'react'
-import FormRow from '../FormRow'
+import { ReactChild } from 'react'
 import styles from './ListItem.module.scss'
 
 export interface ListItemProps {
