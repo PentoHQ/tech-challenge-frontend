@@ -9,11 +9,12 @@ import { diffDateStrings } from 'src/util/diffDateStrings'
 import { msToHuman } from 'src/util/formatters/formatDateDiff'
 import { useGetSessions, useSwitchSession } from './hooks'
 import SessionControls from './SessionControls'
+import styles from './SessionList.module.scss'
 
 const RowAction = ({ name }: { name: string }): JSX.Element => {
   const switchSession = useSwitchSession()
 
-  return <PlayButton size="small" onClick={() => switchSession(name)}></PlayButton>
+  return <PlayButton onClick={() => switchSession(name)}></PlayButton>
 }
 
 const SessionsListPage = (): JSX.Element => {
@@ -28,7 +29,7 @@ const SessionsListPage = (): JSX.Element => {
       <Spacer pb={4}>
         <SessionControls />
       </Spacer>
-      <RawCard>
+      <RawCard className={styles.list}>
         <List>
           {data?.sessions.map(({ id, name, startDate, endDate }) => (
             <ListItem
