@@ -1,4 +1,5 @@
 import React, { ReactChild } from 'react'
+import FormRow from '../FormRow'
 import styles from './ListItem.module.scss'
 
 export interface ListItemProps {
@@ -63,11 +64,13 @@ export const ListItem = ({
     .trim()
   return (
     <li className={classes} {...props}>
-      <div className={styles.text}>
-        <div className={styles.title}>{title}</div>
-        <div className={styles.subtitle}>{subtitle}</div>
-      </div>
-      {action && <div className={styles.action}>{action}</div>}
+      <FormRow alignY="center" stretchLastChild={false}>
+        <div className={styles.text}>
+          <div className={styles.title}>{title}</div>
+          <div className={styles.subtitle}>{subtitle}</div>
+        </div>
+        <div className={styles.action}>{action}</div>
+      </FormRow>
     </li>
   )
 }
