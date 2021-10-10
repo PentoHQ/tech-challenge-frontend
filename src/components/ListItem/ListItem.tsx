@@ -64,13 +64,11 @@ export const ListItem = ({
     .trim()
   return (
     <li className={classes} {...props}>
-      <FormRow alignY="center" stretchLastChild={false}>
-        <div className={styles.text}>
-          <div className={styles.title}>{title}</div>
-          <div className={styles.subtitle}>{subtitle}</div>
-        </div>
-        <div className={styles.action}>{action}</div>
-      </FormRow>
+      <div className={styles.text}>
+        <div className={styles.title}>{title}</div>
+        <div className={styles.subtitle}>{subtitle}</div>
+      </div>
+      {action}
     </li>
   )
 }
