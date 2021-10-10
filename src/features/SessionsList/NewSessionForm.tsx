@@ -36,6 +36,7 @@ const NewSessionForm = (): JSX.Element => {
           {...register('sessionName', {
             required: ERROR_MESSAGES.REQUIRED,
           })}
+          disabled={isLoading}
           required
         />
         <PlayButton disabled={isLoading || !isValid} type="submit" />
