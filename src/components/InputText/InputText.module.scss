@@ -5,6 +5,7 @@ $defaultInputColor: $grey90;
 .wrapper {
   display: flex;
   flex-direction: column;
+  position: relative;
   font: $text14Regular;
   font-family: $primaryFont;
   font-weight: $mediumFontWeight;
@@ -14,12 +15,6 @@ $defaultInputColor: $grey90;
     font: $interface14Medium;
     color: $grey80;
     white-space: nowrap;
-    span {
-      padding-left: 2px;
-      color: $grey60;
-      text-align: right;
-      font-weight: $regularFontWeight;
-    }
   }
 
   input {
@@ -35,17 +30,10 @@ $defaultInputColor: $grey90;
       color: $grey50;
     }
   }
-}
 
-.primary {
-  color: $primary90;
-}
-.secondary {
-  color: $grey70;
-}
-.success {
-  color: $success70;
-}
-.danger {
-  color: $danger90;
+  .errorMessage {
+    position: absolute;
+    bottom: -$padding24;
+    color: $danger60;
+  }
 }
