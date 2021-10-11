@@ -1,6 +1,7 @@
 import { Children, ReactChild } from 'react'
 import styles from './FormRow.module.scss'
 import Button from '../Button'
+import clsx from 'clsx'
 
 type AlignY = 'center' | 'bottom' | 'top' | 'baseline'
 
@@ -65,25 +66,24 @@ function FormRow({
   childSpacing,
   sizeEvenly,
 }: Props) {
-  const classes = [
+  const classes = clsx(
     styles.wrapper,
-    compact ? styles.compact : '',
-    stretchChildren ? styles.fill : '',
-    childSpacing === 'compact' ? styles.spacing1 : '',
-    sizeEvenly ? styles.sizeEvenly : '',
+    {
+      [styles.compact]: compact,
+      [styles.fill]: stretchChildren,
+      [styles.spacing1]: childSpacing === 'compact',
+      [styles.sizeEvenly]: sizeEvenly,
+    },
     alignYStyles[alignY],
-    stretchLastChild === false ? styles.doNotStretchLastChild : '',
-    align === 'left'
-      ? styles.leftAlign
-      : align === 'center'
-      ? styles.centered
-      : align === 'sides'
-      ? styles.sides
-      : '',
+    {
+      [styles.doNotStretchLastChild]: !stretchLastChild,
+      [styles.leftAlign]: align === 'left',
+      [styles.centered]: align === 'center',
+      [styles.sides]: align === 'sides',
+    },
     className,
-  ]
-    .join(' ')
-    .trim()
+  )
+
   return (
     <div className={classes}>
       {Children.map(

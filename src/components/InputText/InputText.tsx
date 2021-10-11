@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import capitalize from '../../util/capitaize'
 import styles from './InputText.module.scss'
 
@@ -30,7 +31,7 @@ export const InputText = ({
   onChange,
   ...props
 }: InputProps) => {
-  const classes = [styles.wrapper, className].join(' ').trim()
+  const classes = clsx(styles.wrapper, className)
   return (
     <div className={classes}>
       {text && <label className={styles.label}>{capitalize(text)}</label>}

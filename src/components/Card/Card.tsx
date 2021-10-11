@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { ReactElement, cloneElement, ReactNode } from 'react'
 import styles from './Card.module.scss'
 
@@ -10,7 +11,8 @@ type Props = {
 }
 
 function Card({ className, children, footer, bgColor }: Props) {
-  const classes = [styles.wrapper, bgColor === 'grey' ? styles.greyBg : '', className].join(' ')
+  const classes = clsx(styles.wrapper, { [styles.greyBg]: bgColor === 'grey' }, className)
+
   if (footer && footer.props) {
     const footerClasses = footer.props.className || ''
     footer = cloneElement(footer, {
@@ -39,7 +41,7 @@ type ContentProps = {
 }
 
 export function CardContent({ className, children, compact }: ContentProps) {
-  const classes = [styles.content, compact ? styles.compact : '', className].join(' ').trim()
+  const classes = clsx(styles.content, { [styles.compact]: compact }, className)
   return <div className={classes}>{children}</div>
 }
 
@@ -53,7 +55,7 @@ type HeaderProps = {
 }
 
 export function CardHeader({ className, children, compact }: HeaderProps) {
-  const classes = [styles.header, compact ? styles.compact : '', className].join(' ').trim()
+  const classes = clsx(styles.header, { [styles.compact]: compact }, className)
   return <div className={classes}>{children}</div>
 }
 
@@ -68,13 +70,12 @@ type RawProps = {
   bgColor: BackgroundColor
 }
 export function RawCard({ className, bgColor, children }: RawProps) {
-  const classes = [
+  const classes = clsx(
     styles.wrapper,
     styles.rawCard,
-    bgColor === 'grey' ? styles.greyBg : '',
-
+    { [styles.greyBg]: bgColor === 'grey' },
     className,
-  ].join(' ')
+  )
   return <div className={classes}>{children}</div>
 }
 
@@ -84,7 +85,7 @@ RawCard.defaultProps = {
 }
 
 export function CardDivider({ className = '' }: { className?: string }) {
-  const classes = [styles.divider, className].join(' ')
+  const classes = clsx(styles.divider, className)
   return <div className={classes}></div>
 }
 

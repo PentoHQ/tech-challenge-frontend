@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import React from 'react'
 import styles from './List.module.scss'
 
@@ -33,7 +34,13 @@ export const List = ({
   children,
   ...props
 }: ListProps) => {
-  const classes = [styles.wrapper, disablePadding ? '' : styles.padding, className].join(' ').trim()
+  const classes = clsx(
+    styles.wrapper,
+    {
+      [styles.padding]: !disablePadding,
+    },
+    className,
+  )
   return (
     <ul className={classes} {...props}>
       {children}

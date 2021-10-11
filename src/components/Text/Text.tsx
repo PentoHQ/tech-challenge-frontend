@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { ReactChild } from 'react'
 import styles from './Text.module.scss'
 import type { TextColor } from './textColorTypes'
@@ -63,23 +64,23 @@ function Text({
   className,
   children,
   variant,
-  inline,
+  inline = false,
   color,
-  strikethrough,
-  preservesLines,
+  strikethrough = false,
+  preservesLines = false,
 }: TextProps) {
-  const classes = [
+  const classes = clsx(
     styles.wrapper,
     matchVariant(variant),
     // Color matches 100% the styles because they are generated automatically
-    color ? styles[color] : '',
-    inline ? '' : styles.flex,
-    strikethrough ? styles.strikethrough : '',
-    preservesLines ? styles.preservesLines : '',
+    color && styles[color],
+    {
+      [styles.flex]: !inline,
+      [styles.strikethrough]: strikethrough,
+      [styles.preservesLines]: preservesLines,
+    },
     className,
-  ]
-    .join(' ')
-    .trim()
+  )
   return <span className={classes}>{children}</span>
 }
 

@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { ReactChild } from 'react'
 import styles from './Spacer.module.scss'
 
@@ -54,21 +55,22 @@ type Props = {
  * If you need anything more than basic spacing, do not use this component
  */
 function Spacer({ m, mr, ml, mt, mb, p, pt, pb, pr, pl, children, className }: Props) {
-  const classes = [
-    mr ? styles[`mr${mr}`] : '',
-    ml ? styles[`ml${ml}`] : '',
-    mt ? styles[`mt${mt}`] : '',
-    mb ? styles[`mb${mb}`] : '',
-    m ? styles[`m${m}`] : '',
-    p ? styles[`p${p}`] : '',
-    pt ? styles[`pt${pt}`] : '',
-    pb ? styles[`pb${pb}`] : '',
-    pr ? styles[`pr${pr}`] : '',
-    pl ? styles[`pl${pl}`] : '',
+  const classes = clsx(
+    {
+      [styles[`mr${mr}`]]: Boolean(mr),
+      [styles[`ml${ml}`]]: Boolean(ml),
+      [styles[`mt${mt}`]]: Boolean(mt),
+      [styles[`mb${mb}`]]: Boolean(mb),
+      [styles[`m${m}`]]: Boolean(m),
+      [styles[`p${p}`]]: Boolean(p),
+      [styles[`pt${pt}`]]: Boolean(pt),
+      [styles[`pb${pb}`]]: Boolean(pb),
+      [styles[`pr${pr}`]]: Boolean(pr),
+      [styles[`pl${pl}`]]: Boolean(pl),
+    },
     className,
-  ]
-    .join(' ')
-    .trim()
+  )
+
   return <div className={classes}>{children}</div>
 }
 

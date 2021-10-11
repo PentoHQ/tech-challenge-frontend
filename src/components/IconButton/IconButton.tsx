@@ -2,6 +2,7 @@ import Button, { ButtonProps } from '../Button'
 import styles from './IconButton.module.scss'
 import { motion } from 'framer-motion'
 import { ReactChild } from 'react'
+import clsx from 'clsx'
 
 export interface IconButtonProps extends Partial<ButtonProps> {
   /**
@@ -26,7 +27,7 @@ export const IconButton = ({
   children,
   ...props
 }: IconButtonProps) => {
-  const classes = [styles.iconBtn, styles[size], className].join(' ').trim()
+  const classes = clsx(styles.iconBtn, styles[size], className)
   return (
     <motion.div>
       <Button className={classes} color={color} {...props} whileTap={{ scale: 0.8 }}>

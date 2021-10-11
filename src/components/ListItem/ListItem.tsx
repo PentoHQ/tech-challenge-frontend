@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import React, { ReactChild } from 'react'
 import styles from './ListItem.module.scss'
 
@@ -52,15 +53,15 @@ export const ListItem = ({
   action,
   ...props
 }: ListItemProps) => {
-  const classes = [
+  const classes = clsx(
     styles.wrapper,
-    dense ? styles.dense : '',
-    disabled ? styles.disabled : '',
-    disableGutters ? '' : styles.gutters,
+    {
+      [styles.dense]: dense,
+      [styles.disabled]: disabled,
+      [styles.gutters]: !disableGutters,
+    },
     className,
-  ]
-    .join(' ')
-    .trim()
+  )
   return (
     <li className={classes} {...props}>
       <div className={styles.text}>

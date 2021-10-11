@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { motion, Target } from 'framer-motion'
 import React from 'react'
 import styles from './Button.module.scss'
@@ -39,15 +40,14 @@ export const Button = ({
   disabled,
   ...props
 }: ButtonProps) => {
-  const classes = [
+  const classes = clsx(
     styles.wrapper,
     styles[color],
     styles[size],
-    disabled ? styles.disabled : '',
+    { [styles.disabled]: disabled },
     className,
-  ]
-    .join(' ')
-    .trim()
+  )
+
   return (
     <motion.button type="button" className={classes} disabled={disabled} {...props}>
       {children}

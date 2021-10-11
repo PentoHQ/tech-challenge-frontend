@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { AnimateSharedLayout, motion } from 'framer-motion'
 import React, { Children } from 'react'
 import capitalize from '../../util/capitaize'
@@ -36,12 +37,14 @@ function Tabs({
   size,
   noUnderline,
 }: TabsProps) {
-  const classes = [
+  const classes = clsx(
     styles.wrapper,
-    size === 'large' ? styles.tallTabs : '',
-    noUnderline ? styles.noUnderline : '',
+    {
+      [styles.tallTabs]: size === 'large',
+      [styles.noUnderline]: noUnderline,
+    },
     className,
-  ].join(' ')
+  )
   return (
     <div className={classes}>
       <AnimateSharedLayout>
@@ -92,7 +95,14 @@ export const Tab = ({
   className = '',
   ...props
 }: TabProps) => {
-  const classes = [styles.tab, isActive ? styles.active : '', className].join(' ').trim()
+  const classes = clsx(
+    styles.tab,
+    {
+      [styles.active]: isActive,
+    },
+    className,
+  )
+
   return (
     <div className={styles.tabWrapper}>
       <Component {...props} className={classes}>

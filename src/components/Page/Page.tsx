@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { ReactChild } from 'react'
 import styles from './Page.module.scss'
 
@@ -17,7 +18,7 @@ export interface PageProps {
  * Primary UI component for user interaction
  */
 export const Page = ({ className = '', children, ...props }: PageProps) => {
-  const classes = [styles.wrapper, className].join(' ').trim()
+  const classes = clsx(styles.wrapper, className)
   return (
     <div className={classes} {...props}>
       {children}
