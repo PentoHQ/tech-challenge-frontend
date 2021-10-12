@@ -1,3 +1,4 @@
+import Spinner from 'components/Spinner'
 import { RawCard } from '../../components/Card'
 import List from '../../components/List'
 import ListItem from '../../components/ListItem'
@@ -8,6 +9,7 @@ import { diffDateStrings } from '../../util/diffDateStrings'
 import { msToHuman } from '../../util/formatters/formatDateDiff'
 import { useGetSessions, useSwitchSession } from './hooks'
 import SessionControls from './SessionControls'
+import styles from './Page.module.scss'
 
 function RowAction({ name }: { name: string }) {
   const switchSession = useSwitchSession()
@@ -16,6 +18,7 @@ function RowAction({ name }: { name: string }) {
 
 export default function SessionsListPage(props: any) {
   const { data, isLoading, error } = useGetSessions()
+
   return (
     <PageBody>
       <Spacer pb={4}>
@@ -23,7 +26,7 @@ export default function SessionsListPage(props: any) {
       </Spacer>
       <RawCard>
         {isLoading ? (
-          'Loading'
+          <Spinner className={styles.spinner} size="large" />
         ) : error ? (
           error.message
         ) : (

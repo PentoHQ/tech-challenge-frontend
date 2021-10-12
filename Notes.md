@@ -10,3 +10,4 @@ But don't forget to commit it with the rest of your code 😄
   - TODO: update the components generator with the new wway to combine classes
 
 - Added component `Spinner` to be used as an indeterminate loading indicator
+- Replaced 'loading...' text with centered spinner in SessionList
