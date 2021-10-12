@@ -1,0 +1,44 @@
+@import 'common.scss';
+@import 'colors.scss';
+
+.wrapper {
+  display: flex;
+  font-family: $primaryFont;
+  font-weight: $mediumFontWeight;
+  font: $text14Regular;
+
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+
+  justify-content: center;
+  align-items: center;
+
+  background-color: $grey40;
+  opacity: 0.7;
+  visibility: visible;
+
+  transition: visibility 0s, opacity 0.3s ease;
+
+  z-index: 9000;
+
+  &.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.primary {
+  color: $primary90;
+}
+.secondary {
+  color: $grey70;
+}
+.success {
+  color: $success70;
+}
+.danger {
+  color: $danger90;
+}

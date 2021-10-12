@@ -6,8 +6,7 @@ Feel free to structure it anyway you want, with as many sections as you wish, ma
 But don't forget to commit it with the rest of your code 😄
 
 - Added package `clsx` to make className composition more readable
-
-  - TODO: update the components generator with the new wway to combine classes
-
+  - **TODO**: update the components generator with the new way to combine classes
 - Added component `Spinner` to be used as an indeterminate loading indicator
-- Replaced 'loading...' text with centered spinner in SessionList
+- Replaced 'loading...' text with centered `Spinner` in `SessionList`
+- Added component `Backdrop` to be used later with global spinners and modals
