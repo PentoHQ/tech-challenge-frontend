@@ -2,6 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import Spinner from './Spinner'
 import { SpinnerProps } from '.'
+import Backdrop from 'components/Backdrop'
 
 function getWrapper(props: SpinnerProps) {
   return shallow(<Spinner {...props} />)
@@ -38,5 +39,20 @@ describe('<Spinner/>', () => {
 
     const secondaryWrapper = getWrapper({ color: 'secondary' })
     expect(secondaryWrapper.hasClass('secondary')).toBeTruthy()
+  })
+
+  it('renders wrapped in a Backdrop if withBackdrop is true', () => {
+    const wrapper = getWrapper({ withBackdrop: true })
+
+    const foundBackdrops = wrapper.find(Backdrop)
+    expect(foundBackdrops.length).toBe(1)
+
+    const spinner = foundBackdrops.children()
+    expect(spinner.hasClass('spinner')).toBeTruthy()
+  })
+
+  it('Backdrop should have additional props if provided', () => {
+    const wrapper = getWrapper({ withBackdrop: true, backdropProps: { backgroundColor: 'green' } })
+    expect(wrapper.find(Backdrop).props().backgroundColor).toBe('green')
   })
 })

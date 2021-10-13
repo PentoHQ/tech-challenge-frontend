@@ -14,3 +14,4 @@ But don't forget to commit it with the rest of your code 😄
   - **TODO**: evaluate usage of `momentjs` to avoid reinventing the wheel
 - Added component `ElapsedTime` to be used in the `RunningSession`
 - Added `Spinner` to `SessionControls` loading
+- Added possibility to render `Spinner` inside a `Backdrop` component to block the interactions with the underlying UI

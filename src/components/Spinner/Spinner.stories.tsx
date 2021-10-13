@@ -38,3 +38,16 @@ export const Small = Template.bind({})
 Small.args = {
   size: 'small',
 }
+
+export const WithBackdrop = Template.bind({})
+WithBackdrop.args = {
+  withBackdrop: true,
+}
+
+export const WithBackdropAdditionalProps = Template.bind({})
+WithBackdropAdditionalProps.args = {
+  withBackdrop: true,
+  backdropProps: {
+    backgroundColor: 'lightsteelblue',
+  },
+}
