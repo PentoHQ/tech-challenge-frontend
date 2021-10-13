@@ -1,7 +1,7 @@
 import { format } from 'date-fns/fp'
 import { useSessionsQueryQuery } from '../../generated/graphql'
 import { Session } from '../../types'
-import { diffDateStrings } from '../../util/diffDateStrings'
+import { dateDiff } from '../../util/dateDiff'
 
 const formatWeek = format('Io')
 
@@ -16,7 +16,7 @@ function groupSessionsByWeek(sessions: Session[]) {
       const dateStr = formatWeek(new Date(startDate))
       names.add(name)
       const dayData = sessionsByWeek[dateStr] || { [name]: 0, startDate: dateStr }
-      const duration = diffDateStrings(startDate, endDate)
+      const duration = dateDiff(startDate, endDate)
 
       return {
         names,
