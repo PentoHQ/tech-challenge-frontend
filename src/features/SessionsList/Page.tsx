@@ -9,7 +9,6 @@ import { dateDiff } from '../../util/dateDiff'
 import { msToHuman } from '../../util/formatters/formatDateDiff'
 import { useGetSessions, useSwitchSession } from './hooks'
 import SessionControls from './SessionControls'
-import styles from './Page.module.scss'
 
 function RowAction({ name }: { name: string }) {
   const switchSession = useSwitchSession()
@@ -26,7 +25,7 @@ export default function SessionsListPage(props: any) {
       </Spacer>
       <RawCard>
         {isLoading ? (
-          <Spinner className={styles.spinner} size="large" />
+          <Spinner size="large" withBackdrop={true} />
         ) : error ? (
           error.message
         ) : (

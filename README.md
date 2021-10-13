@@ -21,7 +21,7 @@ If you feel that you need to explain certain aspects of your code or decission m
 When completing these tasks feel free to make as many modifications as you think are necessary: add new routes, split existing ones, change components layout, data flow, etc.
 Just remember to write down your reasons for it on [ Notes.md ](./Notes.md), in case you do very disruptive changes.
 
-- [ ] Center and style the global app `Loading` indicator;
+- [x] Center and style the global app `Loading` indicator;
 - [x] Create a Timer component, make it tick and put it in place of the static string that shows the elapsed time of the active session;
 - [x] Add proper loading indicators;
 - [ ] Add week and daily summaries. You can do it however you want, don't feel forced to do it as charts, and put them whenever you want;
