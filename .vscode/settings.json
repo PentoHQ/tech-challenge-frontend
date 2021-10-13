@@ -4,5 +4,8 @@
   },
   "[html]": {
     "editor.formatOnSave": false
-  }
+  },
+  "javascript.preferences.quoteStyle": "single",
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "typescript.preferences.importModuleSpecifier": "relative"
 }
