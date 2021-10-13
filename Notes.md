@@ -12,3 +12,4 @@ But don't forget to commit it with the rest of your code 😄
 - Added component `Backdrop` to be used later with global spinners and modals
 - `diffDateStrings` has been renamed to `dateDiff` and now supports both `string` and `Date` object
   - **TODO**: evaluate usage of `momentjs` to avoid reinventing the wheel
+- Added component `ElapsedTime` to be used in the `RunningSession`
