@@ -1,11 +1,12 @@
 import React from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 import LoginButton from './LoginButton'
+import Spinner from '../../components/Spinner'
 
 function AuthWrapper({ children }: { children: React.ReactNode }) {
   const { isLoading, error, isAuthenticated } = useAuth0()
   if (isLoading) {
-    return <div>Loading...</div>
+    return <Spinner withBackdrop={true} />
   }
   if (error) {
     return <div>Oops... {error.message}</div>
