@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { ReactChild } from 'react'
+import { ReactNode } from 'react'
 import styles from './Spacer.module.scss'
 
 export type SpacerSize = 1 | 2 | 3 | 4 | 5 | 6
@@ -45,7 +45,7 @@ type Props = {
    * padding left (8px grid)
    */
   pl?: SpacerSize
-  children?: ReactChild
+  children?: ReactNode
   className: string
 }
 

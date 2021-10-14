@@ -21,3 +21,4 @@ But don't forget to commit it with the rest of your code 😄
 - Added `babel-loader 8.1.0` resolution on package.json to avoid conflicts between latest `storybook` version and `react-scripts` (not so proud of this, but the js world is tough...)
 - Added `event: SynteticEvent` parameter to `Backdrop` `onClick` prop
   - **TODO**: update the components generator accordingly
+- Changed type of prop `children` in `Spacer` component to `ReactNode` to be more permissive
