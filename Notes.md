@@ -17,3 +17,4 @@ But don't forget to commit it with the rest of your code 😄
 - Added possibility to render `Spinner` inside a `Backdrop` component to block the interactions with the underlying UI
 - Added workspace settings for VSCode in order to be aligned with the current project conventions
 - Isolated `RunningSession` and `SessionInput` components
+- Updated `@storybook/*` packages to solve an issue which was preventing the correct action log when a default is provided
