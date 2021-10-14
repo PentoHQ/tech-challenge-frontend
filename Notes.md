@@ -18,5 +18,6 @@ But don't forget to commit it with the rest of your code 😄
 - Added workspace settings for VSCode in order to be aligned with the current project conventions
 - Isolated `RunningSession` and `SessionInput` components
 - Updated `@storybook/*` packages to solve an issue which was preventing the correct action log when a default is provided
+- Added `babel-loader 8.1.0` resolution on package.json to avoid conflicts between latest `storybook` version and `react-scripts` (not so proud of this, but the js world is tough...)
 - Added `event: SynteticEvent` parameter to `Backdrop` `onClick` prop
   - **TODO**: update the components generator accordingly
