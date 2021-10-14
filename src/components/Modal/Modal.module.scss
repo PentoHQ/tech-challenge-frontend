@@ -1,0 +1,11 @@
+@import 'common.scss';
+
+.modal {
+  display: flex;
+  flex: unset;
+  font-family: $primaryFont;
+  font-weight: $mediumFontWeight;
+  font: $text14Regular;
+
+  z-index: $z-index-modal;
+}

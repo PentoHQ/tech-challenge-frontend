@@ -22,3 +22,4 @@ But don't forget to commit it with the rest of your code 😄
 - Added `event: SynteticEvent` parameter to `Backdrop` `onClick` prop
   - **TODO**: update the components generator accordingly
 - Changed type of prop `children` in `Spacer` component to `ReactNode` to be more permissive
+- Added component `Modal` to be used as container for the edit sessions form
