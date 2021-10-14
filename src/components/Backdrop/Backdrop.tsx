@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import React from 'react'
+import React, { SyntheticEvent } from 'react'
 import styles from './Backdrop.module.scss'
 
 export interface BackdropProps {
@@ -19,7 +19,7 @@ export interface BackdropProps {
   /**
    * Optional click handler
    */
-  onClick?: () => void
+  onClick?: (event: SyntheticEvent) => void
   /**
    * Determine if the backdrop is visible or not
    */
