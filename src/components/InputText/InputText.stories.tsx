@@ -36,3 +36,13 @@ export const Small = Template.bind({})
 Small.args = {
   size: 'small',
 }
+
+export const Disabled = Template.bind({})
+Disabled.args = {
+  disabled: true,
+}
+
+export const DateTime = Template.bind({})
+DateTime.args = {
+  type: 'datetime-local',
+}

@@ -13,10 +13,11 @@ export interface InputProps {
    */
   className?: string
   label?: string
-  value: string
-  onChange: (val: string) => any
+  value?: string
+  onChange?: (val: string) => any
   placeholder?: string
-  type?: 'text' | 'search' | 'password'
+  type?: 'text' | 'search' | 'password' | 'datetime-local'
+  disabled?: boolean
 }
 
 /**
@@ -28,7 +29,9 @@ export const InputText = ({
   type = 'text',
   className = '',
   placeholder = '',
-  onChange,
+  disabled = false,
+  value = '',
+  onChange = (_) => {},
   ...props
 }: InputProps) => {
   const classes = clsx(styles.wrapper, className)
@@ -37,6 +40,7 @@ export const InputText = ({
       {text && <label className={styles.label}>{capitalize(text)}</label>}
       <input
         {...props}
+        disabled={disabled}
         placeholder={capitalize(placeholder)}
         type={type}
         onChange={(e) => onChange(e.target.value)}

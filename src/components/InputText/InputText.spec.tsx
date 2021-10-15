@@ -1,8 +1,9 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import InputText from './InputText'
+import { InputProps } from '.'
 
-function getWrapper(props) {
+function getWrapper(props: InputProps) {
   return mount(<InputText {...props} />)
 }
 
@@ -26,5 +27,10 @@ describe('<Input/>', () => {
     wrapper.find('input').simulate('change', { target: { value: 'input value' } })
 
     expect(onChange).toHaveBeenCalledTimes(1)
+  })
+
+  it('disable', () => {
+    const wrapper = getWrapper({ disabled: true })
+    expect(wrapper.find('input').prop('disabled')).toBeTruthy()
   })
 })
