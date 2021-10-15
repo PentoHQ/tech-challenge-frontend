@@ -8,6 +8,8 @@ import { diffDateStrings } from '../../util/diffDateStrings'
 import { msToHuman } from '../../util/formatters/formatDateDiff'
 import { useGetSessions, useSwitchSession } from './hooks'
 import SessionControls from './SessionControls'
+import Loader from '../../components/Loader'
+import './Page.scss'
 
 function RowAction({ name }: { name: string }) {
   const switchSession = useSwitchSession()
@@ -23,11 +25,11 @@ export default function SessionsListPage(props: any) {
       </Spacer>
       <RawCard>
         {isLoading ? (
-          'Loading'
+          <Loader />
         ) : error ? (
           error.message
         ) : (
-          <List>
+          <List className="list">
             {data?.sessions.map(({ id, name, startDate, endDate }) => (
               <ListItem
                 key={id}

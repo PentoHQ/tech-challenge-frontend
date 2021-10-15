@@ -13,6 +13,7 @@ import {
 import PropTypes from 'prop-types'
 import Text from '../../components/Text'
 import { stringToColour } from '../../util/stringToColour'
+import './Chart.module.scss'
 
 function Title({ children }: { children: ReactChild }) {
   return <Text variant="title">{children}</Text>

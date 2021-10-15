@@ -1,0 +1,13 @@
+form {
+  position: relative;
+
+  .error input {
+    border: 1px solid #cc0000;
+  }
+
+  p {
+    position: absolute;
+    top: 60px;
+    color: #cc0000;
+  }
+}
