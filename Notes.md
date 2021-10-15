@@ -25,3 +25,4 @@ But don't forget to commit it with the rest of your code 😄
 - Added component `Modal` to be used as container for the edit sessions form
 - Implemented global app loading indicator
 - Reverted `Spinner` used in `SessionControl`: no need to use the `Backdrop` since there is the global one already
+- Enabled devtools connection on `ApolloClient`

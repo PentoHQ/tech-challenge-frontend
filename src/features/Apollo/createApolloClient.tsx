@@ -18,6 +18,7 @@ const createApolloClient = (authToken: string) => {
   const client = new ApolloClient({
     cache: new InMemoryCache(),
     link: authLink.concat(httpLink),
+    connectToDevTools: process.env.NODE_ENV === 'development',
   })
   return client
 }
