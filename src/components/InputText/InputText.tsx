@@ -30,7 +30,6 @@ export const InputText = ({
   className = '',
   placeholder = '',
   disabled = false,
-  value = '',
   onChange = (_) => {},
   ...props
 }: InputProps) => {
