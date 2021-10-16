@@ -27,3 +27,4 @@ But don't forget to commit it with the rest of your code 😄
 - Reverted `Spinner` used in `SessionControl`: no need to use the `Backdrop` since there is the global one already
 - Enabled devtools connection on `ApolloClient`
 - Handled properties `disabled` and `type=datetime-local` on `InputText`
+- Added possibility to edit a session
