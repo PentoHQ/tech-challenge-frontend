@@ -1,8 +1,10 @@
 import {
+  Sessions_Set_Input,
   useCreateSessionMutation,
   useRunningSessionQuery,
   useSessionsQueryQuery,
   useStartSessionMutation,
+  useUpdateSessionMutation,
 } from '../../generated/graphql'
 import { runningQuery, getSessionsQuery } from './graphql'
 
@@ -80,4 +82,27 @@ export function useSwitchSession() {
     return stop().then(() => startSession(name))
   }
   return switchSession
+}
+
+export function useUpdateSession(callback?: () => void) {
+  const [mutate, updateResult] = useUpdateSessionMutation({ onCompleted: callback })
+
+  return {
+    isLoading: updateResult.loading,
+    error: updateResult.error,
+    updateSession: (session: Sessions_Set_Input, id: string) => {
+      mutate({
+        variables: {
+          session,
+          id: { _eq: id },
+        },
+        awaitRefetchQueries: true,
+        refetchQueries: [
+          {
+            query: getSessionsQuery,
+          },
+        ],
+      })
+    },
+  }
 }

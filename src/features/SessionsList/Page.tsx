@@ -10,6 +10,9 @@ import { msToHuman } from '../../util/formatters/formatDateDiff'
 import { useGetSessions, useSwitchSession } from './hooks'
 import SessionControls from './SessionControls'
 import styles from './Page.module.scss'
+import EditSessionModal from './EditSessionModal'
+import { useState } from 'react'
+import { Session } from '../../types'
 
 function RowAction({ name }: { name: string }) {
   const switchSession = useSwitchSession()
@@ -18,6 +21,18 @@ function RowAction({ name }: { name: string }) {
 
 export default function SessionsListPage(props: any) {
   const { data, isLoading, error } = useGetSessions()
+  const [editModalOpen, setEditModalOpen] = useState(false)
+  const [sessionToBeUpdated, setSessionToBeUpdated] = useState<Session | null>(null)
+
+  const openEdit = (session: Session) => {
+    setSessionToBeUpdated(session)
+    setEditModalOpen(true)
+  }
+
+  const closeEdit = () => {
+    setSessionToBeUpdated(null)
+    setEditModalOpen(false)
+  }
 
   return (
     <PageBody>
@@ -31,17 +46,21 @@ export default function SessionsListPage(props: any) {
           error.message
         ) : (
           <List>
-            {data?.sessions.map(({ id, name, startDate, endDate }) => (
+            {data?.sessions.map((session) => (
               <ListItem
-                key={id}
-                title={name}
-                subtitle={msToHuman(dateDiff(startDate, endDate))}
-                action={<RowAction name={name} />}
+                key={session.id}
+                title={session.name}
+                subtitle={msToHuman(dateDiff(session.startDate, session.endDate))}
+                action={<RowAction name={session.name} />}
+                onClick={() => openEdit(session)}
               />
             ))}
           </List>
         )}
       </RawCard>
+      {(sessionToBeUpdated && (
+        <EditSessionModal open={editModalOpen} onClose={closeEdit} session={sessionToBeUpdated} />
+      )) || <></>}
     </PageBody>
   )
 }

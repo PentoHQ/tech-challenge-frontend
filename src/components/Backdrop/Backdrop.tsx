@@ -10,7 +10,7 @@ export interface BackdropProps {
   /**
    * Backdrop contents
    */
-  children: React.ReactNode
+  children?: React.ReactNode
   /**
    * Provide your custom styles by passing a class name that will
    * be applied to the root of the component (edit to match reality)

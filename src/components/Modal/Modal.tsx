@@ -93,20 +93,9 @@ export const Modal = ({
 
   useEventListener('keyup', cancelOnEsc, open)
 
-  const handleBackdropClick = useCallback(
-    (e) => {
-      // avoids that click on modal triggers also the click on the backdrop
-      if (e.target !== e.currentTarget) {
-        return
-      }
-
-      onClose('click-outside')
-    },
-    [onClose],
-  )
-
   return (
-    <Backdrop show={open} onClick={handleBackdropClick} {...backdropProps}>
+    <>
+      <Backdrop show={open} onClick={() => onClose('click-outside')} {...backdropProps} />
       <Card className={classes}>
         {title && (
           <>
@@ -126,7 +115,7 @@ export const Modal = ({
           </>
         )}
       </Card>
-    </Backdrop>
+    </>
   )
 }
 
