@@ -35,11 +35,11 @@ export default function SessionsListPage(props: any) {
   }
 
   return (
-    <PageBody>
-      <Spacer pb={4}>
+    <PageBody className={styles.wrapper}>
+      <Spacer mb={4}>
         <SessionControls />
       </Spacer>
-      <RawCard>
+      <RawCard className={styles.listContainer}>
         {isLoading ? (
           <Spinner className={styles.spinner} size="large" />
         ) : error ? (
