@@ -72,8 +72,8 @@ export default function EditSessionModal(props: EditSessionModalProps) {
       {isLoading && (
         <Spinner
           withBackdrop={true}
-          // TODO: improve this monstrosity (position prop directly on the Backdrop? proxed by Spinner? evaluate...)
-          backdropProps={{ backgroundColor: 'white', className: styles.spinnerBackdrop }}
+          backdropPosition="absolute"
+          backdropProps={{ backgroundColor: 'white' }}
         />
       )}
       {error && (

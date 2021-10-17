@@ -32,6 +32,11 @@ export interface SpinnerProps {
    * Additional props to be provided to the wrapping backdrop component
    */
   backdropProps?: BackdropAdditionalProps
+  /**
+   * Set the position of the backdrop, in case you want to block
+   * interaction with the relative container div or the whole page
+   */
+  backdropPosition?: 'absolute' | 'fixed'
 }
 
 /**
@@ -44,12 +49,25 @@ export const Spinner = ({
   withBackdrop = false,
   backdropProps = {},
   backgroundColor,
+  backdropPosition = 'fixed',
   ...props
 }: SpinnerProps) => {
   const classes = clsx(styles.spinner, styles[color], styles[size], className)
+  const backdropClasses = clsx(
+    {
+      [styles.backdropAbsolute]: backdropPosition === 'absolute',
+    },
+    backdropProps.className,
+  )
 
   const spinner = <div className={classes} style={{ backgroundColor }} {...props} />
-  return withBackdrop ? <Backdrop {...backdropProps}>{spinner}</Backdrop> : spinner
+  return withBackdrop ? (
+    <Backdrop {...backdropProps} className={backdropClasses}>
+      {spinner}
+    </Backdrop>
+  ) : (
+    spinner
+  )
 }
 
 export default Spinner
