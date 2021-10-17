@@ -3,26 +3,24 @@ import { shallow } from 'enzyme'
 import Modal, { ModalCloseReason } from './Modal'
 import { ModalProps } from './'
 import Backdrop from '../Backdrop'
-import styles from './Modal.module.scss'
+import Card from '../Card'
+// import styles from './Modal.module.scss'
 
 function getWrapper(props: ModalProps) {
   return shallow(<Modal {...props} />)
 }
 
 describe('<Modal/>', () => {
-  it('renders inside backdrop', () => {
+  it('renders backdrop', () => {
     const wrapper = getWrapper({ children: 'Hello!' })
     const foundBackdrops = wrapper.find(Backdrop)
 
     expect(foundBackdrops.length).toBe(1)
-
-    const modal = foundBackdrops.children()
-    expect(modal.hasClass(styles.modal)).toBeTruthy()
   })
 
   it('passes down to the card the provided class name', () => {
     const wrapper = getWrapper({ children: 'Hello!', className: 'test-class' })
-    const modal = wrapper.find(Backdrop).children()
+    const modal = wrapper.find(Card)
     expect(modal.hasClass('test-class')).toBeTruthy()
   })
 
@@ -60,8 +58,9 @@ describe('<Modal/>', () => {
   it('triggers onClose when backdrop is clicked', () => {
     const onClose = jest.fn((reason: ModalCloseReason) => {})
     const wrapper = getWrapper({ children: 'Hello!', onClose })
+    const backdrop = wrapper.find(Backdrop)
 
-    wrapper.simulate('click', new Event('click'))
+    backdrop.simulate('click', new Event('click'))
 
     expect(onClose).toBeCalledTimes(1)
     expect(onClose).toBeCalledWith<[ModalCloseReason]>('click-outside')
