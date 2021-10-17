@@ -53,6 +53,7 @@ export default function SessionsListPage(props: any) {
             {data?.sessions.map((session) => (
               <ListItem
                 key={session.id}
+                className={styles.listItem}
                 title={session.name}
                 subtitle={msToHuman(dateDiff(session.startDate, session.endDate))}
                 action={<RowAction name={session.name} />}
