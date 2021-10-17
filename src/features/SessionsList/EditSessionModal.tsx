@@ -5,11 +5,10 @@ import FormRow from '../../components/FormRow'
 import InputText from '../../components/InputText'
 import Modal from '../../components/Modal'
 import Spinner from '../../components/Spinner'
-import Text from '../../components/Text'
 import { Session } from '../../types'
 import { useUpdateSession } from './hooks'
-import styles from './EditSessionModal.module.scss'
 import Spacer from '../../components/Spacer'
+import Alert from '../../components/Alert'
 
 interface EditSessionModalProps {
   className?: string
@@ -76,15 +75,8 @@ export default function EditSessionModal(props: EditSessionModalProps) {
           backdropProps={{ backgroundColor: 'white' }}
         />
       )}
-      {error && (
-        // TODO: create component alert
-        <Spacer className={styles.errorContainer} p={1} mb={2}>
-          <Text color="danger" variant="body">
-            {error.message}
-          </Text>
-        </Spacer>
-      )}
-      <Spacer mb={2}>
+      {error && <Alert kind="error" text={error.message} />}
+      <Spacer mb={2} mt={1}>
         <InputText label="Name" value={nameInput} disabled={isLoading} onChange={setNameInput} />
       </Spacer>
       <Spacer mb={2}>

@@ -9,10 +9,6 @@ import { useMonthChartData } from './useMonthChartData'
 export default function MonthChart() {
   const { names, sessions, error, loading } = useMonthChartData()
 
-  if (error) {
-    return <div>{error.toString()}</div>
-  }
-
   return (
     <Chart
       formatter={msToHoursMinutes}
@@ -22,6 +18,7 @@ export default function MonthChart() {
       names={names}
       title="Month"
       isLoading={loading}
+      error={error?.message}
     />
   )
 }

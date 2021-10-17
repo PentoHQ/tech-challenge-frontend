@@ -13,6 +13,7 @@ import styles from './Page.module.scss'
 import EditSessionModal from './EditSessionModal'
 import { SyntheticEvent, useState } from 'react'
 import { Session } from '../../types'
+import Alert from '../../components/Alert'
 
 function RowAction({ name }: { name: string }) {
   const switchSession = useSwitchSession()
@@ -23,7 +24,7 @@ function RowAction({ name }: { name: string }) {
   return <PlayButton size="small" onClick={handleClick}></PlayButton>
 }
 
-export default function SessionsListPage(props: any) {
+export default function SessionsListPage() {
   const { data, isLoading, error } = useGetSessions()
   const [editModalOpen, setEditModalOpen] = useState(false)
   const [sessionToBeUpdated, setSessionToBeUpdated] = useState<Session | null>(null)
@@ -40,14 +41,15 @@ export default function SessionsListPage(props: any) {
 
   return (
     <PageBody className={styles.wrapper}>
+      {(error && <Alert kind="error" text={error.message} />) || <></>}
+
       <Spacer mb={4}>
         <SessionControls />
       </Spacer>
+
       <RawCard className={styles.listContainer}>
         {isLoading ? (
           <Spinner className={styles.spinner} size="large" />
-        ) : error ? (
-          error.message
         ) : (
           <List>
             {data?.sessions.map((session) => (

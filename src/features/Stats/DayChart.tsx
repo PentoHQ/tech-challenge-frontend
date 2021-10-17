@@ -5,10 +5,6 @@ import { useDayChartData } from './useDayChartData'
 export default function DayChart() {
   const { sessions, names, error, loading } = useDayChartData()
 
-  if (error) {
-    return <div>{error.toString()}</div>
-  }
-
   return (
     <Chart
       formatter={msToHoursMinutes}
@@ -18,6 +14,7 @@ export default function DayChart() {
       names={names}
       title="Today"
       isLoading={loading}
+      error={error?.message}
     />
   )
 }

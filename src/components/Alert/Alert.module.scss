@@ -10,7 +10,7 @@
   border-radius: 8px;
 
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .icon {
@@ -22,7 +22,7 @@
 .textContainer {
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .error {

@@ -5,10 +5,6 @@ import { useWeekChartData } from './useWeekChartData'
 export default function WeekChart() {
   const { sessions, names, error, loading } = useWeekChartData()
 
-  if (error) {
-    return <div>{error.toString()}</div>
-  }
-
   return (
     <Chart
       formatter={msToHoursMinutes}
@@ -18,6 +14,7 @@ export default function WeekChart() {
       names={names}
       title="Week"
       isLoading={loading}
+      error={error?.message}
     />
   )
 }

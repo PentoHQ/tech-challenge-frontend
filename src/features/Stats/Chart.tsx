@@ -16,6 +16,7 @@ import { stringToColour } from '../../util/stringToColour'
 import styles from './Chart.module.scss'
 import { NoData } from './NoData'
 import Spinner from '../../components/Spinner'
+import Alert from '../../components/Alert'
 
 function Title({ children }: { children: ReactChild }) {
   return (
@@ -33,6 +34,7 @@ interface ChartProps<T> {
   xLabel?: string
   xDataKey: string
   isLoading?: boolean
+  error?: string
 }
 
 export default function Chart<T>({
@@ -43,6 +45,7 @@ export default function Chart<T>({
   names,
   formatter,
   isLoading = false,
+  error,
 }: ChartProps<T>) {
   const Bars = names.map((x: string) => (
     <Bar key={x} dataKey={x} name={x} stackId="a" fill={stringToColour(x)} />
@@ -56,6 +59,8 @@ export default function Chart<T>({
           <div className={styles.spinnerContainer}>
             <Spinner withBackdrop={true} backdropPosition="absolute" />
           </div>
+        ) : error ? (
+          <Alert kind="error" text={error} />
         ) : sessions.length === 0 ? (
           <NoData />
         ) : (

@@ -37,3 +37,4 @@ But don't forget to commit it with the rest of your code 😄
 - Added hover effect and pointer cursor on session list items
 - Added fallback route
 - Added component `Alert` to show feedback to the user
+- Replaced simple text with `Alert` to show errors
