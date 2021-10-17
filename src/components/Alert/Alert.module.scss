@@ -1,0 +1,47 @@
+@import 'common.scss';
+@import 'colors.scss';
+
+.wrapper {
+  display: flex;
+  font-family: $primaryFont;
+  font-weight: $mediumFontWeight;
+  font: $text14Regular;
+  border: 1px solid;
+  border-radius: 8px;
+
+  align-items: center;
+  justify-content: start;
+}
+
+.icon {
+  height: 24px;
+  width: 24px;
+  margin-right: 8px;
+}
+
+.textContainer {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.error {
+  color: $danger90;
+  border-color: $danger90;
+  background-color: $danger20;
+}
+.warning {
+  color: $warning90;
+  border-color: $warning90;
+  background-color: $warning20;
+}
+.info {
+  color: $primary70;
+  border-color: $primary70;
+  background-color: $primary20;
+}
+.success {
+  color: $success80;
+  border-color: $success80;
+  background-color: $success20;
+}
