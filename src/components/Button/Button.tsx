@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { motion, Target } from 'framer-motion'
-import React from 'react'
+import React, { SyntheticEvent } from 'react'
 import styles from './Button.module.scss'
 
 export interface ButtonProps {
@@ -24,7 +24,7 @@ export interface ButtonProps {
   /**
    * Optional click handler
    */
-  onClick?: () => void
+  onClick?: (e: SyntheticEvent) => void
   whileTap?: Target
   disabled?: boolean
 }

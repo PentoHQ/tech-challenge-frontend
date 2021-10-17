@@ -1,7 +1,7 @@
 import Button, { ButtonProps } from '../Button'
 import styles from './IconButton.module.scss'
 import { motion } from 'framer-motion'
-import { ReactChild } from 'react'
+import { ReactChild, SyntheticEvent } from 'react'
 import clsx from 'clsx'
 
 export interface IconButtonProps extends Partial<ButtonProps> {
@@ -13,7 +13,7 @@ export interface IconButtonProps extends Partial<ButtonProps> {
   /**
    * Optional click handler
    */
-  onClick?: () => void
+  onClick?: (e: SyntheticEvent) => void
   children: ReactChild
 }
 
