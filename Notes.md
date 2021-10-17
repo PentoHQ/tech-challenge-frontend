@@ -33,3 +33,4 @@ But don't forget to commit it with the rest of your code 😄
 - Added prop to `Spinner` to drive `Backdrop` positioning
 - Added day and week summaries charts
 - Added `event: SynteticEvent` parameter to `Button` and `IconButton` components `onClick` prop
+- Fixed bug which was triggering also the click on the row when starting an existing session

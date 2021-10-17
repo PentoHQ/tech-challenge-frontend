@@ -11,12 +11,16 @@ import { useGetSessions, useSwitchSession } from './hooks'
 import SessionControls from './SessionControls'
 import styles from './Page.module.scss'
 import EditSessionModal from './EditSessionModal'
-import { useState } from 'react'
+import { SyntheticEvent, useState } from 'react'
 import { Session } from '../../types'
 
 function RowAction({ name }: { name: string }) {
   const switchSession = useSwitchSession()
-  return <PlayButton size="small" onClick={() => switchSession(name)}></PlayButton>
+  const handleClick = (e: SyntheticEvent) => {
+    e.stopPropagation()
+    switchSession(name)
+  }
+  return <PlayButton size="small" onClick={handleClick}></PlayButton>
 }
 
 export default function SessionsListPage(props: any) {
