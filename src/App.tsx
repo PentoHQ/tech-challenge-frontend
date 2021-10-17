@@ -5,6 +5,7 @@ import { Link, Route, useLocation } from 'react-router-dom'
 import Tabs, { Tab } from './components/Tabs'
 import Page from './components/Page'
 import StatsPage from './features/Stats'
+import NotFoundPage from './features/NotFound/Page'
 
 function App() {
   const location = useLocation()
@@ -18,6 +19,7 @@ function App() {
       <Switch>
         <Route path="/" exact component={SessionsListPage} />
         <Route path="/stats" exact component={StatsPage} />
+        <Route path="*" component={NotFoundPage} />
       </Switch>
     </Page>
   )

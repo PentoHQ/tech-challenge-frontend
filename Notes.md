@@ -35,3 +35,4 @@ But don't forget to commit it with the rest of your code 😄
 - Added `event: SynteticEvent` parameter to `Button` and `IconButton` components `onClick` prop
 - Fixed bug which was triggering also the click on the row when starting an existing session
 - Added hover effect and pointer cursor on session list items
+- Added fallback route
