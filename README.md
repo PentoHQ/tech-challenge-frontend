@@ -71,11 +71,6 @@ Builds the app for production in the `build` folder.
 
 Generates the TypeScript types from the graphql API. You need to set a valid JWT token as a environment variable.
 
-### `yarn new-component`
-
-Creates a new UI component, with all the required boilerplate, some safe defaults and initial tests.
-**Please use this script when creating a new UI component**
-
 #### Linux and macOS
 
 ```
@@ -88,3 +83,13 @@ TOKEN=xxxxx yarn generate --watch
 set TOKEN="xxxxx"
 yarn generate --watch
 ```
+
+### `yarn new-component`
+
+Creates a new UI component, with all the required boilerplate, some safe defaults and initial tests.
+
+**Please use this script when creating a new UI component**
+
+### `yarn storybook`
+
+Launches storybook to build components in isolation
