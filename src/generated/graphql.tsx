@@ -533,6 +533,17 @@ export type UpdateSessionMutation = {
   >
 }
 
+export type SessionsQueryInDateRangeQueryVariables = Exact<{
+  lowerBound: Scalars['timestamptz']
+  upperBound: Scalars['timestamptz']
+}>
+
+export type SessionsQueryInDateRangeQuery = {
+  sessions: Array<
+    { __typename?: 'sessions' } & Pick<Sessions, 'id' | 'name' | 'startDate' | 'endDate'>
+  >
+}
+
 export const SessionsQueryDocument = gql`
   query SessionsQuery {
     sessions {
@@ -776,4 +787,69 @@ export type UpdateSessionMutationResult = Apollo.MutationResult<UpdateSessionMut
 export type UpdateSessionMutationOptions = Apollo.BaseMutationOptions<
   UpdateSessionMutation,
   UpdateSessionMutationVariables
+>
+export const SessionsQueryInDateRangeDocument = gql`
+  query SessionsQueryInDateRange($lowerBound: timestamptz!, $upperBound: timestamptz!) {
+    sessions(
+      where: { startDate: { _gt: $lowerBound, _lt: $upperBound } }
+      order_by: { startDate: asc }
+    ) {
+      id
+      name
+      startDate
+      endDate
+    }
+  }
+`
+
+/**
+ * __useSessionsQueryInDateRangeQuery__
+ *
+ * To run a query within a React component, call `useSessionsQueryInDateRangeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSessionsQueryInDateRangeQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSessionsQueryInDateRangeQuery({
+ *   variables: {
+ *      lowerBound: // value for 'lowerBound'
+ *      upperBound: // value for 'upperBound'
+ *   },
+ * });
+ */
+export function useSessionsQueryInDateRangeQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    SessionsQueryInDateRangeQuery,
+    SessionsQueryInDateRangeQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<SessionsQueryInDateRangeQuery, SessionsQueryInDateRangeQueryVariables>(
+    SessionsQueryInDateRangeDocument,
+    options,
+  )
+}
+export function useSessionsQueryInDateRangeLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    SessionsQueryInDateRangeQuery,
+    SessionsQueryInDateRangeQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<SessionsQueryInDateRangeQuery, SessionsQueryInDateRangeQueryVariables>(
+    SessionsQueryInDateRangeDocument,
+    options,
+  )
+}
+export type SessionsQueryInDateRangeQueryHookResult = ReturnType<
+  typeof useSessionsQueryInDateRangeQuery
+>
+export type SessionsQueryInDateRangeLazyQueryHookResult = ReturnType<
+  typeof useSessionsQueryInDateRangeLazyQuery
+>
+export type SessionsQueryInDateRangeQueryResult = Apollo.QueryResult<
+  SessionsQueryInDateRangeQuery,
+  SessionsQueryInDateRangeQueryVariables
 >

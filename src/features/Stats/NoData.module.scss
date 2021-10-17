@@ -1,0 +1,11 @@
+@import 'colors.scss';
+
+.nodata {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  border: 1px solid $grey-card-border;
+  padding: 16px;
+}

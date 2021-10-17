@@ -1,8 +1,10 @@
+import { endOfMonth, startOfMonth } from 'date-fns'
 import { format } from 'date-fns/fp'
-import { useSessionsQueryQuery } from '../../generated/graphql'
 import { Session } from '../../types'
 import { dateDiff } from '../../util/dateDiff'
+import { useGetSessionsInRange } from './hooks'
 
+// TODO: would be better to show the MONTH week number
 const formatWeek = format('Io')
 
 type WeekData = { [name: string]: number }
@@ -35,7 +37,12 @@ function groupSessionsByWeek(sessions: Session[]) {
 }
 
 export function useMonthChartData() {
-  const { data, loading, error } = useSessionsQueryQuery()
+  const today = new Date()
+  const { data, isLoading: loading, error } = useGetSessionsInRange({
+    from: startOfMonth(today),
+    to: endOfMonth(today), // since there cannot be sessions in the future this can be omitted
+  })
+
   // We need to type this data or TS will infer it as names: string[] | never[]
   const defaultData: { names: string[]; sessions: WeekData[] } = { names: [], sessions: [] }
   if (!data || loading) return { ...defaultData, error, loading }

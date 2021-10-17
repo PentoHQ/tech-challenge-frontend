@@ -1,9 +1,12 @@
-import { useQuery, gql } from '@apollo/client'
-import { SessionsQueryQuery, SessionsQueryQueryVariables } from '../../generated/graphql'
+import { gql } from '@apollo/client'
 
-const sessionsQuery = gql`
-  query SessionsQuery {
-    sessions {
+// used by generator
+export const sessionsQuery = gql`
+  query SessionsQueryInDateRange($lowerBound: timestamptz!, $upperBound: timestamptz!) {
+    sessions(
+      where: { startDate: { _gt: $lowerBound, _lt: $upperBound } }
+      order_by: { startDate: asc }
+    ) {
       id
       name
       startDate
@@ -11,10 +14,3 @@ const sessionsQuery = gql`
     }
   }
 `
-
-export function useGetSessions() {
-  const { data, loading, error } = useQuery<SessionsQueryQuery, SessionsQueryQueryVariables>(
-    sessionsQuery,
-  )
-  return { data, isLoading: loading, error }
-}

@@ -1,13 +1,9 @@
 import { msToHoursMinutes } from '../../util/formatters/minsToHoursMinutes'
 import Chart from './Chart'
-import { useMonthChartData } from './useMonthChartData'
+import { useWeekChartData } from './useWeekChartData'
 
-/**
- * @typedef {import('rootReducer').RootState} State
- */
-
-export default function MonthChart() {
-  const { names, sessions, error, loading } = useMonthChartData()
+export default function WeekChart() {
+  const { sessions, names, error, loading } = useWeekChartData()
 
   if (error) {
     return <div>{error.toString()}</div>
@@ -17,10 +13,10 @@ export default function MonthChart() {
     <Chart
       formatter={msToHoursMinutes}
       sessions={sessions as any}
-      xLabel="Week"
-      xDataKey="startDate"
+      xLabel="Days"
+      xDataKey="weekday"
       names={names}
-      title="Month"
+      title="Week"
       isLoading={loading}
     />
   )

@@ -31,3 +31,4 @@ But don't forget to commit it with the rest of your code 😄
 - Added possibility to pass a custom className to `PageBody` component
 - Made the session list scrollable
 - Added prop to `Spinner` to drive `Backdrop` positioning
+- Added day and week summaries charts
