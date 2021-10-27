@@ -1,0 +1,28 @@
+@import 'common.scss';
+@import 'colors.scss';
+
+.wrapper {
+  font-family: $primaryFont;
+  font-weight: $mediumFontWeight;
+  font: $text14Regular;
+}
+
+.body {
+  min-width: $modalMinWidth;
+  max-width: $modalMaxWidth;
+  margin: auto;
+  background: $white;
+  padding: $padding24;
+  box-sizing: border-box;
+  border-radius: $rounded;
+}
+
+.header {
+  margin-bottom: $margin24;
+}
+
+.footer {
+  display: flex;
+  margin-top: $margin24;
+  justify-content: space-between;
+}

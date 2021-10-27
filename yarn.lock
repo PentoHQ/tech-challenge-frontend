@@ -3622,6 +3622,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-aria-modal@^4.0.5":
+  version "4.0.5"
+  resolved "https://registry.yarnpkg.com/@types/react-aria-modal/-/react-aria-modal-4.0.5.tgz#5fa019daa4e452f2bbcc90621ae188c6bb3713bd"
+  integrity sha512-nGpbBBenwCBIDGZq0nHsHe07LQPGLecDo2mxnaBTUt7Gy9oqT6px0VLHwvDrYRl8CsyB2VIU+/4mKAZrhod2HQ==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-color@^3.0.1":
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/@types/react-color/-/react-color-3.0.4.tgz#c63daf012ad067ac0127bdd86725f079d02082bd"
@@ -8430,6 +8437,21 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
 
+focus-trap-react@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/focus-trap-react/-/focus-trap-react-6.0.0.tgz#3f5a9f68447dd374d22388fb4c50018be83e74a5"
+  integrity sha512-mvEYxmP75PMx0vOqoIAmJHO/qUEvdTAdz6gLlEZyxxODnuKQdnKea2RWTYxghAPrV+ibiIq2o/GTSgQycnAjcw==
+  dependencies:
+    focus-trap "^4.0.2"
+
+focus-trap@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/focus-trap/-/focus-trap-4.0.2.tgz#4ee2b96547c9ea0e4252a2d4b2cca68944194663"
+  integrity sha512-HtLjfAK7Hp2qbBtLS6wEznID1mPT+48ZnP2nkHzgjpL4kroYHg0CdqJ5cTXk+UO5znAxF5fRUkhdyfgrhh8Lzw==
+  dependencies:
+    tabbable "^3.1.2"
+    xtend "^4.0.1"
+
 follow-redirects@^1.0.0:
   version "1.13.2"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.2.tgz#dd73c8effc12728ba5cf4259d760ea5fb83e3147"
@@ -12028,6 +12050,11 @@ no-case@^3.0.4:
     lower-case "^2.0.2"
     tslib "^2.0.3"
 
+no-scroll@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/no-scroll/-/no-scroll-2.1.1.tgz#f37e08cb159b75a5bdbfc0a87cd9223e120e6e27"
+  integrity sha512-YTzGAJOo/B6hkodeT5SKKHpOhAzjMfkUCCXjLJwjWk2F4/InIg+HbdH9kmT7bKpleDuqLZDTRy2OdNtAj0IVyQ==
+
 node-dir@^0.1.10:
   version "0.1.17"
   resolved "https://registry.yarnpkg.com/node-dir/-/node-dir-0.1.17.tgz#5f5665d93351335caabef8f1c554516cf5f1e4e5"
@@ -13964,6 +13991,15 @@ react-app-polyfill@^2.0.0:
     regenerator-runtime "^0.13.7"
     whatwg-fetch "^3.4.1"
 
+react-aria-modal@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/react-aria-modal/-/react-aria-modal-4.0.0.tgz#b195e9ad6bd360b628c1853381ab4e7466d2328c"
+  integrity sha512-crdEAIHc5xXi6YqZeUgRDJN1uromSehU1XSEegVPU8/okmf1tEDwnzb6ULl+PJy4aS6sb6fUiWEdMNTLAX2HBA==
+  dependencies:
+    focus-trap-react "^6.0.0"
+    no-scroll "^2.1.1"
+    react-displace "^2.3.0"
+
 react-color@^2.17.0:
   version "2.19.3"
   resolved "https://registry.yarnpkg.com/react-color/-/react-color-2.19.3.tgz#ec6c6b4568312a3c6a18420ab0472e146aa5683d"
@@ -14006,6 +14042,11 @@ react-dev-utils@^11.0.3:
     shell-quote "1.7.2"
     strip-ansi "6.0.0"
     text-table "0.2.0"
+
+react-displace@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/react-displace/-/react-displace-2.3.0.tgz#6915f8f2f279a29a7b58442405c26edc3d441429"
+  integrity sha512-T8g/lyn3IX8kxLO4k4vJ/oIO9G72pRTc9GYslqKsfPcN4gY5+FYR5OHxeTH1skPjVylJrveGE3OC2qCt3BuHeA==
 
 react-docgen-typescript-plugin@^0.6.2:
   version "0.6.3"
@@ -16101,6 +16142,11 @@ sync-fetch@0.3.0:
   dependencies:
     buffer "^5.7.0"
     node-fetch "^2.6.1"
+
+tabbable@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/tabbable/-/tabbable-3.1.2.tgz#f2d16cccd01f400e38635c7181adfe0ad965a4a2"
+  integrity sha512-wjB6puVXTYO0BSFtCmWQubA/KIn7Xvajw0x0l6eJUudMG/EAiJvIUnyNX6xO4NpGrJ16lbD0eUseB9WxW0vlpQ==
 
 table@^6.0.4:
   version "6.0.7"
