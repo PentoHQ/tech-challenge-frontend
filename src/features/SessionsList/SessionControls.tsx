@@ -60,7 +60,7 @@ function SessionInput() {
     <form onSubmit={submit}>
       <FormRow alignY="center" stretchLastChild={false}>
         <InputText onChange={setSessionName} value={sessionName} />
-        <PlayButton onClick={submit} disabled={isLoading} />
+        <PlayButton onClick={submit} isLoading={isLoading} />
       </FormRow>
     </form>
   )

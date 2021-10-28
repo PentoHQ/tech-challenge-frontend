@@ -70,9 +70,10 @@ export const Modal = ({
       verticallyCenter
       onExit={handleClose}
       dialogStyle={{ width: '100%' }}
+      focusTrapOptions={{ fallbackFocus: '#dialog-body' }}
       {...props}
     >
-      <div className={styles.body}>
+      <div className={styles.body} id="dialog-body">
         {!!headline && (
           <header className={styles.header}>
             <Text variant="h3">{headline}</Text>
@@ -82,13 +83,13 @@ export const Modal = ({
         <div className="modal-body">{children}</div>
         {(!!actionTitle || !!cancelTitle) && (
           <footer className={styles.footer}>
-            {cancelTitle && (
+            {!!cancelTitle && (
               <Button onClick={handleClose} color="secondary">
                 {cancelTitle}
               </Button>
             )}
 
-            {actionTitle && (
+            {!!actionTitle && (
               <Button onClick={handleAction} color="primary">
                 {actionTitle}
               </Button>

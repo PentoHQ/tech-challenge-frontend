@@ -1,30 +1,59 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { render, fireEvent, cleanup } from '@testing-library/react'
 import Modal from './Modal'
 
 function getWrapper(props) {
-  return shallow(<Modal {...props} />)
+  return render(<Modal {...props} />)
 }
+
+beforeAll(() => {
+  global.scrollTo = jest.fn()
+  global.scroll = jest.fn()
+})
+
+afterAll(() => {
+  jest.clearAllMocks()
+  cleanup()
+})
 
 describe('<Modal/>', () => {
   it('renders', () => {
-    const wrapper = getWrapper({ children: 'Hello!' })
+    const { getByText } = getWrapper({ children: 'Hello!', open: true })
 
-    expect(wrapper.text()).toEqual('Hello!')
+    expect(getByText('Hello!')).toBeTruthy()
   })
 
-  it('passes down the provided class name', () => {
-    const wrapper = getWrapper({ children: 'Hello!', className: 'test-class' })
+  it('renders cancel button', () => {
+    const onClose = jest.fn()
 
-    expect(wrapper.hasClass('test-class')).toBeTruthy()
+    const { getByText } = getWrapper({
+      children: 'Hello!',
+      open: true,
+      cancelTitle: 'Cancel',
+      onClose,
+    })
+
+    expect(getByText('Cancel')).toBeTruthy()
+
+    fireEvent.click(getByText('Cancel'))
+
+    expect(onClose).toHaveBeenCalledTimes(1)
   })
 
-  it('on click', () => {
-    const onClick = jest.fn()
-    const wrapper = getWrapper({ onClick })
+  it('renders action button', () => {
+    const onAction = jest.fn()
 
-    wrapper.simulate('click')
+    const { getByText } = getWrapper({
+      children: 'Hello!',
+      open: true,
+      actionTitle: 'Save',
+      onAction,
+    })
 
-    expect(onClick).toHaveBeenCalledTimes(1)
+    expect(getByText('Save')).toBeTruthy()
+
+    fireEvent.click(getByText('Save'))
+
+    expect(onAction).toHaveBeenCalledTimes(1)
   })
 })
