@@ -22,6 +22,10 @@
   &.disabled {
     opacity: 0.5;
   }
+  &.interactive:hover {
+    background-color: $grey-tint;
+    cursor: pointer;
+  }
   .text {
     flex: 1;
   }

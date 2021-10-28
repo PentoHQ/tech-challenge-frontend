@@ -35,6 +35,10 @@ export interface ListItemProps {
    * An additional action per row
    */
   action?: ReactChild
+  /**
+   * Styles for hover
+   */
+  interactive?: boolean
 }
 
 /**
@@ -50,6 +54,7 @@ export const ListItem = ({
   disableGutters,
   subtitle,
   action,
+  interactive,
   ...props
 }: ListItemProps) => {
   const classes = [
@@ -57,6 +62,7 @@ export const ListItem = ({
     dense ? styles.dense : '',
     disabled ? styles.disabled : '',
     disableGutters ? '' : styles.gutters,
+    interactive ? styles.interactive : '',
     className,
   ]
     .join(' ')

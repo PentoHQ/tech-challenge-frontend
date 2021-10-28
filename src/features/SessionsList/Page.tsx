@@ -55,6 +55,7 @@ export default function SessionsListPage(props: any) {
                 subtitle={msToHuman(diffDateStrings(startDate, endDate))}
                 action={<RowAction name={name} />}
                 onClick={() => handleSessionClick({ id, name, startDate, endDate })}
+                interactive
               />
             ))}
           </List>
