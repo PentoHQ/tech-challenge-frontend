@@ -21,7 +21,7 @@ function RowAction({ name }: { name: string }) {
     switchSession(name)
   }
 
-  return <PlayButton size="small" onClick={handleClick} isLoading={isLoading} />
+  return <PlayButton size="medium" onClick={handleClick} isLoading={isLoading} />
 }
 
 const modalDataDefault = { id: '', name: '', startDate: '', endDate: '' }
