@@ -1,0 +1,18 @@
+@import 'common.scss';
+@import 'colors.scss';
+
+.Container {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  font-family: $primaryFont;
+  font-weight: $mediumFontWeight;
+  font: $text14Regular;
+}
+
+.Icon {
+  width: 50px;
+  height: 50px;
+  color: $primary90;
+}
