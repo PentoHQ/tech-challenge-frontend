@@ -1,13 +1,16 @@
 import {
   useCreateSessionMutation,
   useRunningSessionQuery,
-  useSessionsQueryQuery,
+  useSessionsOrderedQueryQuery,
   useStartSessionMutation,
+  Order_By,
 } from '../../generated/graphql'
 import { runningQuery, getSessionsQuery } from './graphql'
 
 export function useGetSessions() {
-  const { data, loading, error } = useSessionsQueryQuery()
+  const { data, loading, error } = useSessionsOrderedQueryQuery({
+    variables: { orderBy: [{ startDate: Order_By.Desc }] },
+  })
   return {
     data,
     isLoading: loading,
@@ -60,6 +63,7 @@ export function useRunningSession({ onCompleted }: UseRunningSession = {}) {
         refetchQueries: [
           {
             query: getSessionsQuery,
+            variables: { orderBy: [{ startDate: Order_By.Desc }] },
           },
           {
             query: runningQuery,

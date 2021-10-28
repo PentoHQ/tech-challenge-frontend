@@ -2,8 +2,8 @@ import { gql } from '@apollo/client'
 // This is picked up by graphql generator so it is not actually unused
 
 export const getSessionsQuery = gql`
-  query SessionsQuery {
-    sessions {
+  query SessionsOrderedQuery($orderBy: [sessions_order_by!]) {
+    sessions(order_by: $orderBy) {
       id
       name
       startDate
