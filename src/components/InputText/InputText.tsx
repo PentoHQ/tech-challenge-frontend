@@ -15,7 +15,9 @@ export interface InputProps {
   value: string
   onChange: (val: string) => any
   placeholder?: string
-  type?: 'text' | 'search' | 'password'
+  type?: 'text' | 'search' | 'password' | 'time' | 'date'
+  required?: boolean
+  id?: string
 }
 
 /**
@@ -28,17 +30,23 @@ export const InputText = ({
   className = '',
   placeholder = '',
   onChange,
+  id,
   ...props
 }: InputProps) => {
   const classes = [styles.wrapper, className].join(' ').trim()
   return (
     <div className={classes}>
-      {text && <label className={styles.label}>{capitalize(text)}</label>}
+      {text && (
+        <label className={styles.label} {...(id ? { htmlFor: id } : {})}>
+          {capitalize(text)}
+        </label>
+      )}
       <input
         {...props}
         placeholder={capitalize(placeholder)}
         type={type}
         onChange={(e) => onChange(e.target.value)}
+        {...(id ? { id } : {})}
       />
     </div>
   )

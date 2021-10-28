@@ -517,14 +517,6 @@ export type StartSessionMutation = {
   >
 }
 
-export type SessionsQueryQueryVariables = Exact<{ [key: string]: never }>
-
-export type SessionsQueryQuery = {
-  sessions: Array<
-    { __typename?: 'sessions' } & Pick<Sessions, 'id' | 'name' | 'startDate' | 'endDate'>
-  >
-}
-
 export type UpdateSessionMutationVariables = Exact<{
   pkColumns: Sessions_Pk_Columns_Input
   set?: Maybe<Sessions_Set_Input>
@@ -532,6 +524,14 @@ export type UpdateSessionMutationVariables = Exact<{
 
 export type UpdateSessionMutation = {
   update_sessions_by_pk?: Maybe<
+    { __typename?: 'sessions' } & Pick<Sessions, 'id' | 'name' | 'startDate' | 'endDate'>
+  >
+}
+
+export type SessionsQueryQueryVariables = Exact<{ [key: string]: never }>
+
+export type SessionsQueryQuery = {
+  sessions: Array<
     { __typename?: 'sessions' } & Pick<Sessions, 'id' | 'name' | 'startDate' | 'endDate'>
   >
 }
@@ -739,6 +739,54 @@ export type StartSessionMutationOptions = Apollo.BaseMutationOptions<
   StartSessionMutation,
   StartSessionMutationVariables
 >
+export const UpdateSessionDocument = gql`
+  mutation updateSession($pkColumns: sessions_pk_columns_input!, $set: sessions_set_input) {
+    update_sessions_by_pk(pk_columns: $pkColumns, _set: $set) {
+      id
+      name
+      startDate
+      endDate
+    }
+  }
+`
+export type UpdateSessionMutationFn = Apollo.MutationFunction<
+  UpdateSessionMutation,
+  UpdateSessionMutationVariables
+>
+
+/**
+ * __useUpdateSessionMutation__
+ *
+ * To run a mutation, you first call `useUpdateSessionMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateSessionMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateSessionMutation, { data, loading, error }] = useUpdateSessionMutation({
+ *   variables: {
+ *      pkColumns: // value for 'pkColumns'
+ *      set: // value for 'set'
+ *   },
+ * });
+ */
+export function useUpdateSessionMutation(
+  baseOptions?: Apollo.MutationHookOptions<UpdateSessionMutation, UpdateSessionMutationVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useMutation<UpdateSessionMutation, UpdateSessionMutationVariables>(
+    UpdateSessionDocument,
+    options,
+  )
+}
+export type UpdateSessionMutationHookResult = ReturnType<typeof useUpdateSessionMutation>
+export type UpdateSessionMutationResult = Apollo.MutationResult<UpdateSessionMutation>
+export type UpdateSessionMutationOptions = Apollo.BaseMutationOptions<
+  UpdateSessionMutation,
+  UpdateSessionMutationVariables
+>
 export const SessionsQueryDocument = gql`
   query SessionsQuery {
     sessions {
@@ -788,52 +836,4 @@ export type SessionsQueryLazyQueryHookResult = ReturnType<typeof useSessionsQuer
 export type SessionsQueryQueryResult = Apollo.QueryResult<
   SessionsQueryQuery,
   SessionsQueryQueryVariables
->
-export const UpdateSessionDocument = gql`
-  mutation updateSession($pkColumns: sessions_pk_columns_input!, $set: sessions_set_input) {
-    update_sessions_by_pk(pk_columns: $pkColumns, _set: $set) {
-      id
-      name
-      startDate
-      endDate
-    }
-  }
-`
-export type UpdateSessionMutationFn = Apollo.MutationFunction<
-  UpdateSessionMutation,
-  UpdateSessionMutationVariables
->
-
-/**
- * __useUpdateSessionMutation__
- *
- * To run a mutation, you first call `useUpdateSessionMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateSessionMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateSessionMutation, { data, loading, error }] = useUpdateSessionMutation({
- *   variables: {
- *      pkColumns: // value for 'pkColumns'
- *      set: // value for 'set'
- *   },
- * });
- */
-export function useUpdateSessionMutation(
-  baseOptions?: Apollo.MutationHookOptions<UpdateSessionMutation, UpdateSessionMutationVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useMutation<UpdateSessionMutation, UpdateSessionMutationVariables>(
-    UpdateSessionDocument,
-    options,
-  )
-}
-export type UpdateSessionMutationHookResult = ReturnType<typeof useUpdateSessionMutation>
-export type UpdateSessionMutationResult = Apollo.MutationResult<UpdateSessionMutation>
-export type UpdateSessionMutationOptions = Apollo.BaseMutationOptions<
-  UpdateSessionMutation,
-  UpdateSessionMutationVariables
 >

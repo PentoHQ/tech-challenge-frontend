@@ -3,6 +3,7 @@ import {
   useRunningSessionQuery,
   useSessionsOrderedQueryQuery,
   useStartSessionMutation,
+  useUpdateSessionMutation,
   Order_By,
 } from '../../generated/graphql'
 import { runningQuery, getSessionsQuery } from './graphql'
@@ -84,4 +85,34 @@ export function useSwitchSession() {
     return stop().then(() => startSession(name))
   }
   return switchSession
+}
+
+export function useUpdateSession() {
+  const [updateSession, updateSessionResult] = useUpdateSessionMutation()
+
+  return {
+    isLoading: updateSessionResult.loading,
+    error: updateSessionResult.error,
+    data: updateSessionResult.data,
+    update: (id: string, name: string, startDate: Date, endDate: Date) => {
+      return updateSession({
+        variables: {
+          pkColumns: {
+            id,
+          },
+          set: {
+            name,
+            startDate: startDate.toISOString(),
+            endDate: endDate.toISOString(),
+          },
+        },
+        awaitRefetchQueries: true,
+        refetchQueries: [
+          {
+            query: getSessionsQuery,
+          },
+        ],
+      })
+    },
+  }
 }
