@@ -45,6 +45,7 @@ $outlineSize: 1px;
 .disabled {
   pointer-events: none;
   cursor: default;
+  @include buttonColors($grey40, $grey-border);
 }
 
 .loaderWrapper {

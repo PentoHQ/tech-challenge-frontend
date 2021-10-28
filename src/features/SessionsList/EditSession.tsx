@@ -53,7 +53,7 @@ export default function EditSession({ data, onClose }: FormProps) {
 
     serValidationError('')
 
-    update(data.id, name, newStartDate, newEndDate).finally(onClose)
+    update(data.id, name, newStartDate, newEndDate).then(onClose)
   }
 
   return (

@@ -16,7 +16,7 @@ export interface LoaderProps {
 /**
  * Primary UI component for user interaction
  */
-export const Loader = ({ size, className = '', ...props }: LoaderProps) => {
+export const Loader = ({ size = 'medium', className = '', ...props }: LoaderProps) => {
   const classes = [styles.wrapper, size ? styles[size] : '', className].join(' ').trim()
   return (
     <div className={classes} {...props}>

@@ -14,14 +14,14 @@ import { SyntheticEvent } from 'react'
 import { useState } from 'react'
 
 function RowAction({ name }: { name: string }) {
-  const switchSession = useSwitchSession()
+  const { switchSession, isLoading } = useSwitchSession()
 
   const handleClick = (e?: SyntheticEvent) => {
     e?.stopPropagation()
     switchSession(name)
   }
 
-  return <PlayButton size="small" onClick={handleClick} />
+  return <PlayButton size="small" onClick={handleClick} isLoading={isLoading} />
 }
 
 const modalDataDefault = { id: '', name: '', startDate: '', endDate: '' }

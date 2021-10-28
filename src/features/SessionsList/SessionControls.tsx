@@ -13,11 +13,20 @@ interface RunningProps {
 
 function RunningSession({ name, startDate }: RunningProps) {
   const { stop, isLoading } = useRunningSession()
+  const [isStopped, setTimerState] = useState(false)
+
+  const handleStop = () => {
+    stop()
+    setTimerState(true)
+  }
+
   return (
     <FormRow alignY="center" stretchLastChild={false}>
       {name}
-      <Timer start={startDate} />
-      <StopButton onClick={stop} disabled={isLoading} />
+
+      <Timer start={startDate} isStopped={isStopped} />
+
+      <StopButton onClick={handleStop} disabled={isLoading} isLoading={isLoading} />
     </FormRow>
   )
 }
@@ -50,7 +59,7 @@ function SessionInput() {
   return (
     <form onSubmit={submit}>
       <FormRow alignY="center" stretchLastChild={false}>
-        <InputText onChange={setSessionName} value={sessionName}></InputText>
+        <InputText onChange={setSessionName} value={sessionName} />
         <PlayButton onClick={submit} disabled={isLoading} />
       </FormRow>
     </form>

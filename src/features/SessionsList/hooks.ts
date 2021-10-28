@@ -84,7 +84,10 @@ export function useSwitchSession() {
     if (!runningSession) return startSession(name)
     return stop().then(() => startSession(name))
   }
-  return switchSession
+  return {
+    switchSession,
+    isLoading,
+  }
 }
 
 export function useUpdateSession() {

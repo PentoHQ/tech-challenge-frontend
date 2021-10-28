@@ -14,21 +14,31 @@ export interface TimerProps {
    * Timer start date
    */
   start: Date
+  /**
+   * Ability to stop timer
+   */
+  isStopped: boolean
 }
 
 /**
  * Primary UI component for user interaction
  */
-export const Timer = ({ className = '', start = new Date(), ...props }: TimerProps) => {
+export const Timer = ({ className = '', start = new Date(), isStopped, ...props }: TimerProps) => {
   const [timeLeft, setTimeLeft] = useState(intervalToDuration({ start, end: new Date() }))
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setTimeLeft(intervalToDuration({ start, end: new Date() }))
-    }, 1000)
+    let timer: any
+
+    if (!isStopped) {
+      timer = setTimeout(() => {
+        setTimeLeft(intervalToDuration({ start, end: new Date() }))
+      }, 1000)
+    } else {
+      clearTimeout(timer)
+    }
 
     return () => clearTimeout(timer)
-  }, [timeLeft, start])
+  }, [timeLeft, start, isStopped])
 
   const classes = [styles.wrapper, className].join(' ').trim()
   return (
