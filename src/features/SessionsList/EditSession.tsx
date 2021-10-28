@@ -51,6 +51,8 @@ export default function EditSession({ data, onClose }: FormProps) {
       return
     }
 
+    serValidationError('')
+
     update(data.id, name, newStartDate, newEndDate).finally(onClose)
   }
 
@@ -114,7 +116,9 @@ export default function EditSession({ data, onClose }: FormProps) {
             Cancel
           </Button>
 
-          <Button color="primary" type="submit">Save changes</Button>
+          <Button color="primary" type="submit" disabled={isLoading} isLoading={isLoading}>
+            Save changes
+          </Button>
         </FormRow>
       </Spacer>
     </form>

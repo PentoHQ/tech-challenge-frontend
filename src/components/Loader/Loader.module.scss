@@ -1,0 +1,44 @@
+@import 'common.scss';
+@import 'colors.scss';
+
+$small: 20px;
+$medium: 32px;
+$large: 48px;
+
+.wrapper {
+  display: block;
+  border: 4px solid $success50;
+  border-top-color: $success20;
+  border-radius: 50%;
+  animation-name: loader-spin;
+  animation-duration: 1.2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.text {
+  @extend %visuallyHidden;
+}
+
+.small {
+  width: $small;
+  height: $small;
+}
+.medium {
+  width: $medium;
+  height: $medium;
+}
+.large {
+  width: $large;
+  height: $large;
+}
+
+@keyframes loader-spin {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

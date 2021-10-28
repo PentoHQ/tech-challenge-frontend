@@ -2,6 +2,8 @@ import { motion, Target } from 'framer-motion'
 import React from 'react'
 import styles from './Button.module.scss'
 
+import Loader from 'components/Loader'
+
 export interface ButtonProps {
   /**
    * Is this the principal call to action on the page?
@@ -27,6 +29,7 @@ export interface ButtonProps {
   whileTap?: Target
   disabled?: boolean
   type?: 'submit' | 'reset' | 'button'
+  isLoading?: boolean
 }
 
 /**
@@ -39,20 +42,26 @@ export const Button = ({
   children,
   disabled,
   type = 'button',
+  isLoading,
   ...props
 }: ButtonProps) => {
   const classes = [
     styles.wrapper,
     styles[color],
     styles[size],
-    disabled ? styles.disabled : '',
+    disabled || isLoading ? styles.disabled : '',
     className,
   ]
     .join(' ')
     .trim()
   return (
-    <motion.button type={type} className={classes} disabled={disabled} {...props}>
+    <motion.button type={type} className={classes} disabled={disabled || isLoading} {...props}>
       {children}
+      {isLoading && (
+        <div className={styles.loaderWrapper}>
+          <Loader size="small" />
+        </div>
+      )}
     </motion.button>
   )
 }

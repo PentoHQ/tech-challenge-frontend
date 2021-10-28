@@ -30,6 +30,19 @@
   flex: 1 1 0px;
   width: 0;
 }
+
+// hide element but remains it accessible
+%visuallyHidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  white-space: nowrap;
+}
+
 // Z-indexes, don't just use random values!
 $z-index-pushCard: 1;
 $z-index-dropdown: 1;

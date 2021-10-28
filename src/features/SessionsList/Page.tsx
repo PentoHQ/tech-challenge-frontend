@@ -62,11 +62,7 @@ export default function SessionsListPage(props: any) {
         )}
       </RawCard>
 
-      <Modal
-        open={isModalOpen}
-        onClose={() => setModalState(false)}
-        headline="Edit session"
-      >
+      <Modal open={isModalOpen} onClose={() => setModalState(false)} headline="Edit session">
         <EditSession data={modalData} onClose={() => setModalState(false)} />
       </Modal>
     </PageBody>

@@ -37,3 +37,10 @@ Small.args = {
   size: 'small',
   children: 'Button',
 }
+
+export const Loading = Template.bind({})
+Loading.args = {
+  color: 'primary',
+  children: 'Button',
+  isLoading: true,
+}

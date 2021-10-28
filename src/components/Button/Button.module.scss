@@ -2,11 +2,16 @@
 @import 'colors.scss';
 @import './ButtonBase.scss';
 
+$outlineSize: 1px;
+
 @mixin buttonColors($color, $border) {
   color: $color;
   @include shadowBorder($border);
-  &:focus {
+  &:focus,
+  .loaderWrapper {
     outline: 1px solid $border;
+    border-radius: $rounded;
+    box-sizing: border-box;
   }
 }
 
@@ -35,4 +40,19 @@
 }
 .danger {
   @include buttonColors($danger90, $danger10);
+}
+
+.disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+.loaderWrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: $white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
