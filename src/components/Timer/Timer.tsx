@@ -13,11 +13,11 @@ export interface TimerProps {
   /**
    * Timer start date
    */
-  start: Date
+  start?: Date
   /**
    * Ability to stop timer
    */
-  isStopped: boolean
+  isStopped?: boolean
 }
 
 /**
