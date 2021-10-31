@@ -1,4 +1,4 @@
-import { intervalToDuration } from 'date-fns'
+import { Timer } from 'components/Timer'
 import { SyntheticEvent, useState } from 'react'
 import FormRow from '../../components/FormRow'
 import InputText from '../../components/InputText'
@@ -13,13 +13,11 @@ interface RunningProps {
 
 function RunningSession({ name, startDate }: RunningProps) {
   const { stop, isLoading } = useRunningSession()
-  const { hours, minutes, seconds } = intervalToDuration({ start: startDate, end: new Date() })
+
   return (
     <FormRow alignY="center" stretchLastChild={false}>
       {name}
-      <div>
-        {hours}:{minutes}:{seconds}
-      </div>
+      <Timer start={startDate} />
       <StopButton onClick={stop} disabled={isLoading}></StopButton>
     </FormRow>
   )
