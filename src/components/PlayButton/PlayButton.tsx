@@ -1,4 +1,4 @@
-import { PlayIcon } from '@heroicons/react/outline'
+import { PlayIcon, XCircleIcon } from '@heroicons/react/outline'
 import IconButton, { IconButtonProps } from '../IconButton'
 
 /**
@@ -7,7 +7,7 @@ import IconButton, { IconButtonProps } from '../IconButton'
 export const PlayButton = ({ ...props }: Partial<IconButtonProps>) => {
   return (
     <IconButton color="success" {...props}>
-      <PlayIcon></PlayIcon>
+      {props.disabled ? <XCircleIcon /> : <PlayIcon />}
     </IconButton>
   )
 }

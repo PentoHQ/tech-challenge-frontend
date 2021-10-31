@@ -12,6 +12,7 @@ export interface InputProps {
    */
   className?: string
   label?: string
+  disabled?: boolean
   value: string
   onChange: (val: string) => any
   placeholder?: string
@@ -28,6 +29,7 @@ export const InputText = ({
   className = '',
   placeholder = '',
   onChange,
+  disabled,
   ...props
 }: InputProps) => {
   const classes = [styles.wrapper, className].join(' ').trim()
@@ -39,6 +41,7 @@ export const InputText = ({
         placeholder={capitalize(placeholder)}
         type={type}
         onChange={(e) => onChange(e.target.value)}
+        disabled={disabled}
       />
     </div>
   )

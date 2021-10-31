@@ -9,36 +9,40 @@ import { useRunningSession } from './hooks'
 interface RunningProps {
   name: string
   startDate: Date
+  disabled?: boolean
 }
 
-function RunningSession({ name, startDate }: RunningProps) {
+function RunningSession({ name, startDate, disabled }: RunningProps) {
   const { stop, isLoading } = useRunningSession()
 
   return (
     <FormRow alignY="center" stretchLastChild={false}>
       {name}
       <Timer start={startDate} />
-      <StopButton onClick={stop} disabled={isLoading}></StopButton>
+      <StopButton onClick={stop} disabled={isLoading || disabled}></StopButton>
     </FormRow>
   )
 }
 
 export default function SessionControls() {
   const { isLoading, runningSession } = useRunningSession()
-  if (isLoading)
-    return (
-      <FormRow>
-        <span>Loading</span> ...
-      </FormRow>
-    )
+
   return runningSession ? (
-    <RunningSession name={runningSession.name} startDate={new Date(runningSession.startDate)} />
+    <RunningSession
+      name={runningSession.name}
+      startDate={new Date(runningSession.startDate)}
+      disabled={isLoading}
+    />
   ) : (
-    <SessionInput />
+    <SessionInput disabled={isLoading} />
   )
 }
 
-function SessionInput() {
+interface SessionInputProps {
+  disabled?: boolean
+}
+
+const SessionInput: React.FC<SessionInputProps> = ({ disabled }) => {
   const [sessionName, setSessionName] = useState('')
   const { isLoading, startSession } = useRunningSession()
   const submit = (e?: SyntheticEvent) => {
@@ -51,8 +55,8 @@ function SessionInput() {
   return (
     <form onSubmit={submit}>
       <FormRow alignY="center" stretchLastChild={false}>
-        <InputText onChange={setSessionName} value={sessionName}></InputText>
-        <PlayButton onClick={submit} disabled={isLoading} />
+        <InputText onChange={setSessionName} value={sessionName} disabled={disabled}></InputText>
+        <PlayButton onClick={submit} disabled={isLoading || disabled} />
       </FormRow>
     </form>
   )

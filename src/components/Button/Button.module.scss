@@ -13,6 +13,13 @@
 .wrapper {
   @extend %button;
   font: $text14Medium;
+
+  &:disabled {
+    cursor: default;
+    color: $grey10;
+    border: 1px solid $grey10;
+    box-shadow: none;
+  }
 }
 .small {
   padding: $padding4;

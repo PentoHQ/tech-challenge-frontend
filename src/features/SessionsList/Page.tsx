@@ -1,3 +1,4 @@
+import { BarLoader } from 'components/BarLoader'
 import { RawCard } from '../../components/Card'
 import List from '../../components/List'
 import ListItem from '../../components/ListItem'
@@ -23,7 +24,7 @@ export default function SessionsListPage(props: any) {
       </Spacer>
       <RawCard>
         {isLoading ? (
-          'Loading'
+          <BarLoader />
         ) : error ? (
           error.message
         ) : (
