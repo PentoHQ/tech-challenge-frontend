@@ -43,3 +43,23 @@ export const startSession = gql`
     }
   }
 `
+export const updateSession = gql`
+  mutation updateSession($input: sessions_pk_columns_input!, $data: sessions_set_input) {
+    update_sessions_by_pk(pk_columns: $input, _set: $data) {
+      id
+      name
+      startDate
+      endDate
+    }
+  }
+`
+export const deleteSession = gql`
+  mutation deleteSession($input: uuid!) {
+    delete_sessions_by_pk(id: $input) {
+      id
+      name
+      startDate
+      endDate
+    }
+  }
+`

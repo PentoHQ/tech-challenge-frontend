@@ -1,8 +1,10 @@
 import {
   useCreateSessionMutation,
+  useDeleteSessionMutation,
   useRunningSessionQuery,
   useSessionsQueryQuery,
   useStartSessionMutation,
+  useUpdateSessionMutation,
 } from '../../generated/graphql'
 import { runningQuery, getSessionsQuery } from './graphql'
 
@@ -79,5 +81,49 @@ export function useSwitchSession() {
     if (!runningSession) return startSession(name)
     return stop().then(() => startSession(name))
   }
-  return switchSession
+  return { switchSession, isLoading }
+}
+
+export const useDeleteSession = () => {
+  const [deleteSession, loading] = useDeleteSessionMutation()
+  const deleteById = (sessionId: string) =>
+    deleteSession({
+      variables: {
+        input: sessionId,
+      },
+      awaitRefetchQueries: true,
+      refetchQueries: [
+        {
+          query: getSessionsQuery,
+        },
+      ],
+    })
+
+  return { deleteById, isLoading: loading.loading }
+}
+
+export const useChangeSession = () => {
+  const [updateSession, result] = useUpdateSessionMutation()
+
+  return {
+    isLoading: result.loading,
+    updateSession: (id: string, name: string) => {
+      return updateSession({
+        variables: {
+          input: {
+            id,
+          },
+          data: {
+            name,
+          },
+        },
+        awaitRefetchQueries: true,
+        refetchQueries: [
+          {
+            query: getSessionsQuery,
+          },
+        ],
+      })
+    },
+  }
 }

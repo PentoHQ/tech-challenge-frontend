@@ -23,18 +23,18 @@ const Template: Story<ListProps> = (args) => <List {...args} />
 export const Basic = Template.bind({})
 Basic.args = {
   children: [
-    <ListItem title="Item 1" subtitle="awesome subtitle"></ListItem>,
-    <ListItem title="Item 2" subtitle="awesome subtitle"></ListItem>,
-    <ListItem title="Item 3" subtitle="awesome subtitle"></ListItem>,
+    <ListItem id={'0'} title="Item 1" subtitle="awesome subtitle"></ListItem>,
+    <ListItem id={'1'} title="Item 2" subtitle="awesome subtitle"></ListItem>,
+    <ListItem id={'2'} title="Item 3" subtitle="awesome subtitle"></ListItem>,
   ],
 }
 
 export const DisableGutters = Template.bind({})
 DisableGutters.args = {
   children: [
-    <ListItem title="Item 1" subtitle="awesome subtitle" disableGutters></ListItem>,
-    <ListItem title="Item 2" subtitle="awesome subtitle" disableGutters></ListItem>,
-    <ListItem title="Item 3" subtitle="awesome subtitle"></ListItem>,
+    <ListItem id={'0'} title="Item 1" subtitle="awesome subtitle" disableGutters></ListItem>,
+    <ListItem id={'1'} title="Item 2" subtitle="awesome subtitle" disableGutters></ListItem>,
+    <ListItem id={'2'} title="Item 3" subtitle="awesome subtitle"></ListItem>,
   ],
 }
 

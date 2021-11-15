@@ -1,22 +1,24 @@
-import { BarLoader } from 'components/BarLoader'
+import { BarLoader } from '../../components/BarLoader'
+import { RowAction } from '../../components/RowAction'
 import { RawCard } from '../../components/Card'
 import List from '../../components/List'
 import ListItem from '../../components/ListItem'
 import { PageBody } from '../../components/Page'
-import PlayButton from '../../components/PlayButton'
+
 import Spacer from '../../components/Spacer'
 import { diffDateStrings } from '../../util/diffDateStrings'
 import { msToHuman } from '../../util/formatters/formatDateDiff'
-import { useGetSessions, useSwitchSession } from './hooks'
+import { useGetSessions, useSwitchSession, useDeleteSession, useChangeSession } from './hooks'
 import SessionControls from './SessionControls'
-
-function RowAction({ name }: { name: string }) {
-  const switchSession = useSwitchSession()
-  return <PlayButton size="small" onClick={() => switchSession(name)}></PlayButton>
-}
 
 export default function SessionsListPage(props: any) {
   const { data, isLoading, error } = useGetSessions()
+  const { switchSession, isLoading: isSwitchLoading } = useSwitchSession()
+  const { deleteById, isLoading: isDeleteLoading } = useDeleteSession()
+  const { updateSession, isLoading: isUpdateLoading } = useChangeSession()
+
+  const loading = isLoading || isSwitchLoading || isDeleteLoading || isUpdateLoading
+
   return (
     <PageBody>
       <Spacer pb={4}>
@@ -34,7 +36,17 @@ export default function SessionsListPage(props: any) {
                 key={id}
                 title={name}
                 subtitle={msToHuman(diffDateStrings(startDate, endDate))}
-                action={<RowAction name={name} />}
+                id={id}
+                onSubmit={updateSession}
+                action={
+                  <RowAction
+                    id={id}
+                    name={name}
+                    onDelete={deleteById}
+                    onPlay={switchSession}
+                    disabled={loading}
+                  />
+                }
               />
             ))}
           </List>
